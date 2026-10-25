@@ -1,0 +1,26 @@
+name: Bug report
+description: Report a problem with the plugin.
+body:
+  - type: input
+    id: versions
+    attributes:
+      label: Game and plugin versions
+      description: Include the game update date if you do not know its version.
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: What happened?
+      description: What were you doing, and what did you expect to happen?
+    validations:
+      required: true
+  - type: textarea
+    id: other-plugins
+    attributes:
+      label: Other plugins and fbmods
+  - type: textarea
+    id: logs
+    attributes:
+      label: Log files
+      description: Attach the plugin log here. Remove any personal information first.

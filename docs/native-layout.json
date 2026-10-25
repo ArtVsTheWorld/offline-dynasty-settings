@@ -1,0 +1,639 @@
+{
+  "pluginVersion": "0.2.1",
+  "layout": "October 13, 2026",
+  "wholeExeHashGate": false,
+  "regions": [
+    {
+      "name": "Clock list",
+      "source": "Shared/Clock/GameLayouts.cs",
+      "rva": "0x7993aa0",
+      "length": 5568,
+      "sha256": "e7bdc4d9a6d877daab1f48e46ddebcc94191d8e36b8b7c20b19bbeb672df7a0a"
+    },
+    {
+      "name": "Dynasty writer",
+      "source": "Shared/Clock/GameLayouts.cs",
+      "rva": "0x79a2090",
+      "length": 11597,
+      "sha256": "2b05fce6990b117820e0b08b4fbf5db4adf37d7cd46bafd988b151ce97f8e5f2"
+    },
+    {
+      "name": "Choice serializer",
+      "source": "Shared/Clock/GameLayouts.cs",
+      "rva": "0x799be70",
+      "length": 674,
+      "sha256": "46f4460b9d7ec4dc67e7ae7a3a11a92fc7fc9a45bd64e47e55cfa5f729003c2a"
+    },
+    {
+      "name": "Profile accessor",
+      "source": "Shared/Clock/GameLayouts.cs",
+      "rva": "0x27a7910",
+      "length": 66,
+      "sha256": "b72e85baf81e92d9c246622dad7c77cd47f3871dbe3ebf2ea8d38629a7c79c87"
+    },
+    {
+      "name": "Main-menu enum getter",
+      "source": "Shared/Clock/GameLayouts.cs",
+      "rva": "0x7f2fca0",
+      "length": 79,
+      "sha256": "7e0e831302a3b5080bdfc8919673be4b77134c3db2ffe4c830304268dd1685fb"
+    },
+    {
+      "name": "Main-menu enum setter",
+      "source": "Shared/Clock/GameLayouts.cs",
+      "rva": "0x7f40470",
+      "length": 84,
+      "sha256": "4fc01de2abe3e8ce2e5b72a84d50a5f649dc88646d6e733f78c492239c931aa6"
+    },
+    {
+      "name": "Profile getter",
+      "source": "Shared/Clock/GameLayouts.cs",
+      "rva": "0x27a9b10",
+      "length": 54,
+      "sha256": "8cace7e0291664aba817f203923cf8258b2d5c8a94c7989e4398ab7da85c3c88"
+    },
+    {
+      "name": "Profile setter",
+      "source": "Shared/Clock/GameLayouts.cs",
+      "rva": "0x27b26f0",
+      "length": 73,
+      "sha256": "b9a5c899bdf47a9009969b014b8fbd3bebab0bafeb371dc2dba36ca0d7611213"
+    },
+    {
+      "name": "Enum metadata",
+      "source": "Shared/Clock/GameLayouts.cs",
+      "rva": "0x5cf5910",
+      "length": 29,
+      "sha256": "c88aea993b9929bb03ceb1884b8c64148265608a4091b794fbfa662b197ffe6a"
+    },
+    {
+      "name": "Native Play Clock decision",
+      "source": "Shared/Clock/GameLayouts.cs",
+      "rva": "0x35e336e",
+      "length": 303,
+      "sha256": "5759f74d31a6c35e3dc402c3f1a50e07d8fcb4bb4729d25a9840030ffa4f9189"
+    },
+    {
+      "name": "Remaining-clock setter",
+      "source": "Shared/Clock/GameLayouts.cs",
+      "rva": "0x5d02690",
+      "length": 153,
+      "sha256": "a7f744c3b7d25ab3b69a19db0f93ce10a9bd925814d0c01aa21209fb4505ddb1"
+    },
+    {
+      "name": "Clock transition dispatcher",
+      "source": "Shared/Clock/GameLayouts.cs",
+      "rva": "0x6455cb0",
+      "length": 60,
+      "sha256": "3d63926963ea64ee1ff059bb65db9a77aa434a8789a78f8862c75af028d34876"
+    },
+    {
+      "name": "Clock transition reset",
+      "source": "Shared/Clock/GameLayouts.cs",
+      "rva": "0x6469a50",
+      "length": 129,
+      "sha256": "a6531242282583ece301d958c10fcf864b680109bb274b23db0ffee3328640e5"
+    },
+    {
+      "name": "CPU snap cadence",
+      "source": "Shared/Clock/GameLayouts.cs",
+      "rva": "0x3608ea0",
+      "length": 204,
+      "sha256": "4cbc4b4115488d6334b831c2d1c4d710cacebbfbba3309ba1b0a1149f4e89121"
+    },
+    {
+      "name": "Play-clock upper limit",
+      "source": "Shared/Clock/GameLayouts.cs",
+      "rva": "0x5d83e7a",
+      "length": 49,
+      "sha256": "aba3a0f6745bb8da52b4bd631b96d6a549670b2fa1bb0631dd7ea3f959efe7c7"
+    },
+    {
+      "name": "Clock duration reset",
+      "source": "Shared/Clock/GameLayouts.cs",
+      "rva": "0x5d02340",
+      "length": 158,
+      "sha256": "65903f8efb248f5815afa40ef001a0e467699752c33be86df87fe8bf8792ab6c"
+    },
+    {
+      "name": "Match enum getter",
+      "source": "Shared/Clock/GameLayouts.cs",
+      "rva": "0x5cf5d60",
+      "length": 16,
+      "sha256": "4a94c23be822b90127b5ce6c14f9a13ddcda763bd3d4442ae3382f410e3d6792"
+    },
+    {
+      "name": "Match type predicate",
+      "source": "Shared/Clock/GameLayouts.cs",
+      "rva": "0x3009b70",
+      "length": 16,
+      "sha256": "c30bc95384a7c1b5b89b00e708e9667120a818f8fa06e52cbd6e9628734e23ca"
+    },
+    {
+      "name": "Legacy league mode predicate",
+      "source": "Shared/Clock/GameLayouts.cs",
+      "rva": "0x7ee1fb0",
+      "length": 69,
+      "sha256": "48c553b0030661e62543ef8fdd4f5ad41155a6dac5c2a8f017b8e12478c49329"
+    },
+    {
+      "name": "SplitSettingsAction",
+      "source": "Shared/Playcall/SplitSettingsAction.cs",
+      "rva": "0x7993aa0",
+      "length": 5568,
+      "sha256": "e7bdc4d9a6d877daab1f48e46ddebcc94191d8e36b8b7c20b19bbeb672df7a0a"
+    },
+    {
+      "name": "SplitSettingsAction",
+      "source": "Shared/Playcall/SplitSettingsAction.cs",
+      "rva": "0x799be70",
+      "length": 674,
+      "sha256": "46f4460b9d7ec4dc67e7ae7a3a11a92fc7fc9a45bd64e47e55cfa5f729003c2a"
+    },
+    {
+      "name": "SplitSettingsAction",
+      "source": "Shared/Playcall/SplitSettingsAction.cs",
+      "rva": "0x86b1e70",
+      "length": 19988,
+      "sha256": "bc8153280b048be7b93f93dbb6eb0ee8abd372abfb964905d59e087f63254427"
+    },
+    {
+      "name": "SplitSettingsAction",
+      "source": "Shared/Playcall/SplitSettingsAction.cs",
+      "rva": "0x79a2090",
+      "length": 11564,
+      "sha256": "a604bc7c58a6103208417817fb68e0c519dbec0ff6470c29b3469bd3c5b71e02"
+    },
+    {
+      "name": "SplitSettingsAction",
+      "source": "Shared/Playcall/SplitSettingsAction.cs",
+      "rva": "0x2e93ee0",
+      "length": 62,
+      "sha256": "8146614caf492890dfcd045e92ab74e979f775b1554c87d1921690406839a0e8"
+    },
+    {
+      "name": "SplitSettingsAction",
+      "source": "Shared/Playcall/SplitSettingsAction.cs",
+      "rva": "0x4f96740",
+      "length": 196,
+      "sha256": "cde34c4edcc89f8d52d5b6b7f403532c0ebd98ff202deacf05f71099319ed421"
+    },
+    {
+      "name": "SplitSettingsAction",
+      "source": "Shared/Playcall/SplitSettingsAction.cs",
+      "rva": "0x2e8c240",
+      "length": 824,
+      "sha256": "40d731ea91dbf63e01685a0c8a964debd86b3f352d68be911b84427020662517"
+    },
+    {
+      "name": "SplitSettingsAction",
+      "source": "Shared/Playcall/SplitSettingsAction.cs",
+      "rva": "0x8456250",
+      "length": 3,
+      "sha256": "01cb47d078b4841b8408ec4fe278efa83115c6f6e101972987507d2b2b57dcf0"
+    },
+    {
+      "name": "SplitSettingsAction",
+      "source": "Shared/Playcall/SplitSettingsAction.cs",
+      "rva": "0x7993a90",
+      "length": 7,
+      "sha256": "46d3d1a5a933af9e5a5b62beaee8678a87bdb8e7b9b8a4c0b17103ed799e13d4"
+    },
+    {
+      "name": "SplitSettingsAction",
+      "source": "Shared/Playcall/SplitSettingsAction.cs",
+      "rva": "0x7ee1fb0",
+      "length": 69,
+      "sha256": "48c553b0030661e62543ef8fdd4f5ad41155a6dac5c2a8f017b8e12478c49329"
+    },
+    {
+      "name": "SplitSettingsAction",
+      "source": "Shared/Playcall/SplitSettingsAction.cs",
+      "rva": "0x3009b70",
+      "length": 16,
+      "sha256": "c30bc95384a7c1b5b89b00e708e9667120a818f8fa06e52cbd6e9628734e23ca"
+    },
+    {
+      "name": "DefensiveTimerRva",
+      "source": "Plugin/DefensivePlayClock.cs",
+      "rva": "0x35f7d31",
+      "length": 17,
+      "sha256": "f35cb7ae4bbd4a185e3c8dd6398b9b6132d9aaad18ddb372f78241ad777e01c4"
+    },
+    {
+      "name": "DefensiveGateRva",
+      "source": "Plugin/DefensivePlayClock.cs",
+      "rva": "0x35fd7d3",
+      "length": 19,
+      "sha256": "8d130a73249f196a8942d628e9b96452c558cb51323edb22581867290d245eba"
+    },
+    {
+      "name": "Defensive duration getter",
+      "source": "Plugin/DefensivePlayClock.cs",
+      "rva": "0x5ff26a0",
+      "length": 9,
+      "sha256": "3b364340ae899bb372feee2596ffa7caf47286fa6719590fc847cecebf1e5058"
+    }
+  ],
+  "references": {
+    "0x1000000": [
+      "Plugin/PersistenceController.cs:86",
+      "Plugin/PersistenceController.cs:90"
+    ],
+    "0x27a7910": [
+      "Shared/Clock/GameLayouts.cs:14",
+      "Shared/Clock/GameLayouts.cs:37"
+    ],
+    "0x27a9b10": [
+      "Shared/Clock/GameLayouts.cs:17"
+    ],
+    "0x27ac630": [
+      "Plugin/CombinedClockRuntime.cs:18",
+      "Shared/Clock/DynastyPlayClockAction.cs:27",
+      "Shared/Clock/DynastyPlayClockAction.cs:263",
+      "Shared/Clock/DynastyPlayClockAction.cs:291",
+      "Shared/Clock/DynastyPlayClockAction.cs:328",
+      "Shared/Clock/DynastyPlayClockAction.cs:355",
+      "Shared/Clock/ExtendedClock.cs:67",
+      "Shared/Clock/ExtendedClock.cs:101",
+      "Shared/Clock/ExtendedClock.cs:135",
+      "Shared/Clock/ExtendedClock.cs:166",
+      "Shared/Clock/GameLayouts.cs:37"
+    ],
+    "0x27ae830": [
+      "Shared/Clock/DynastyPlayClockAction.cs:30"
+    ],
+    "0x27b26f0": [
+      "Shared/Clock/GameLayouts.cs:18"
+    ],
+    "0x27b7410": [
+      "Shared/Clock/DynastyPlayClockAction.cs:31"
+    ],
+    "0x2e8c240": [
+      "Shared/Playcall/SplitSettingsAction.cs:112"
+    ],
+    "0x2e93ee0": [
+      "Shared/Playcall/SplitSettingsAction.cs:110"
+    ],
+    "0x2e93f0b": [
+      "Shared/Playcall/SplitSettingsAction.cs:144"
+    ],
+    "0x3009b70": [
+      "Shared/Clock/GameLayouts.cs:28",
+      "Shared/Playcall/SplitSettingsAction.cs:116"
+    ],
+    "0x300e880": [
+      "Shared/Clock/DynastyPlayClockAction.cs:41"
+    ],
+    "0x35e336e": [
+      "Shared/Clock/GameLayouts.cs:20"
+    ],
+    "0x35e33b2": [
+      "Shared/Clock/GameLayouts.cs:39"
+    ],
+    "0x35e754e": [
+      "Shared/Clock/DynastyPlayClockAction.cs:33"
+    ],
+    "0x35e7592": [
+      "Shared/Clock/DynastyPlayClockAction.cs:17",
+      "Shared/Clock/GameLayouts.cs:39"
+    ],
+    "0x35f7d31": [
+      "Plugin/DefensivePlayClock.cs:8",
+      "Plugin/DefensivePlayClock.cs:63",
+      "Plugin/DiagnosticLog.cs:89"
+    ],
+    "0x35fd7d3": [
+      "Plugin/DefensivePlayClock.cs:10"
+    ],
+    "0x35fd7d8": [
+      "Plugin/DefensivePlayClock.cs:24"
+    ],
+    "0x3608ea0": [
+      "Shared/Clock/GameLayouts.cs:24"
+    ],
+    "0x3608ee0": [
+      "Shared/Clock/GameLayouts.cs:43"
+    ],
+    "0x360d070": [
+      "Shared/Clock/DynastyPlayClockAction.cs:37"
+    ],
+    "0x360d0b0": [
+      "Plugin/CombinedClockRuntime.cs:54",
+      "Plugin/CombinedClockRuntime.cs:105",
+      "Shared/Clock/DynastyPlayClockAction.cs:154",
+      "Shared/Clock/DynastyPlayClockAction.cs:164",
+      "Shared/Clock/DynastyPlayClockAction.cs:192",
+      "Shared/Clock/DynastyPlayClockAction.cs:201",
+      "Shared/Clock/DynastyPlayClockAction.cs:209",
+      "Shared/Clock/ExtendedClock.cs:109",
+      "Shared/Clock/GameLayouts.cs:43"
+    ],
+    "0x4f96740": [
+      "Shared/Playcall/SplitSettingsAction.cs:111"
+    ],
+    "0x5cf5910": [
+      "Shared/Clock/GameLayouts.cs:19"
+    ],
+    "0x5cf5d60": [
+      "Shared/Clock/GameLayouts.cs:27",
+      "Shared/Clock/GameLayouts.cs:48"
+    ],
+    "0x5d01900": [
+      "Shared/Clock/DynastyPlayClockAction.cs:32"
+    ],
+    "0x5d01b70": [
+      "Shared/Clock/GameLayouts.cs:45"
+    ],
+    "0x5d01d50": [
+      "Plugin/CombinedClockRuntime.cs:54",
+      "Plugin/CombinedClockRuntime.cs:105",
+      "Shared/Clock/DynastyPlayClockAction.cs:40",
+      "Shared/Clock/DynastyPlayClockAction.cs:157",
+      "Shared/Clock/DynastyPlayClockAction.cs:161",
+      "Shared/Clock/DynastyPlayClockAction.cs:189",
+      "Shared/Clock/DynastyPlayClockAction.cs:198",
+      "Shared/Clock/DynastyPlayClockAction.cs:209",
+      "Shared/Clock/DynastyPlayClockAction.cs:315",
+      "Shared/Clock/GameLayouts.cs:48"
+    ],
+    "0x5d02340": [
+      "Shared/Clock/GameLayouts.cs:26",
+      "Shared/Clock/GameLayouts.cs:46"
+    ],
+    "0x5d02690": [
+      "Shared/Clock/GameLayouts.cs:21",
+      "Shared/Clock/GameLayouts.cs:41"
+    ],
+    "0x5d0db10": [
+      "Shared/Clock/ExtendedClock.cs:76",
+      "Shared/Clock/GameLayouts.cs:45"
+    ],
+    "0x5d0e2e0": [
+      "Plugin/CombinedClockRuntime.cs:54",
+      "Plugin/CombinedClockRuntime.cs:105",
+      "Shared/Clock/DynastyPlayClockAction.cs:39",
+      "Shared/Clock/DynastyPlayClockAction.cs:156",
+      "Shared/Clock/DynastyPlayClockAction.cs:162",
+      "Shared/Clock/DynastyPlayClockAction.cs:190",
+      "Shared/Clock/DynastyPlayClockAction.cs:199",
+      "Shared/Clock/DynastyPlayClockAction.cs:209",
+      "Shared/Clock/ExtendedClock.cs:185",
+      "Shared/Clock/GameLayouts.cs:46"
+    ],
+    "0x5d0e630": [
+      "Plugin/CombinedClockRuntime.cs:54",
+      "Plugin/CombinedClockRuntime.cs:105",
+      "Shared/Clock/DynastyPlayClockAction.cs:34",
+      "Shared/Clock/DynastyPlayClockAction.cs:153",
+      "Shared/Clock/DynastyPlayClockAction.cs:165",
+      "Shared/Clock/DynastyPlayClockAction.cs:193",
+      "Shared/Clock/DynastyPlayClockAction.cs:202",
+      "Shared/Clock/DynastyPlayClockAction.cs:209",
+      "Shared/Clock/ExtendedClock.cs:146",
+      "Shared/Clock/GameLayouts.cs:41"
+    ],
+    "0x5d83e7a": [
+      "Shared/Clock/GameLayouts.cs:25",
+      "Shared/Clock/GameLayouts.cs:44"
+    ],
+    "0x5d8fc30": [
+      "Plugin/CombinedClockRuntime.cs:54",
+      "Plugin/CombinedClockRuntime.cs:105",
+      "Shared/Clock/DynastyPlayClockAction.cs:38",
+      "Shared/Clock/DynastyPlayClockAction.cs:155",
+      "Shared/Clock/DynastyPlayClockAction.cs:163",
+      "Shared/Clock/DynastyPlayClockAction.cs:191",
+      "Shared/Clock/DynastyPlayClockAction.cs:200",
+      "Shared/Clock/DynastyPlayClockAction.cs:209",
+      "Shared/Clock/ExtendedClock.cs:51",
+      "Shared/Clock/ExtendedClock.cs:51",
+      "Shared/Clock/ExtendedClock.cs:77",
+      "Shared/Clock/GameLayouts.cs:44"
+    ],
+    "0x5ff26a0": [
+      "Plugin/CombinedClockRuntime.cs:62",
+      "Plugin/DefensivePlayClock.cs:51",
+      "Plugin/DefensivePlayClock.cs:52",
+      "Plugin/DefensivePlayClock.cs:74"
+    ],
+    "0x6455cb0": [
+      "Shared/Clock/GameLayouts.cs:22"
+    ],
+    "0x6455cd0": [
+      "Shared/Clock/GameLayouts.cs:42"
+    ],
+    "0x6461420": [
+      "Shared/Clock/DynastyPlayClockAction.cs:35"
+    ],
+    "0x6461440": [
+      "Shared/Clock/ExtendedClock.cs:124",
+      "Shared/Clock/GameLayouts.cs:42"
+    ],
+    "0x6469a50": [
+      "Shared/Clock/GameLayouts.cs:23"
+    ],
+    "0x64751c0": [
+      "Shared/Clock/DynastyPlayClockAction.cs:36"
+    ],
+    "0x7993a90": [
+      "Shared/Playcall/SplitSettingsAction.cs:114"
+    ],
+    "0x7993aa0": [
+      "Shared/Clock/GameLayouts.cs:11",
+      "Shared/Clock/GameLayouts.cs:31",
+      "Shared/Playcall/SplitSettingsAction.cs:106",
+      "Shared/Playcall/SplitSettingsAction.cs:122"
+    ],
+    "0x7993d9e": [
+      "Shared/Clock/GameLayouts.cs:32",
+      "Shared/Playcall/SplitSettingsAction.cs:124",
+      "Shared/Playcall/SplitSettingsAction.cs:177"
+    ],
+    "0x7993da0": [
+      "Shared/Playcall/SplitSettingsAction.cs:102",
+      "Shared/Playcall/SplitSettingsAction.cs:142",
+      "Shared/Playcall/SplitSettingsAction.cs:314"
+    ],
+    "0x7993e6c": [
+      "Shared/Clock/DynastyPlayClockAction.cs:108",
+      "Shared/Clock/GameLayouts.cs:33",
+      "Shared/Playcall/SplitSettingsAction.cs:129",
+      "Shared/Playcall/SplitSettingsAction.cs:222"
+    ],
+    "0x799be70": [
+      "Plugin/CombinedClockRuntime.cs:47",
+      "Shared/Clock/GameLayouts.cs:13",
+      "Shared/Clock/GameLayouts.cs:36",
+      "Shared/Playcall/SplitSettingsAction.cs:107"
+    ],
+    "0x79a2090": [
+      "Shared/Clock/GameLayouts.cs:12",
+      "Shared/Playcall/SplitSettingsAction.cs:109",
+      "Shared/Playcall/SplitSettingsAction.cs:131"
+    ],
+    "0x79a2123": [
+      "Shared/Clock/GameLayouts.cs:34",
+      "Shared/Playcall/SplitSettingsAction.cs:132",
+      "Shared/Playcall/SplitSettingsAction.cs:143",
+      "Shared/Playcall/SplitSettingsAction.cs:223"
+    ],
+    "0x79a48dd": [
+      "Shared/Clock/GameLayouts.cs:35"
+    ],
+    "0x79a76d0": [
+      "Shared/Clock/DynastyPlayClockAction.cs:24",
+      "Shared/Clock/DynastyPlayClockAction.cs:116",
+      "Shared/Clock/GameLayouts.cs:31"
+    ],
+    "0x79a79ce": [
+      "Shared/Clock/DynastyPlayClockAction.cs:117",
+      "Shared/Clock/DynastyPlayClockAction.cs:222",
+      "Shared/Clock/GameLayouts.cs:32"
+    ],
+    "0x79a7a9c": [
+      "Shared/Clock/DynastyPlayClockAction.cs:17",
+      "Shared/Clock/GameLayouts.cs:33"
+    ],
+    "0x79afaa0": [
+      "Plugin/CombinedClockRuntime.cs:24",
+      "Shared/Clock/DynastyPlayClockAction.cs:26",
+      "Shared/Clock/DynastyPlayClockAction.cs:270",
+      "Shared/Clock/GameLayouts.cs:36"
+    ],
+    "0x79b5cc0": [
+      "Shared/Clock/DynastyPlayClockAction.cs:25"
+    ],
+    "0x79b5d53": [
+      "Shared/Clock/DynastyPlayClockAction.cs:17",
+      "Shared/Clock/GameLayouts.cs:34"
+    ],
+    "0x79b850d": [
+      "Shared/Clock/DynastyPlayClockAction.cs:296",
+      "Shared/Clock/GameLayouts.cs:35"
+    ],
+    "0x7ee1fb0": [
+      "Shared/Clock/GameLayouts.cs:29",
+      "Shared/Playcall/SplitSettingsAction.cs:115"
+    ],
+    "0x7ef6110": [
+      "Shared/Clock/DynastyPlayClockAction.cs:42"
+    ],
+    "0x7f2fca0": [
+      "Shared/Clock/GameLayouts.cs:15"
+    ],
+    "0x7f40470": [
+      "Shared/Clock/GameLayouts.cs:16"
+    ],
+    "0x7f433a0": [
+      "Shared/Clock/DynastyPlayClockAction.cs:28"
+    ],
+    "0x7f53b60": [
+      "Shared/Clock/DynastyPlayClockAction.cs:29"
+    ],
+    "0x8000000": [
+      "Plugin/PersistenceController.cs:85",
+      "Plugin/PersistenceController.cs:92"
+    ],
+    "0x8456250": [
+      "Shared/Playcall/SplitSettingsAction.cs:113"
+    ],
+    "0x86b1e70": [
+      "Shared/Playcall/SplitSettingsAction.cs:108"
+    ],
+    "0xac9aed0": [
+      "Shared/Clock/DynastyPlayClockAction.cs:288",
+      "Shared/Clock/DynastyPlayClockAction.cs:300",
+      "Shared/Clock/GameLayouts.cs:38"
+    ],
+    "0xad8fec0": [
+      "Shared/Clock/GameLayouts.cs:38"
+    ],
+    "0xada5bcc": [
+      "Plugin/DefensivePlayClock.cs:85"
+    ],
+    "0xb67e30c": [
+      "Shared/Clock/DynastyPlayClockAction.cs:131",
+      "Shared/Clock/GameLayouts.cs:53"
+    ],
+    "0xb772b9c": [
+      "Shared/Clock/GameLayouts.cs:53"
+    ],
+    "0xd8b4808": [
+      "Shared/Clock/DynastyPlayClockAction.cs:322",
+      "Shared/Clock/DynastyPlayClockAction.cs:351",
+      "Shared/Clock/ExtendedClock.cs:62",
+      "Shared/Clock/ExtendedClock.cs:94",
+      "Shared/Clock/ExtendedClock.cs:128",
+      "Shared/Clock/ExtendedClock.cs:160",
+      "Shared/Clock/GameLayouts.cs:49"
+    ],
+    "0xd9e3818": [
+      "Plugin/DefensivePlayClock.cs:88",
+      "Plugin/DiagnosticLog.cs:99",
+      "Shared/Clock/GameLayouts.cs:49"
+    ],
+    "0xe1963d0": [
+      "Shared/Clock/DynastyPlayClockAction.cs:326",
+      "Shared/Clock/DynastyPlayClockAction.cs:353",
+      "Shared/Clock/ExtendedClock.cs:65",
+      "Shared/Clock/ExtendedClock.cs:99",
+      "Shared/Clock/ExtendedClock.cs:133",
+      "Shared/Clock/ExtendedClock.cs:164",
+      "Shared/Clock/GameLayouts.cs:51"
+    ],
+    "0xe1963d8": [
+      "Shared/Clock/DynastyPlayClockAction.cs:327",
+      "Shared/Clock/DynastyPlayClockAction.cs:354",
+      "Shared/Clock/ExtendedClock.cs:66",
+      "Shared/Clock/ExtendedClock.cs:100",
+      "Shared/Clock/ExtendedClock.cs:134",
+      "Shared/Clock/ExtendedClock.cs:165",
+      "Shared/Clock/GameLayouts.cs:52"
+    ],
+    "0xe1963e0": [
+      "Shared/Clock/DynastyPlayClockAction.cs:209",
+      "Shared/Clock/DynastyPlayClockAction.cs:314",
+      "Shared/Clock/DynastyPlayClockAction.cs:350",
+      "Shared/Clock/GameLayouts.cs:40"
+    ],
+    "0xe2c73e0": [
+      "Shared/Clock/GameLayouts.cs:51"
+    ],
+    "0xe2c73e8": [
+      "Shared/Clock/GameLayouts.cs:52"
+    ],
+    "0xe2c73f0": [
+      "Shared/Clock/GameLayouts.cs:40"
+    ],
+    "0xf2c4d48": [
+      "Shared/Clock/DynastyPlayClockAction.cs:323",
+      "Shared/Clock/DynastyPlayClockAction.cs:352",
+      "Shared/Clock/ExtendedClock.cs:63",
+      "Shared/Clock/ExtendedClock.cs:95",
+      "Shared/Clock/ExtendedClock.cs:129",
+      "Shared/Clock/ExtendedClock.cs:161",
+      "Shared/Clock/GameLayouts.cs:50"
+    ],
+    "0xf3f5d48": [
+      "Plugin/DefensivePlayClock.cs:89",
+      "Plugin/DiagnosticLog.cs:100",
+      "Shared/Clock/GameLayouts.cs:50"
+    ],
+    "0xf7261f8": [
+      "Shared/Clock/ExtendedClock.cs:64",
+      "Shared/Clock/ExtendedClock.cs:96",
+      "Shared/Clock/ExtendedClock.cs:130",
+      "Shared/Clock/ExtendedClock.cs:162",
+      "Shared/Clock/GameLayouts.cs:47"
+    ],
+    "0xf8572b8": [
+      "Shared/Clock/GameLayouts.cs:47"
+    ],
+    "0xf8abb50": [
+      "Plugin/DefensivePlayClock.cs:25",
+      "Plugin/DefensivePlayClock.cs:87",
+      "Plugin/DiagnosticLog.cs:101"
+    ]
+  }
+}

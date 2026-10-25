@@ -1,0 +1,16 @@
+name: Checks
+on:
+  push:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  checks:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - name: Check native manifest
+        run: python Tools/export_layout.py --check
+      - name: Run SDK-free tests
+        shell: powershell
+        run: .\Test.ps1
