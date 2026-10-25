@@ -124,7 +124,7 @@ class LaunchChecks
         IntPtr memory = Marshal.AllocHGlobal(0x5000);
         try {
             byte[] zero = new byte[0x5000]; Marshal.Copy(zero,0,memory,zero.Length);
-            long remote = memory.ToInt64(); string ini = Path.Combine(isolated,"DynastyPlayClock.ini");
+            long remote = memory.ToInt64(); string ini = SettingsFiles.PathFor(isolated,"DynastyPlayClock.ini");
             File.WriteAllText(ini,"ExtendedSeconds=0\r\n");
             IntPtr handle = OpenProcess(0x1010,false,Process.GetCurrentProcess().Id);
             using (DynastyPlayClockAction.CombinedPersistence persistence = new DynastyPlayClockAction.CombinedPersistence(handle,remote,false)) {

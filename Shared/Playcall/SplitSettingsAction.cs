@@ -433,7 +433,11 @@ namespace OfflinePlaycall
             lock (logLock)
             {
                 try { if (logger != null) logger.Log("[Offline Playcall split] " + message, new object[0]); } catch { }
+#if COMBINED_DYNASTY_SETTINGS
+                try { File.AppendAllText(OfflineDynastySettings.SettingsFiles.PathFor(Path.GetDirectoryName(typeof(SplitSettingsAction).Assembly.Location), "OfflinePlaycall.log"), DateTime.Now.ToString("O", CultureInfo.InvariantCulture) + " " + message + Environment.NewLine); } catch { }
+#else
                 try { File.AppendAllText(Path.Combine(Path.GetDirectoryName(typeof(SplitSettingsAction).Assembly.Location), "OfflinePlaycall.log"), DateTime.Now.ToString("O", CultureInfo.InvariantCulture) + " " + message + Environment.NewLine); } catch { }
+#endif
             }
         }
         private static Process FindGame()

@@ -102,8 +102,8 @@ class HelperChecks
     {
         Directory.CreateDirectory(folder);string fakeExe=Path.Combine(folder,"CollegeFB27.exe");
         File.Copy(Assembly.GetExecutingAssembly().Location,fakeExe,true);
-        string saved=Path.Combine(folder,"saved"),ini=Path.Combine(saved,"DynastyPlayClock.ini"),storage=Path.Combine(saved,"OfflinePlaycallSettings","dynasties.json");
-        Directory.CreateDirectory(Path.GetDirectoryName(storage));File.WriteAllText(ini,"ExtendedSeconds=0\r\n");
+        string saved=Path.Combine(folder,"saved"),ini=Path.Combine(saved,"OfflineDynastySettings","DynastyPlayClock.ini"),storage=Path.Combine(saved,"OfflinePlaycallSettings","dynasties.json");
+        Directory.CreateDirectory(Path.GetDirectoryName(storage));Directory.CreateDirectory(Path.GetDirectoryName(ini));File.WriteAllText(ini,"ExtendedSeconds=0\r\n");
         File.WriteAllText(storage,"{\"FormatVersion\":2,\"DefenseCooldowns\":{\"101\":3},\"DefenseLimits\":{\"101\":5,\"202\":2}}");
         string helperExe=PersistenceController.ExtractHelper();Check(File.Exists(helperExe),"Bundled helper not extracted");
         Check(helperExe==PersistenceController.ExtractHelper(),"Verified helper not reused");
@@ -112,18 +112,18 @@ class HelperChecks
             fake=Start(fakeExe,ModeArgs("fake"),true);PersistenceContext context=json.Deserialize<PersistenceContext>(fake.StandardOutput.ReadLine());
             helper=LaunchHelper(context);Send(fake,"set");
             Until(()=>File.ReadAllText(ini).Trim()=="ExtendedSeconds=60","60-second preference not saved after launcher exited");
-            Until(()=>File.Exists(Path.Combine(saved,"OfflineDynastySettings.ini")) && File.ReadAllText(Path.Combine(saved,"OfflineDynastySettings.ini")).Trim()=="DefensivePlayClockSeconds=30","New defensive clock choice not saved after MMC exit");
+            Until(()=>File.Exists(Path.Combine(saved,"OfflineDynastySettings","OfflineDynastySettings.ini")) && File.ReadAllText(Path.Combine(saved,"OfflineDynastySettings","OfflineDynastySettings.ini")).Trim()=="DefensivePlayClockSeconds=30","New defensive clock choice not saved after MMC exit");
             Until(()=>Defense(storage,"DefenseLimits","202")==2,"Inherited/limit-only dynasty not saved");
             using(FileStream locked=new FileStream(ini,FileMode.Open,FileAccess.ReadWrite,FileShare.None)) {
                 Send(fake,"change");Until(()=>Defense(storage,"DefenseCooldowns","101")==4 && Defense(storage,"DefenseLimits","101")==0,"INI lock prevented independent defense saving");
             }
             Until(()=>File.ReadAllText(ini).Trim()=="ExtendedSeconds=0","INI save did not recover from lock");
-            Until(()=>File.ReadAllText(Path.Combine(saved,"OfflineDynastySettings.ini")).Trim()=="DefensivePlayClockSeconds=20","Defensive clock did not save independently of offensive file lock");
+            Until(()=>File.ReadAllText(Path.Combine(saved,"OfflineDynastySettings","OfflineDynastySettings.ini")).Trim()=="DefensivePlayClockSeconds=20","Defensive clock did not save independently of offensive file lock");
             using(FileStream locked=new FileStream(storage,FileMode.Open,FileAccess.ReadWrite,FileShare.None)) {
                 Send(fake,"third");Until(()=>File.ReadAllText(ini).Trim()=="ExtendedSeconds=60","Defense lock prevented independent preference saving");
             }
             Until(()=>Defense(storage,"DefenseCooldowns","101")==2,"Defense save did not recover from lock");
-            Until(()=>File.ReadAllText(Path.Combine(saved,"OfflineDynastySettings.ini")).Trim()=="DefensivePlayClockSeconds=45","Defensive clock did not save independently of defense file lock");
+            Until(()=>File.ReadAllText(Path.Combine(saved,"OfflineDynastySettings","OfflineDynastySettings.ini")).Trim()=="DefensivePlayClockSeconds=45","Defensive clock did not save independently of defense file lock");
             Check(File.Exists(storage+".bak"),"Atomic defense backup missing");
             string preserved=File.ReadAllText(storage);Send(fake,"invalid");Thread.Sleep(350);
             Check(File.ReadAllText(storage)==preserved,"Invalid remote configuration destroyed saved settings");
@@ -141,7 +141,7 @@ class HelperChecks
             Check(helper.ExitCode==0,"Normal game exit reported error");helper.Dispose();helper=null;fake.Dispose();fake=null;
             fake=Start(fakeExe,ModeArgs("fake"),true);context=json.Deserialize<PersistenceContext>(fake.StandardOutput.ReadLine());
             context.ReadyEvent="Local\\OfflineDynastySettingsClosedBeforeAck_"+Guid.NewGuid().ToString("N");File.WriteAllText(direct,json.Serialize(context));
-            string logPath=Path.Combine(saved,"OfflineDynastySettings.Persistence.log");int logStart=File.ReadAllText(logPath).Length;
+            string logPath=Path.Combine(saved,"OfflineDynastySettings","OfflineDynastySettings.Persistence.log");int logStart=File.ReadAllText(logPath).Length;
             helper=Start(helperExe,Quote(direct),false);
             Until(()=>File.ReadAllText(logPath).Substring(logStart).Contains("MMC already closed before acknowledgement"),"Early-close helper never became ready");
             Send(fake,"set");Send(fake,"change");

@@ -18,13 +18,14 @@ class DiagnosticChecks
             string folder=Path.GetFullPath(args[0]);Directory.CreateDirectory(folder);
             string report=Path.Combine(folder,"OfflineDynastySettings","Diagnostics");
             File.WriteAllText(Path.Combine(folder,"DynastyPlayClock.ini"),"ExtendedSeconds=60\r\n");
+            SettingsFiles.Migrate(folder);
             string collision=DiagnosticLog.Mismatch("Test hook",0x35f7d31,"expected",new byte[]{0xff,0x25,0,0,0,0});
             Check(collision.Contains("0x35f7d31") && collision.Contains("FF-25") && collision.Contains("expected") && collision.Contains("actual="),"Conflict report identifies address and changed bytes");
             Check(collision.Contains("not a whole-EXE hash requirement"),"Region check is identified correctly");
             DiagnosticLog.Write(folder,"test","exception example: "+new InvalidOperationException("diagnostic-test"));
-            string log=File.ReadAllText(Path.Combine(folder,"OfflineDynastySettings.log"));
-            Check(log.Contains("[0.2.1]") && log.Contains("[test]") && log.Contains("System.InvalidOperationException"),"Version, component and full exception recorded");
-            using(FileStream locked=new FileStream(Path.Combine(folder,"OfflineDynastySettings.log"),FileMode.Open,FileAccess.ReadWrite,FileShare.None))
+            string log=File.ReadAllText(SettingsFiles.PathFor(folder,"OfflineDynastySettings.log"));
+            Check(log.Contains("["+DiagnosticLog.Version+"]") && log.Contains("[test]") && log.Contains("System.InvalidOperationException"),"Version, component and full exception recorded");
+            using(FileStream locked=new FileStream(SettingsFiles.PathFor(folder,"OfflineDynastySettings.log"),FileMode.Open,FileAccess.ReadWrite,FileShare.None))
                 DiagnosticLog.Write(folder,"test","locked log must not throw");
             Check(true,"Locked log does not interrupt work");
             PersistenceContext context=new PersistenceContext { PluginFolder=folder,Pid=1234,ClockData=0x10000,SplitData=0x20000,
@@ -84,12 +85,12 @@ class DiagnosticChecks
                 object[] parameters={new IntPtr(-1),-1};
                 save.Invoke(null,parameters);
                 Check((int)parameters[1]==0 && ClockPreferences.Load(folder)==0,"Bundled helper persists defensive Off instead of ignoring zero");
-                Check(File.ReadAllText(Path.Combine(folder,"OfflineDynastySettings.log")).Contains("Saved Defensive Play Clock: Off."),"Helper logs Off clearly");
+                Check(File.ReadAllText(SettingsFiles.PathFor(folder,"OfflineDynastySettings.log")).Contains("Saved Defensive Play Clock: Off."),"Helper logs Off clearly");
                 Marshal.WriteInt32(localClock,0x880,30);save.Invoke(null,parameters);
                 Check((int)parameters[1]==30 && ClockPreferences.Load(folder)==30,"Helper switches from Off back to a timed choice");
                 Marshal.WriteInt32(localClock,0x880,0);save.Invoke(null,parameters);
                 Check(ClockPreferences.Load(folder)==0,"Helper can persist Off again after a timed choice");
-                Check(File.ReadAllText(Path.Combine(folder,"DynastyPlayClock.ini"))=="ExtendedSeconds=60\r\n","Defensive Off never resets offensive clock preference");
+                Check(File.ReadAllText(SettingsFiles.PathFor(folder,"DynastyPlayClock.ini"))=="ExtendedSeconds=60\r\n","Defensive Off never resets offensive clock preference");
             } finally { Marshal.FreeHGlobal(localClock); }
             Console.WriteLine("PASS "+checks+" logging, timer snapshot, file-lock, exit-code and bug-report ZIP checks");return 0;
         } catch(Exception ex) { Console.Error.WriteLine(ex);return 1; }

@@ -14,14 +14,14 @@ namespace OfflineDynastySettings
     // Diagnostics are best effort. A locked report must never disable gameplay or saving.
     internal static class DiagnosticLog
     {
-        internal const string Version = "0.2.1";
+        internal const string Version = "0.2.2";
         private static readonly object sync = new object();
         internal static string PluginFolder { get { return Path.GetDirectoryName(typeof(DiagnosticLog).Assembly.Location); } }
         private static string Reports(string folder) { return Path.Combine(folder,"OfflineDynastySettings","Diagnostics"); }
         internal static void Write(string folder,string component,string message)
         {
             try { lock(sync) {
-                string path=Path.Combine(folder,"OfflineDynastySettings.log");
+                string path=SettingsFiles.PathFor(folder,"OfflineDynastySettings.log");
                 if(File.Exists(path) && new FileInfo(path).Length>2*1024*1024) {
                     string old=path+".1";if(File.Exists(old))File.Delete(old);File.Move(path,old);
                 }
@@ -51,6 +51,7 @@ namespace OfflineDynastySettings
         internal static void Started(Process game)
         {
             string folder=PluginFolder;
+            SettingsFiles.Migrate(folder);
             Write(folder,"startup","Game PID="+game.Id+" started="+game.StartTime.ToUniversalTime().ToString("O")+". Whole-EXE hash gate: disabled. Targeted code checks and hook ownership remain enabled.");
             try {
                 Directory.CreateDirectory(Reports(folder));
@@ -74,7 +75,7 @@ namespace OfflineDynastySettings
                     imageBase="0x"+module.BaseAddress.ToInt64().ToString("x"),imageSize=module.ModuleMemorySize,
                     os=Environment.OSVersion.ToString(),clr=Environment.Version.ToString(),wholeExeHashGate=false,
                     installedPlugins=installed,loadedPluginAssemblies=loaded,
-                    savedDefensiveClock=ClockPreferences.Load(folder),offensiveExtendedPreference=File.Exists(Path.Combine(folder,"DynastyPlayClock.ini"))?File.ReadAllText(Path.Combine(folder,"DynastyPlayClock.ini")).Trim():"default",
+                    savedDefensiveClock=ClockPreferences.Load(folder),offensiveExtendedPreference=File.Exists(SettingsFiles.PathFor(folder,"DynastyPlayClock.ini"))?File.ReadAllText(SettingsFiles.PathFor(folder,"DynastyPlayClock.ini")).Trim():"default",
                     defenseSettingsPresent=File.Exists(Path.Combine(folder,"OfflinePlaycallSettings","dynasties.json")) });
             } catch(Exception ex) { Write(folder,"diagnostics","Environment inventory incomplete: "+ex); }
         }
@@ -127,7 +128,7 @@ namespace OfflineDynastySettings
                 try {
                     using(ZipArchive zip=ZipFile.Open(temporary,ZipArchiveMode.Create)) {
                         foreach(string name in new string[]{"OfflineDynastySettings.log","OfflineDynastySettings.log.1","OfflineDynastySettings.Persistence.log","DynastyPlayClock.log","OfflinePlaycall.log"})
-                            Add(zip,Path.Combine(folder,name),name);
+                            Add(zip,Path.Combine(SettingsFiles.Folder(folder),name),name);
                         foreach(string name in new string[]{"environment.json","hooks.json","runtime.json","exit.json"})Add(zip,Path.Combine(Reports(folder),name),name);
                     }
                     if(File.Exists(destination))File.Replace(temporary,destination,null);else File.Move(temporary,destination);

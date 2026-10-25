@@ -22,7 +22,7 @@ namespace OfflineDynastySettings
                 if (message == lastLog && DateTime.UtcNow - loggedAt < TimeSpan.FromMinutes(1)) return;
                 lastLog = message; loggedAt = DateTime.UtcNow;
                 DiagnosticLog.Write(context.PluginFolder,"helper",message);
-                string path=Path.Combine(context.PluginFolder,"OfflineDynastySettings.Persistence.log");
+                string path=SettingsFiles.PathFor(context.PluginFolder,"OfflineDynastySettings.Persistence.log");
                 if(File.Exists(path) && new FileInfo(path).Length>2*1024*1024)File.WriteAllText(path,"");
                 File.AppendAllText(path,DateTime.Now.ToString("O")+" "+message+Environment.NewLine);
             } catch { }
@@ -70,7 +70,7 @@ namespace OfflineDynastySettings
                                     }
                                     // Do not silently replace an unreadable existing preference.
                                     if (!preferenceKnown) {
-                                        string ini = Path.Combine(context.PluginFolder, "DynastyPlayClock.ini");
+                                        string ini = SettingsFiles.PathFor(context.PluginFolder, "DynastyPlayClock.ini");
                                         savedPreference = File.Exists(ini) && File.ReadAllText(ini).Trim() == "ExtendedSeconds=60";
                                         preferenceKnown = true;
                                     }
@@ -112,7 +112,7 @@ namespace OfflineDynastySettings
         {
             bool enabled = BitConverter.ToInt32(Read(handle, context.ClockData + 0x828, 4),0) == 1;
             if (enabled == saved) return;
-            AtomicSave(Path.Combine(context.PluginFolder,"DynastyPlayClock.ini"),enabled ? "ExtendedSeconds=60\r\n" : "ExtendedSeconds=0\r\n",false);
+            AtomicSave(SettingsFiles.PathFor(context.PluginFolder,"DynastyPlayClock.ini"),enabled ? "ExtendedSeconds=60\r\n" : "ExtendedSeconds=0\r\n",false);
             saved = enabled;Log("Saved Offensive Play Clock extended choice: "+(enabled?"60 Seconds":"native clock choice")+".");
         }
         private static void SaveDefensiveClock(IntPtr handle,ref int saved)

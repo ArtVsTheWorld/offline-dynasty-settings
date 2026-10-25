@@ -410,8 +410,10 @@ namespace DynastyPlayClock
             try { if (logger != null) logger.Log("[Dynasty Play Clock] " + message, new object[0]); } catch { }
 #if COMBINED_DYNASTY_SETTINGS
             OfflineDynastySettings.DiagnosticLog.Write(OfflineDynastySettings.DiagnosticLog.PluginFolder,"clock",message);
-#endif
+            try { File.AppendAllText(OfflineDynastySettings.SettingsFiles.PathFor(Path.GetDirectoryName(typeof(DynastyPlayClockAction).Assembly.Location), "DynastyPlayClock.log"), DateTime.Now.ToString("O", CultureInfo.InvariantCulture) + " " + message + Environment.NewLine); } catch { }
+#else
             try { File.AppendAllText(Path.Combine(Path.GetDirectoryName(typeof(DynastyPlayClockAction).Assembly.Location), "DynastyPlayClock.log"), DateTime.Now.ToString("O", CultureInfo.InvariantCulture) + " " + message + Environment.NewLine); } catch { }
+#endif
         }
         private sealed class Region { public readonly string Name, Hash; public readonly long Rva; public readonly int Length; public Region(string name, long rva, int length, string hash) { Name = name; Rva = rva; Length = length; Hash = hash; } }
         [StructLayout(LayoutKind.Sequential)] private struct Rectangle { public int Left, Top, Right, Bottom; }

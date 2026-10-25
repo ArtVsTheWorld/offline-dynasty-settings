@@ -22,17 +22,17 @@ A cooldown or limit of 0 disables that restriction. They save separately for eac
 Dynasty. Start a new game after changing them. Both clock choices apply across
 offline Dynasties. Offensive and defensive clocks work independently.
 
-Keep existing settings files when updating: `DynastyPlayClock.ini`,
-`OfflineDynastySettings.ini`, and `OfflinePlaycallSettings/`. Remove older duplicate
+Logs and both INI files are stored in `Plugins/OfflineDynastySettings/`.
+Existing loose files move there automatically when updating, with your clock
+choices preserved. Keep the `OfflinePlaycallSettings/` folder for per-Dynasty values. Remove older duplicate
 DLLs and the separate DynastyPlayClock/OfflinePlaycall plugins. Disable experimental
 Offline Dynasty Settings fbmods.
 
-Logging is automatic. Bug reports should include `Plugins/OfflineDynastySettings.log`
+Logging is automatic. Bug reports should include `Plugins/OfflineDynastySettings/OfflineDynastySettings.log`
 and what happened.
 
 ## Source
 
-Current version: **0.2.1**. The defensive Off/visibility changes have passed local
-checks; in-game confirmation of this revision is still pending.
+Current version: **0.2.2**.
 
 [Build and test](docs/building.md) | [Updating after an EA patch](docs/updating.md)

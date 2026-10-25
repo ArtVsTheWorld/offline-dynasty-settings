@@ -33,7 +33,7 @@ class CoreChecks
     static void Main(string[] args)
     {
         string folder=Path.GetFullPath(args[0]);Directory.CreateDirectory(folder);
-        string ini=Path.Combine(folder,ClockPreferences.FileName);
+        string ini=SettingsFiles.PathFor(folder,ClockPreferences.FileName);
         if(File.Exists(ini))File.Delete(ini);
         Check(ClockPreferences.Load(folder)==15,"New installations default to 15 seconds");
         Check(!File.Exists(ini),"Reading defaults must not write settings");
@@ -49,6 +49,33 @@ class CoreChecks
         File.WriteAllText(ini,"DefensivePlayClockSeconds=invalid");
         bool corrupt=false;try{ClockPreferences.Load(folder);}catch(InvalidDataException){corrupt=true;}
         Check(corrupt && File.ReadAllText(ini).Contains("invalid"),"Corrupt preferences must be preserved");
+        string migration=Path.Combine(folder,"path-migration-"+Guid.NewGuid().ToString("N"));Directory.CreateDirectory(migration);
+        foreach(string name in SettingsFiles.Names)File.WriteAllText(Path.Combine(migration,name),"original-"+name);
+        File.WriteAllText(Path.Combine(migration,ClockPreferences.FileName),"DefensivePlayClockSeconds=45\r\n");
+        File.WriteAllText(Path.Combine(migration,"DynastyPlayClock.ini"),"ExtendedSeconds=60\r\n");
+        File.WriteAllText(Path.Combine(migration,"AnotherPlugin.ini"),"untouched");
+        SettingsFiles.Migrate(migration);
+        Check(ClockPreferences.Load(migration)==45,"Legacy defensive preference survives folder migration");
+        Check(File.ReadAllText(SettingsFiles.PathFor(migration,"DynastyPlayClock.ini"))=="ExtendedSeconds=60\r\n","Legacy offensive preference remains byte-identical");
+        foreach(string name in SettingsFiles.Names){
+            Check(!File.Exists(Path.Combine(migration,name)),"Migration leaves no loose plugin file: "+name);
+            Check(File.Exists(Path.Combine(migration,"OfflineDynastySettings",name)),"File moved into plugin folder: "+name);
+            if(name.EndsWith(".log") || name.EndsWith(".log.1"))Check(File.ReadAllText(Path.Combine(migration,"OfflineDynastySettings",name))=="original-"+name,"Existing log contents preserved: "+name);
+        }
+        Check(File.ReadAllText(Path.Combine(migration,"AnotherPlugin.ini"))=="untouched","Other plugins are not migrated");
+        File.WriteAllText(Path.Combine(migration,ClockPreferences.FileName),"DefensivePlayClockSeconds=60\r\n");
+        Check(ClockPreferences.Load(migration)==45,"New folder preference wins over an old root preference");
+        Check(File.ReadAllText(Path.Combine(migration,"OfflineDynastySettings","Legacy",ClockPreferences.FileName))=="DefensivePlayClockSeconds=60\r\n","Conflicting legacy preference is preserved as a backup");
+        File.WriteAllText(Path.Combine(migration,ClockPreferences.FileName),"DefensivePlayClockSeconds=30\r\n");
+        Check(ClockPreferences.Load(migration)==45,"A repeated migration never resets current settings");
+        Check(Directory.GetFiles(Path.Combine(migration,"OfflineDynastySettings","Legacy")).Length==2,"Repeated backups never overwrite an earlier legacy copy");
+        string lockedFolder=Path.Combine(migration,"locked");Directory.CreateDirectory(lockedFolder);
+        string lockedIni=Path.Combine(lockedFolder,ClockPreferences.FileName);File.WriteAllText(lockedIni,"DefensivePlayClockSeconds=60\r\n");
+        using(FileStream locked=new FileStream(lockedIni,FileMode.Open,FileAccess.ReadWrite,FileShare.None)){
+            bool refused=false;try{ClockPreferences.Load(lockedFolder);}catch(IOException){refused=true;}
+            Check(refused && File.Exists(lockedIni),"Locked legacy preference is preserved instead of becoming a default");
+        }
+        Check(ClockPreferences.Load(lockedFolder)==60 && !File.Exists(lockedIni),"Migration retries after the file lock is released");
         Env env=new Env();
         using(LaunchCoordinator coordinator=new LaunchCoordinator(env)){
             coordinator.Step();Check(env.Current==null,"Do not activate without a game");

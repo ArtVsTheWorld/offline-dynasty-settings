@@ -1,5 +1,5 @@
 {
-  "pluginVersion": "0.2.1",
+  "pluginVersion": "0.2.2",
   "layout": "October 13, 2026",
   "wholeExeHashGate": false,
   "regions": [
@@ -254,10 +254,10 @@
       "Shared/Clock/DynastyPlayClockAction.cs:291",
       "Shared/Clock/DynastyPlayClockAction.cs:328",
       "Shared/Clock/DynastyPlayClockAction.cs:355",
-      "Shared/Clock/ExtendedClock.cs:67",
-      "Shared/Clock/ExtendedClock.cs:101",
-      "Shared/Clock/ExtendedClock.cs:135",
-      "Shared/Clock/ExtendedClock.cs:166",
+      "Shared/Clock/ExtendedClock.cs:73",
+      "Shared/Clock/ExtendedClock.cs:107",
+      "Shared/Clock/ExtendedClock.cs:141",
+      "Shared/Clock/ExtendedClock.cs:172",
       "Shared/Clock/GameLayouts.cs:37"
     ],
     "0x27ae830": [
@@ -301,7 +301,7 @@
     "0x35f7d31": [
       "Plugin/DefensivePlayClock.cs:8",
       "Plugin/DefensivePlayClock.cs:63",
-      "Plugin/DiagnosticLog.cs:89"
+      "Plugin/DiagnosticLog.cs:90"
     ],
     "0x35fd7d3": [
       "Plugin/DefensivePlayClock.cs:10"
@@ -326,7 +326,7 @@
       "Shared/Clock/DynastyPlayClockAction.cs:192",
       "Shared/Clock/DynastyPlayClockAction.cs:201",
       "Shared/Clock/DynastyPlayClockAction.cs:209",
-      "Shared/Clock/ExtendedClock.cs:109",
+      "Shared/Clock/ExtendedClock.cs:115",
       "Shared/Clock/GameLayouts.cs:43"
     ],
     "0x4f96740": [
@@ -366,7 +366,7 @@
       "Shared/Clock/GameLayouts.cs:41"
     ],
     "0x5d0db10": [
-      "Shared/Clock/ExtendedClock.cs:76",
+      "Shared/Clock/ExtendedClock.cs:82",
       "Shared/Clock/GameLayouts.cs:45"
     ],
     "0x5d0e2e0": [
@@ -378,7 +378,7 @@
       "Shared/Clock/DynastyPlayClockAction.cs:190",
       "Shared/Clock/DynastyPlayClockAction.cs:199",
       "Shared/Clock/DynastyPlayClockAction.cs:209",
-      "Shared/Clock/ExtendedClock.cs:185",
+      "Shared/Clock/ExtendedClock.cs:191",
       "Shared/Clock/GameLayouts.cs:46"
     ],
     "0x5d0e630": [
@@ -390,7 +390,7 @@
       "Shared/Clock/DynastyPlayClockAction.cs:193",
       "Shared/Clock/DynastyPlayClockAction.cs:202",
       "Shared/Clock/DynastyPlayClockAction.cs:209",
-      "Shared/Clock/ExtendedClock.cs:146",
+      "Shared/Clock/ExtendedClock.cs:152",
       "Shared/Clock/GameLayouts.cs:41"
     ],
     "0x5d83e7a": [
@@ -406,9 +406,9 @@
       "Shared/Clock/DynastyPlayClockAction.cs:191",
       "Shared/Clock/DynastyPlayClockAction.cs:200",
       "Shared/Clock/DynastyPlayClockAction.cs:209",
-      "Shared/Clock/ExtendedClock.cs:51",
-      "Shared/Clock/ExtendedClock.cs:51",
-      "Shared/Clock/ExtendedClock.cs:77",
+      "Shared/Clock/ExtendedClock.cs:57",
+      "Shared/Clock/ExtendedClock.cs:57",
+      "Shared/Clock/ExtendedClock.cs:83",
       "Shared/Clock/GameLayouts.cs:44"
     ],
     "0x5ff26a0": [
@@ -427,7 +427,7 @@
       "Shared/Clock/DynastyPlayClockAction.cs:35"
     ],
     "0x6461440": [
-      "Shared/Clock/ExtendedClock.cs:124",
+      "Shared/Clock/ExtendedClock.cs:130",
       "Shared/Clock/GameLayouts.cs:42"
     ],
     "0x6469a50": [
@@ -562,33 +562,33 @@
     "0xd8b4808": [
       "Shared/Clock/DynastyPlayClockAction.cs:322",
       "Shared/Clock/DynastyPlayClockAction.cs:351",
-      "Shared/Clock/ExtendedClock.cs:62",
-      "Shared/Clock/ExtendedClock.cs:94",
-      "Shared/Clock/ExtendedClock.cs:128",
-      "Shared/Clock/ExtendedClock.cs:160",
+      "Shared/Clock/ExtendedClock.cs:68",
+      "Shared/Clock/ExtendedClock.cs:100",
+      "Shared/Clock/ExtendedClock.cs:134",
+      "Shared/Clock/ExtendedClock.cs:166",
       "Shared/Clock/GameLayouts.cs:49"
     ],
     "0xd9e3818": [
       "Plugin/DefensivePlayClock.cs:88",
-      "Plugin/DiagnosticLog.cs:99",
+      "Plugin/DiagnosticLog.cs:100",
       "Shared/Clock/GameLayouts.cs:49"
     ],
     "0xe1963d0": [
       "Shared/Clock/DynastyPlayClockAction.cs:326",
       "Shared/Clock/DynastyPlayClockAction.cs:353",
-      "Shared/Clock/ExtendedClock.cs:65",
-      "Shared/Clock/ExtendedClock.cs:99",
-      "Shared/Clock/ExtendedClock.cs:133",
-      "Shared/Clock/ExtendedClock.cs:164",
+      "Shared/Clock/ExtendedClock.cs:71",
+      "Shared/Clock/ExtendedClock.cs:105",
+      "Shared/Clock/ExtendedClock.cs:139",
+      "Shared/Clock/ExtendedClock.cs:170",
       "Shared/Clock/GameLayouts.cs:51"
     ],
     "0xe1963d8": [
       "Shared/Clock/DynastyPlayClockAction.cs:327",
       "Shared/Clock/DynastyPlayClockAction.cs:354",
-      "Shared/Clock/ExtendedClock.cs:66",
-      "Shared/Clock/ExtendedClock.cs:100",
-      "Shared/Clock/ExtendedClock.cs:134",
-      "Shared/Clock/ExtendedClock.cs:165",
+      "Shared/Clock/ExtendedClock.cs:72",
+      "Shared/Clock/ExtendedClock.cs:106",
+      "Shared/Clock/ExtendedClock.cs:140",
+      "Shared/Clock/ExtendedClock.cs:171",
       "Shared/Clock/GameLayouts.cs:52"
     ],
     "0xe1963e0": [
@@ -609,22 +609,22 @@
     "0xf2c4d48": [
       "Shared/Clock/DynastyPlayClockAction.cs:323",
       "Shared/Clock/DynastyPlayClockAction.cs:352",
-      "Shared/Clock/ExtendedClock.cs:63",
-      "Shared/Clock/ExtendedClock.cs:95",
-      "Shared/Clock/ExtendedClock.cs:129",
-      "Shared/Clock/ExtendedClock.cs:161",
+      "Shared/Clock/ExtendedClock.cs:69",
+      "Shared/Clock/ExtendedClock.cs:101",
+      "Shared/Clock/ExtendedClock.cs:135",
+      "Shared/Clock/ExtendedClock.cs:167",
       "Shared/Clock/GameLayouts.cs:50"
     ],
     "0xf3f5d48": [
       "Plugin/DefensivePlayClock.cs:89",
-      "Plugin/DiagnosticLog.cs:100",
+      "Plugin/DiagnosticLog.cs:101",
       "Shared/Clock/GameLayouts.cs:50"
     ],
     "0xf7261f8": [
-      "Shared/Clock/ExtendedClock.cs:64",
-      "Shared/Clock/ExtendedClock.cs:96",
-      "Shared/Clock/ExtendedClock.cs:130",
-      "Shared/Clock/ExtendedClock.cs:162",
+      "Shared/Clock/ExtendedClock.cs:70",
+      "Shared/Clock/ExtendedClock.cs:102",
+      "Shared/Clock/ExtendedClock.cs:136",
+      "Shared/Clock/ExtendedClock.cs:168",
       "Shared/Clock/GameLayouts.cs:47"
     ],
     "0xf8572b8": [
@@ -633,7 +633,7 @@
     "0xf8abb50": [
       "Plugin/DefensivePlayClock.cs:25",
       "Plugin/DefensivePlayClock.cs:87",
-      "Plugin/DiagnosticLog.cs:101"
+      "Plugin/DiagnosticLog.cs:102"
     ]
   }
 }

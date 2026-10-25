@@ -1,4 +1,4 @@
-OFFLINE DYNASTY SETTINGS v0.2.1
+OFFLINE DYNASTY SETTINGS v0.2.2
 By Ace
 
 INSTALL / UPDATE
@@ -29,5 +29,7 @@ Cooldowns and limits save separately for each Dynasty. Start a new game after
 changing them. Both clock preferences apply across your offline Dynasties.
 
 BUG REPORTS
-Logging is automatic. Send OfflineDynastySettings.log from the Plugins folder
+Logs and both INI files are in Plugins/OfflineDynastySettings. Existing loose
+files move there automatically, keeping your saved clock choices.
+Logging is automatic. Send OfflineDynastySettings.log from that folder
 with a description of the problem and the settings you used.

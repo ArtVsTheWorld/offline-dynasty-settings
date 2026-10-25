@@ -8,7 +8,13 @@ namespace DynastyPlayClock
 {
     public sealed partial class DynastyPlayClockAction
     {
-        private static string PreferencePath { get { return Path.Combine(Path.GetDirectoryName(typeof(DynastyPlayClockAction).Assembly.Location), "DynastyPlayClock.ini"); } }
+        private static string PreferencePath { get {
+#if COMBINED_DYNASTY_SETTINGS
+            return OfflineDynastySettings.SettingsFiles.PathFor(Path.GetDirectoryName(typeof(DynastyPlayClockAction).Assembly.Location), "DynastyPlayClock.ini");
+#else
+            return Path.Combine(Path.GetDirectoryName(typeof(DynastyPlayClockAction).Assembly.Location), "DynastyPlayClock.ini");
+#endif
+        } }
         private static bool LoadExtended()
         {
             try { return File.Exists(PreferencePath) && File.ReadAllText(PreferencePath).Trim() == "ExtendedSeconds=60"; }

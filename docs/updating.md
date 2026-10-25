@@ -60,3 +60,16 @@ Keep `DynastyPlayClock.ini`, `OfflineDynastySettings.ini`, native menu keys and
 The combined build's source is fully included in this repository. `Shared/` is
 not an external sibling checkout. The old Split generator is template input for
 `Tools/build_game_settings_menu.py`; running it directly is intentionally disabled.
+
+
+## Settings and logs
+
+The two clock INIs and plugin logs now live in `Plugins/OfflineDynastySettings/`.
+Use `SettingsFiles.PathFor` with the DLL's containing Plugins directory, including
+in the detached helper. Keep its context PluginFolder pointed at Plugins so
+plugin inventory and the existing per-Dynasty JSON store still resolve correctly.
+Legacy loose files are moved automatically. An existing file in the new folder
+wins; conflicting old files are retained under `OfflineDynastySettings/Legacy/`.
+Never replace a locked/unreadable old preference with default values. Only the
+explicit known filenames are migrated; other plugins' files are left alone.
+`OfflinePlaycallSettings/dynasties.json` keeps its previous location.
