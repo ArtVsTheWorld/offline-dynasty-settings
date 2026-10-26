@@ -232,6 +232,7 @@ namespace DynastyPlayClock
             Put(bytes, 0x78, d + 0x100); Put(bytes, 0x80, d + 0x120);
             string[] labels = { "ON", "OFF at playcall", "OFF", "60 seconds" }; int[] values = { 1, 2, 0, 3 };
 #if COMBINED_DYNASTY_SETTINGS
+            Put(bytes,0x5c,1); // Native On default; saved native choice is read when the row opens.
             labels=new string[]{"On","Off At Playcall","Off","60 Seconds"};
 #endif
             for (int i = 0; i < 4; i++) {

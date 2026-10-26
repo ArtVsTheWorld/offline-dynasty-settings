@@ -25,7 +25,8 @@ def main():
  body=body.replace("        a.emit('4c8d8c24' + struct.pack('<I', offset).hex())", "        if key==0xf0:a.branch('e8',0x1000)\n        a.emit('4c8d8c24' + struct.pack('<I', offset).hex())")
  body=body.replace("    a.emit('4881c400030000')", "    a.branch('e8',0x1100)\n    a.emit('4881c400030000')")
  marker="    a.absolute('49ba', 'image', 0xf40e998)"
- descriptions=""
+ # Unsaved defensive choices are Off; do not copy the offensive values.
+ descriptions="    a.emit('c784244c01000000000000c78424ac02000000000000')\n"
  for offset,target in [(0x68,0x1b40),(0x1c8,0x1bc0)]:
   descriptions+=f"    a.absolute('48b8','remote',0x{target:x})\n    a.emit('48898424{struct.pack('<I',offset).hex()}')\n"
  body=body.replace(marker,descriptions+marker)
@@ -58,6 +59,30 @@ def main():
  '   return code;', '  }',
  '  private static byte[] Hex(string s){byte[] b=new byte[s.Length/2];for(int i=0;i<b.Length;i++)b[i]=Convert.ToByte(s.Substring(i*2,2),16);return b;}',
  ' }','}'])
+ # The runtime getter must use the same Off defaults as the menu. Keep the
+ # existing native replay outside a valid offline Dynasty and preserve saved
+ # independent overrides. The native disabled sentinel is -1, not menu zero.
+ g=Assembler(0x900)
+ for rva,value in [(0xd9e3818,14),(0xf3f5d48,3)]:
+  g.absolute('49ba','image',rva);g.emit('41833a'+bytes([value]).hex());g.branch('0f85','native')
+ g.absolute('49ba','image',0xf554998);g.emit('418b1285d2');g.branch('0f84','native')
+ g.emit('4883ec28');g.branch('e8',0xc00);g.emit('4883c42841baffffffff41bbffffffff4885c0');g.branch('0f84','write')
+ for offset,register in [(4,'50'),(8,'58')]:
+  # Missing (-1) and explicit Off (0) both mean disabled. Positive saved
+  # cooldowns/limits remain separate for each side and Dynasty.
+  g.emit('8378'+bytes([offset]).hex()+'00');g.branch('0f8e','skip'+str(offset))
+  g.emit('448b'+register+bytes([offset]).hex());g.label('skip'+str(offset))
+ g.label('write');g.emit('458910418bc3');g.jump(0x2e93f1a)
+ g.label('native');g.emit('8b81100d00004189008b81140d0000');g.jump(0x2e93f1a)
+ getter=g.finish();assert len(getter)<0x300
+ block=['   // Independent native Off defaults for unsaved defensive settings.',
+        '   Array.Clear(code,0x900,0x300);',
+        '   byte[] defaultsGetter=Hex("'+getter.hex()+'");']
+ for pos,kind,offset in g.relocations:
+  expr=f'{"remote" if kind=="remote" else "image"}+0x{offset:x}L'
+  block.append(f'   Array.Copy(BitConverter.GetBytes({expr}),0,defaultsGetter,0x{pos-0x900:x},8);')
+ block.append('   Array.Copy(defaultsGetter,0,code,0x900,defaultsGetter.Length);')
+ cs[cs.index('   return code;'):cs.index('   return code;')]=block
  labels={0x1900:'Offensive Playcall Cooldown',0x1940:'Defensive Playcall Cooldown',0x1a00:'Offensive Playcall Limit',0x1a40:'Defensive Playcall Limit',
  0x1980:'Plays that must pass before the same defensive play can be called again. 0 turns this restriction off. Saved per Dynasty.',
  0x1a80:'Maximum uses of each defensive play per game. 0 turns this restriction off. Saved per Dynasty.',

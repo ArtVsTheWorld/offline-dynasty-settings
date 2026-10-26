@@ -78,10 +78,11 @@ class GameSettingsMenuChecks
             SetEntry(0, 101, 0, 3); getter(info, 1, outCd, outLimit); Check(Marshal.ReadInt32(outCd) == -1 && Marshal.ReadInt32(outLimit) == 3, "cooldown can be disabled independently");
             SetEntry(0, 101, 2, 0); getter(info, 1, outCd, outLimit); Check(Marshal.ReadInt32(outCd) == 2 && Marshal.ReadInt32(outLimit) == -1, "limit can be disabled independently");
             SetEntry(0, 101, 0, 0); getter(info, 1, outCd, outLimit); Check(Marshal.ReadInt32(outCd) == -1 && Marshal.ReadInt32(outLimit) == -1, "both zeros become native disabled sentinels");
-            SetEntry(0, 101, 2, -1); getter(info, 1, outCd, outLimit); Check(Marshal.ReadInt32(outCd) == 2 && Marshal.ReadInt32(outLimit) == 7, "old cooldown-only entry inherits native limit");
-            SetEntry(0, 101, -1, 3); getter(info, 1, outCd, outLimit); Check(Marshal.ReadInt32(outCd) == 8 && Marshal.ReadInt32(outLimit) == 3, "limit-only entry inherits native cooldown");
+            SetEntry(0, 101, 2, -1); getter(info, 1, outCd, outLimit); Check(Marshal.ReadInt32(outCd) == 2 && Marshal.ReadInt32(outLimit) == -1, "unsaved defensive limit defaults Off");
+            SetEntry(0, 101, -1, 3); getter(info, 1, outCd, outLimit); Check(Marshal.ReadInt32(outCd) == -1 && Marshal.ReadInt32(outLimit) == 3, "unsaved defensive cooldown defaults Off");
             SetId(202); getter(info, 1, outCd, outLimit); Check(Marshal.ReadInt32(outCd) == 10 && Marshal.ReadInt32(outLimit) == 20, "another dynasty keeps its own cooldown and limit");
-            SetId(303); getter(info, 1, outCd, outLimit); Check(Marshal.ReadInt32(outCd) == 8 && Marshal.ReadInt32(outLimit) == 7, "unconfigured dynasty inherits both native settings");
+            SetId(303); getter(info, 1, outCd, outLimit); Check(Marshal.ReadInt32(outCd) == -1 && Marshal.ReadInt32(outLimit) == -1, "unconfigured dynasty defaults both defensive restrictions Off");
+            SetId(0); getter(info, 1, outCd, outLimit); Check(Marshal.ReadInt32(outCd) == 8 && Marshal.ReadInt32(outLimit) == 7, "missing league ID retains native behavior");
             SetId(101); SetEntry(0, 101, 2, 3);
             Marshal.WriteInt32(new IntPtr(image + 0xf3f5d48), 4); getter(info, 1, outCd, outLimit); Check(Marshal.ReadInt32(outCd) == 8 && Marshal.ReadInt32(outLimit) == 7, "online match retains native behavior");
             Marshal.WriteInt32(new IntPtr(image + 0xf3f5d48), 3);
@@ -102,10 +103,17 @@ class GameSettingsMenuChecks
             byte[] after = new byte[0x160]; Marshal.Copy(descriptor, after, 0, after.Length);
             Check(Equal(before, after) && Marshal.ReadInt32(new IntPtr(capture)) == 12, "both original descriptors remain unchanged and next native row index is preserved");
             Check(headerFields.Count==3 && headerFields[0]=="5:label=GAME SETTINGS" && headerFields[1]=="5:key=4097" && headerFields[2]=="5:type=header","native GAME SETTINGS header precedes all six options");
+            Check(rows[2][2]==1 && rows[5][2]==15,"Native clock defaults display On and 15 Seconds");
             Marshal.WriteInt32(clockData,0x828,1);rows.Clear();labels.Clear();ui(adapter,menuWriter,5,0);
             Check(rows[2][2]==3,"60-second clock preference displays correctly in moved row");Marshal.WriteInt32(clockData,0x828,0);
-            rows.Clear(); labels.Clear(); SetEntry(0, 101, 2, -1); ui(adapter, menuWriter, 5, 0); Check(rows[4][2] == 5, "legacy entry shows inherited defensive limit");
-            rows.Clear(); labels.Clear(); SetEntry(0, 101, -1, 3); ui(adapter, menuWriter, 5, 0); Check(rows[3][2] == 8 && rows[4][2] == 3, "limit-only entry shows inherited defensive cooldown");
+            rows.Clear(); labels.Clear(); SetEntry(0, 101, 2, -1); ui(adapter, menuWriter, 5, 0); Check(rows[4][2] == 0, "missing defensive limit displays Off");
+            rows.Clear(); labels.Clear(); SetEntry(0, 101, -1, 3); ui(adapter, menuWriter, 5, 0); Check(rows[3][2] == 0 && rows[4][2] == 3, "missing defensive cooldown displays Off");
+            SetId(303); rows.Clear(); labels.Clear(); ui(adapter, menuWriter, 5, 0);
+            Check(rows[0][2] == 8 && rows[1][2] == 5 && rows[3][2] == 0 && rows[4][2] == 0, "unsaved defense defaults Off without altering saved offense");
+            Marshal.WriteInt32(descriptor, 0x5c, 0); Marshal.WriteInt32(limitDescriptor, 0x5c, 0);
+            rows.Clear(); labels.Clear(); ui(adapter, menuWriter, 5, 0);
+            Check(rows[0][2] == 0 && rows[1][2] == 0 && rows[3][2] == 0 && rows[4][2] == 0 && rows[2][2] == 1 && rows[5][2] == 15, "fresh defaults are four Off restrictions, offensive On, defensive 15 Seconds");
+            Marshal.WriteInt32(descriptor, 0x5c, 8); Marshal.WriteInt32(limitDescriptor, 0x5c, 5); SetId(101);
             headerFields.Clear();rows.Clear(); labels.Clear(); ui(adapter, menuWriter, 5, 1); Check(rows.Count == 0 && headerFields.Count==0 && Marshal.ReadInt32(new IntPtr(capture)) == 99, "online UI replays original route");
             SetEntry(0, 101, 2, 3);
 
@@ -115,9 +123,9 @@ class GameSettingsMenuChecks
             Writer writer = (Writer)Marshal.GetDelegateForFunctionPointer(new IntPtr(remote + 0x1600), typeof(Writer));
             selected = 4; writer(source, 7, 0xf0); Check(ReadEntry(101, 4) == 4 && ReadEntry(101, 8) == 3 && Marshal.ReadInt32(new IntPtr(remote + 0x1800)) == 1, "cooldown writer preserves limit and publishes revision");
             selected = 9; writer(source, 7, 0xf1); Check(ReadEntry(101, 4) == 4 && ReadEntry(101, 8) == 9 && Marshal.ReadInt32(new IntPtr(remote + 0x1800)) == 2, "limit writer preserves cooldown and publishes revision");
-            SetId(303); selected = 6; writer(source, 7, 0xf1); Check(ReadEntry(303, 4) == -1 && ReadEntry(303, 8) == 6, "new limit-only entry initializes cooldown to inherit");
+            SetId(303); selected = 6; writer(source, 7, 0xf1); Check(ReadEntry(303, 4) == -1 && ReadEntry(303, 8) == 6, "new limit-only entry initializes cooldown as unspecified");
             selected = 1; writer(source, 7, 0xf0); Check(ReadEntry(303, 4) == 1 && ReadEntry(303, 8) == 6 && ReadEntry(101, 8) == 9, "adding cooldown preserves that dynasty's limit and another dynasty's values");
-            SetId(404); selected = 7; writer(source, 7, 0xf0); Check(ReadEntry(404, 4) == 7 && ReadEntry(404, 8) == -1, "new cooldown-only entry initializes limit to inherit");
+            SetId(404); selected = 7; writer(source, 7, 0xf0); Check(ReadEntry(404, 4) == 7 && ReadEntry(404, 8) == -1, "new cooldown-only entry initializes limit as unspecified");
             SetId(101); selected = 11; writer(source, 7, 0xf0); Check(ReadEntry(101, 4) == 4, "out-of-range cooldown is rejected");
             selected = -1; writer(source, 7, 0xf0); Check(ReadEntry(101, 4) == 4, "negative cooldown is rejected");
             selected = 21; writer(source, 7, 0xf1); Check(ReadEntry(101, 8) == 9, "out-of-range limit is rejected");

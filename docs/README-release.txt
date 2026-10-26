@@ -1,4 +1,4 @@
-OFFLINE DYNASTY SETTINGS v0.2.2
+OFFLINE DYNASTY SETTINGS v0.2.3
 By Ace
 
 INSTALL / UPDATE
@@ -24,6 +24,12 @@ Open Dynasty > League Settings > GAME SETTINGS, above Clock Management.
   Sets your time to choose a defense after the offense selects its play.
   Off hides the countdown and removes the time limit. Default: 15 seconds.
   This works independently of Offensive Play Clock.
+
+DEFAULTS
+Both cooldowns and limits: Off
+Offensive Play Clock: On
+Defensive Play Clock: 15 Seconds
+Existing saved choices are kept when updating.
 
 Cooldowns and limits save separately for each Dynasty. Start a new game after
 changing them. Both clock preferences apply across your offline Dynasties.

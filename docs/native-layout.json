@@ -1,5 +1,5 @@
 {
-  "pluginVersion": "0.2.2",
+  "pluginVersion": "0.2.3",
   "layout": "October 13, 2026",
   "wholeExeHashGate": false,
   "regions": [
@@ -250,10 +250,10 @@
     "0x27ac630": [
       "Plugin/CombinedClockRuntime.cs:18",
       "Shared/Clock/DynastyPlayClockAction.cs:27",
-      "Shared/Clock/DynastyPlayClockAction.cs:263",
-      "Shared/Clock/DynastyPlayClockAction.cs:291",
-      "Shared/Clock/DynastyPlayClockAction.cs:328",
-      "Shared/Clock/DynastyPlayClockAction.cs:355",
+      "Shared/Clock/DynastyPlayClockAction.cs:264",
+      "Shared/Clock/DynastyPlayClockAction.cs:292",
+      "Shared/Clock/DynastyPlayClockAction.cs:329",
+      "Shared/Clock/DynastyPlayClockAction.cs:356",
       "Shared/Clock/ExtendedClock.cs:73",
       "Shared/Clock/ExtendedClock.cs:107",
       "Shared/Clock/ExtendedClock.cs:141",
@@ -354,7 +354,7 @@
       "Shared/Clock/DynastyPlayClockAction.cs:189",
       "Shared/Clock/DynastyPlayClockAction.cs:198",
       "Shared/Clock/DynastyPlayClockAction.cs:209",
-      "Shared/Clock/DynastyPlayClockAction.cs:315",
+      "Shared/Clock/DynastyPlayClockAction.cs:316",
       "Shared/Clock/GameLayouts.cs:48"
     ],
     "0x5d02340": [
@@ -498,7 +498,7 @@
     "0x79afaa0": [
       "Plugin/CombinedClockRuntime.cs:24",
       "Shared/Clock/DynastyPlayClockAction.cs:26",
-      "Shared/Clock/DynastyPlayClockAction.cs:270",
+      "Shared/Clock/DynastyPlayClockAction.cs:271",
       "Shared/Clock/GameLayouts.cs:36"
     ],
     "0x79b5cc0": [
@@ -509,7 +509,7 @@
       "Shared/Clock/GameLayouts.cs:34"
     ],
     "0x79b850d": [
-      "Shared/Clock/DynastyPlayClockAction.cs:296",
+      "Shared/Clock/DynastyPlayClockAction.cs:297",
       "Shared/Clock/GameLayouts.cs:35"
     ],
     "0x7ee1fb0": [
@@ -542,8 +542,8 @@
       "Shared/Playcall/SplitSettingsAction.cs:108"
     ],
     "0xac9aed0": [
-      "Shared/Clock/DynastyPlayClockAction.cs:288",
-      "Shared/Clock/DynastyPlayClockAction.cs:300",
+      "Shared/Clock/DynastyPlayClockAction.cs:289",
+      "Shared/Clock/DynastyPlayClockAction.cs:301",
       "Shared/Clock/GameLayouts.cs:38"
     ],
     "0xad8fec0": [
@@ -560,8 +560,8 @@
       "Shared/Clock/GameLayouts.cs:53"
     ],
     "0xd8b4808": [
-      "Shared/Clock/DynastyPlayClockAction.cs:322",
-      "Shared/Clock/DynastyPlayClockAction.cs:351",
+      "Shared/Clock/DynastyPlayClockAction.cs:323",
+      "Shared/Clock/DynastyPlayClockAction.cs:352",
       "Shared/Clock/ExtendedClock.cs:68",
       "Shared/Clock/ExtendedClock.cs:100",
       "Shared/Clock/ExtendedClock.cs:134",
@@ -574,8 +574,8 @@
       "Shared/Clock/GameLayouts.cs:49"
     ],
     "0xe1963d0": [
-      "Shared/Clock/DynastyPlayClockAction.cs:326",
-      "Shared/Clock/DynastyPlayClockAction.cs:353",
+      "Shared/Clock/DynastyPlayClockAction.cs:327",
+      "Shared/Clock/DynastyPlayClockAction.cs:354",
       "Shared/Clock/ExtendedClock.cs:71",
       "Shared/Clock/ExtendedClock.cs:105",
       "Shared/Clock/ExtendedClock.cs:139",
@@ -583,8 +583,8 @@
       "Shared/Clock/GameLayouts.cs:51"
     ],
     "0xe1963d8": [
-      "Shared/Clock/DynastyPlayClockAction.cs:327",
-      "Shared/Clock/DynastyPlayClockAction.cs:354",
+      "Shared/Clock/DynastyPlayClockAction.cs:328",
+      "Shared/Clock/DynastyPlayClockAction.cs:355",
       "Shared/Clock/ExtendedClock.cs:72",
       "Shared/Clock/ExtendedClock.cs:106",
       "Shared/Clock/ExtendedClock.cs:140",
@@ -593,8 +593,8 @@
     ],
     "0xe1963e0": [
       "Shared/Clock/DynastyPlayClockAction.cs:209",
-      "Shared/Clock/DynastyPlayClockAction.cs:314",
-      "Shared/Clock/DynastyPlayClockAction.cs:350",
+      "Shared/Clock/DynastyPlayClockAction.cs:315",
+      "Shared/Clock/DynastyPlayClockAction.cs:351",
       "Shared/Clock/GameLayouts.cs:40"
     ],
     "0xe2c73e0": [
@@ -607,8 +607,8 @@
       "Shared/Clock/GameLayouts.cs:40"
     ],
     "0xf2c4d48": [
-      "Shared/Clock/DynastyPlayClockAction.cs:323",
-      "Shared/Clock/DynastyPlayClockAction.cs:352",
+      "Shared/Clock/DynastyPlayClockAction.cs:324",
+      "Shared/Clock/DynastyPlayClockAction.cs:353",
       "Shared/Clock/ExtendedClock.cs:69",
       "Shared/Clock/ExtendedClock.cs:101",
       "Shared/Clock/ExtendedClock.cs:135",

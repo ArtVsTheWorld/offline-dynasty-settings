@@ -57,6 +57,11 @@ countdown, expiry, pause, CPU timing, saved-value reload and separate Dynasty va
 Keep `DynastyPlayClock.ini`, `OfflineDynastySettings.ini`, native menu keys and
 `OfflinePlaycallSettings/dynasties.json` compatible across upgrades.
 
+Fresh settings use native offensive On and defensive 15 Seconds. Missing defensive
+cooldown/limit entries default to Off independently of offense. Preserve explicit
+saved values; only a missing field (-1) falls back to Off. The combined menu
+generator patches both the row defaults and defensive getter to match.
+
 The combined build's source is fully included in this repository. `Shared/` is
 not an external sibling checkout. The old Split generator is template input for
 `Tools/build_game_settings_menu.py`; running it directly is intentionally disabled.
