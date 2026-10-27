@@ -47,7 +47,7 @@ namespace OfflineDynastySettings
     internal static class ClockPreferences
     {
         internal const string FileName="OfflineDynastySettings.ini";
-        internal static bool Valid(int seconds) { return seconds==0 || seconds==15 || seconds==20 || seconds==30 || seconds==45 || seconds==60; }
+        internal static bool Valid(int seconds) { return seconds==0 || seconds==5 || seconds==15 || seconds==20 || seconds==30 || seconds==45 || seconds==60; }
         internal static int Load(string folder)
         {
             string path=SettingsFiles.PathFor(folder,FileName);

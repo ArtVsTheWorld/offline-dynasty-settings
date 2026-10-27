@@ -1,5 +1,5 @@
 {
-  "pluginVersion": "0.2.3",
+  "pluginVersion": "0.2.4",
   "layout": "October 13, 2026",
   "wholeExeHashGate": false,
   "regions": [
@@ -319,8 +319,8 @@
       "Shared/Clock/DynastyPlayClockAction.cs:37"
     ],
     "0x360d0b0": [
-      "Plugin/CombinedClockRuntime.cs:54",
-      "Plugin/CombinedClockRuntime.cs:105",
+      "Plugin/CombinedClockRuntime.cs:56",
+      "Plugin/CombinedClockRuntime.cs:107",
       "Shared/Clock/DynastyPlayClockAction.cs:154",
       "Shared/Clock/DynastyPlayClockAction.cs:164",
       "Shared/Clock/DynastyPlayClockAction.cs:192",
@@ -346,8 +346,8 @@
       "Shared/Clock/GameLayouts.cs:45"
     ],
     "0x5d01d50": [
-      "Plugin/CombinedClockRuntime.cs:54",
-      "Plugin/CombinedClockRuntime.cs:105",
+      "Plugin/CombinedClockRuntime.cs:56",
+      "Plugin/CombinedClockRuntime.cs:107",
       "Shared/Clock/DynastyPlayClockAction.cs:40",
       "Shared/Clock/DynastyPlayClockAction.cs:157",
       "Shared/Clock/DynastyPlayClockAction.cs:161",
@@ -370,8 +370,8 @@
       "Shared/Clock/GameLayouts.cs:45"
     ],
     "0x5d0e2e0": [
-      "Plugin/CombinedClockRuntime.cs:54",
-      "Plugin/CombinedClockRuntime.cs:105",
+      "Plugin/CombinedClockRuntime.cs:56",
+      "Plugin/CombinedClockRuntime.cs:107",
       "Shared/Clock/DynastyPlayClockAction.cs:39",
       "Shared/Clock/DynastyPlayClockAction.cs:156",
       "Shared/Clock/DynastyPlayClockAction.cs:162",
@@ -382,8 +382,8 @@
       "Shared/Clock/GameLayouts.cs:46"
     ],
     "0x5d0e630": [
-      "Plugin/CombinedClockRuntime.cs:54",
-      "Plugin/CombinedClockRuntime.cs:105",
+      "Plugin/CombinedClockRuntime.cs:56",
+      "Plugin/CombinedClockRuntime.cs:107",
       "Shared/Clock/DynastyPlayClockAction.cs:34",
       "Shared/Clock/DynastyPlayClockAction.cs:153",
       "Shared/Clock/DynastyPlayClockAction.cs:165",
@@ -398,8 +398,8 @@
       "Shared/Clock/GameLayouts.cs:44"
     ],
     "0x5d8fc30": [
-      "Plugin/CombinedClockRuntime.cs:54",
-      "Plugin/CombinedClockRuntime.cs:105",
+      "Plugin/CombinedClockRuntime.cs:56",
+      "Plugin/CombinedClockRuntime.cs:107",
       "Shared/Clock/DynastyPlayClockAction.cs:38",
       "Shared/Clock/DynastyPlayClockAction.cs:155",
       "Shared/Clock/DynastyPlayClockAction.cs:163",
@@ -412,7 +412,7 @@
       "Shared/Clock/GameLayouts.cs:44"
     ],
     "0x5ff26a0": [
-      "Plugin/CombinedClockRuntime.cs:62",
+      "Plugin/CombinedClockRuntime.cs:64",
       "Plugin/DefensivePlayClock.cs:51",
       "Plugin/DefensivePlayClock.cs:52",
       "Plugin/DefensivePlayClock.cs:74"
@@ -462,7 +462,7 @@
       "Shared/Playcall/SplitSettingsAction.cs:222"
     ],
     "0x799be70": [
-      "Plugin/CombinedClockRuntime.cs:47",
+      "Plugin/CombinedClockRuntime.cs:49",
       "Shared/Clock/GameLayouts.cs:13",
       "Shared/Clock/GameLayouts.cs:36",
       "Shared/Playcall/SplitSettingsAction.cs:107"

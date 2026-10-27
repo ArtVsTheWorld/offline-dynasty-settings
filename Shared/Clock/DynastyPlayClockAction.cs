@@ -299,7 +299,7 @@ namespace DynastyPlayClock
             c.Label("defensiveClock");
             c.Hex("498b8e18040000488b01ff90100a000084c0");c.Branch("0f85","end");
             c.Hex("488b06418bd749b8");c.Long(b+layout.Map(0xac9aed0));c.Hex("488bceff5018");
-            foreach(int seconds in new int[]{15,20,30,45,60,0}){c.Hex("83f8");c.Bytes(new byte[]{(byte)seconds});c.Branch("0f84","saveDefensiveClock");}
+            foreach(int seconds in new int[]{5,15,20,30,45,60,0}){c.Hex("83f8");c.Bytes(new byte[]{(byte)seconds});c.Branch("0f84","saveDefensiveClock");}
             c.Branch("e9","end");
             c.Label("saveDefensiveClock");c.MovR10(d);c.Hex("418982800800004189825c09000041ff8284080000");c.Branch("e9","end");
 #endif
