@@ -25,7 +25,7 @@ namespace DynastyPlayClock
             c.MovR10(b+0xf8abb50);c.Hex("4d3932");c.Branch("0f85","defensiveGateDone");
             c.MovR10(d);c.Hex("8b442420418982c408000041ff82c0080000");
             c.Hex("4183ba8008000000");c.Branch("0f84","defensiveGateOff");
-            foreach(int seconds in new int[]{5,15,20,30,45,60}) {
+            foreach(int seconds in new int[]{3,15,20,30,45,60}) {
                 c.Hex("4183ba80080000");c.Bytes(new byte[]{(byte)seconds});c.Branch("0f84","defensiveGateOn");
             }
             c.Branch("e9","defensiveGateDone"); // Invalid configuration: preserve native behavior.
@@ -60,7 +60,7 @@ namespace DynastyPlayClock
                     byte[] detour=Pad(Jump(address),DefensiveTimerOriginal.Length);
                     Patch(h,installedBase+DefensiveTimerRva,detour);
                     defensiveCode=address;defensiveBody=body;defensiveDetour=detour;defensiveStart=installedStart;
-                    Log(null,"Defensive Play Clock active: active selection initializer at RVA 0x35f7d31; native default 15, selectable 5/15/20/30/45/60 seconds or Off; independent defensive enable gate.");
+                    Log(null,"Defensive Play Clock active: active selection initializer at RVA 0x35f7d31; native default 15, selectable 3/15/20/30/45/60 seconds or Off; independent defensive enable gate.");
                 } finally { CloseHandle(h); }
             }
         }
@@ -88,7 +88,7 @@ namespace DynastyPlayClock
             c.MovR10(b+0xd9e3818);c.Hex("41833a0e");c.Branch("0f85","done");
             c.MovR10(b+0xf3f5d48);c.Hex("41833a03");c.Branch("0f85","done");
             c.MovR10(d);c.Hex("418b828008000085c0");c.Branch("0f84","recordChoice");
-            foreach(int seconds in new int[]{5,15,20,30,45,60}) { c.Hex("83f8");c.Bytes(new byte[]{(byte)seconds});c.Branch("0f84","valid"); }
+            foreach(int seconds in new int[]{3,15,20,30,45,60}) { c.Hex("83f8");c.Bytes(new byte[]{(byte)seconds});c.Branch("0f84","valid"); }
             c.Branch("e9","done");
             c.Label("valid");c.Hex("c5fa2ac0");
             // Off keeps a positive native duration. Its separate enable gate

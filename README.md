@@ -16,10 +16,12 @@ Open **Dynasty > League Settings > GAME SETTINGS**, above Clock Management.
 - **Offensive Play Clock:** On, Off At Playcall, Off, or 60 Seconds.
 - **Defensive Playcall Cooldown:** 0-10 plays before reusing a play.
 - **Defensive Playcall Limit:** 0-20 uses per game.
-- **Defensive Play Clock:** 5, 15, 20, 30, 45, 60 Seconds, or Off.
+- **Defensive Play Clock:** 3, 15, 20, 30, 45, 60 Seconds, or Off.
 
 New settings start with both cooldowns and limits **Off**, Offensive Play Clock
 **On**, and Defensive Play Clock **15 Seconds**. Existing saved choices are kept.
+
+A saved 5-second defensive clock choice carries over as 3 Seconds.
 
 A cooldown or limit of 0 disables that restriction. They save separately for each
 Dynasty. Start a new game after changing them. Both clock choices apply across
@@ -36,6 +38,6 @@ and what happened.
 
 ## Source
 
-Current version: **0.2.4**.
+Current version: **0.2.5**.
 
 [Build and test](docs/building.md) | [Updating after an EA patch](docs/updating.md)

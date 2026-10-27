@@ -1,4 +1,4 @@
-OFFLINE DYNASTY SETTINGS v0.2.4
+OFFLINE DYNASTY SETTINGS v0.2.5
 By Ace
 
 INSTALL / UPDATE
@@ -20,10 +20,12 @@ Open Dynasty > League Settings > GAME SETTINGS, above Clock Management.
 - Offensive Play Clock: On, Off At Playcall, Off, or 60 Seconds.
   Off At Playcall pauses it during play selection. Off disables its countdown
   and delay-of-game penalties. Accelerated Clock can shorten the 60-second clock.
-- Defensive Play Clock: 5, 15, 20, 30, 45, 60 Seconds, then Off.
+- Defensive Play Clock: 3, 15, 20, 30, 45, 60 Seconds, then Off.
   Sets your time to choose a defense after the offense selects its play.
   Off hides the countdown and removes the time limit. Default: 15 seconds.
   This works independently of Offensive Play Clock.
+
+Saved 5-second defensive clock choices carry over as 3 Seconds.
 
 DEFAULTS
 Both cooldowns and limits: Off

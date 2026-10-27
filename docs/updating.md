@@ -52,7 +52,7 @@ Keep other enum reads tied to the offensive setting. Defensive Off is saved as 0
 it keeps a positive internal native duration and disables countdown at the gate.
 Setting the native remaining duration to zero would cause immediate expiry.
 
-Test all offensive clock choices against defensive 5/15/20/30/45/60/Off. Check visible
+Test all offensive clock choices against defensive 3/15/20/30/45/60/Off. Check visible
 countdown, expiry, pause, CPU timing, saved-value reload and separate Dynasty values.
 Keep `DynastyPlayClock.ini`, `OfflineDynastySettings.ini`, native menu keys and
 `OfflinePlaycallSettings/dynasties.json` compatible across upgrades.

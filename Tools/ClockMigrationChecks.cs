@@ -28,15 +28,20 @@ class ClockMigrationChecks
             var cds=(Dictionary<string,int>)document.GetType().GetProperty("DefenseCooldowns").GetValue(document,null);
             var limits=(Dictionary<string,int>)document.GetType().GetProperty("DefenseLimits").GetValue(document,null);
             Check(cds["101"]==3 && cds["202"]==0 && limits["101"]==2 && limits["303"]==9,"Existing per-Dynasty values and inherited entries preserved");
-            foreach(int value in new[]{0,5,15,20,30,45,60}) {
+            foreach(int value in new[]{0,3,15,20,30,45,60}) {
                 pref.GetMethod("Save",f).Invoke(null,new object[]{folder,value});Check(load()==value,"New clock saves/reloads "+value);
                 Check(File.ReadAllText(currentIni)=="ExtendedSeconds=60\r\n" && File.ReadAllText(json)==oldJson,"New choice does not alter old settings");
             }
             byte[] data=(byte[])clock.GetMethod("BuildData",f).Invoke(null,new object[]{0x200000000L});
             Check(BitConverter.ToInt32(data,0x880)==60 && BitConverter.ToInt32(data,0x95c)==60,"Menu descriptor reloads saved new clock");
-            pref.GetMethod("Save",f).Invoke(null,new object[]{folder,5});
+            File.WriteAllText(newIni,"DefensivePlayClockSeconds=5\r\n");
             data=(byte[])clock.GetMethod("BuildData",f).Invoke(null,new object[]{0x200000000L});
-            Check(load()==5 && BitConverter.ToInt32(data,0x880)==5 && BitConverter.ToInt32(data,0x95c)==5,"5 Seconds persists and displays after reload");
+            Check(load()==3 && BitConverter.ToInt32(data,0x880)==3 && BitConverter.ToInt32(data,0x95c)==3,"Legacy 5-second choice loads and displays as 3 Seconds");
+            Check(File.ReadAllText(newIni)=="DefensivePlayClockSeconds=5\r\n","Loading old choice leaves its original file intact");
+            pref.GetMethod("Save",f).Invoke(null,new object[]{folder,3});
+            data=(byte[])clock.GetMethod("BuildData",f).Invoke(null,new object[]{0x200000000L});
+            Check(load()==3 && BitConverter.ToInt32(data,0x880)==3 && BitConverter.ToInt32(data,0x95c)==3,"3 Seconds persists and displays after reload");
+            Check(File.ReadAllText(newIni)=="DefensivePlayClockSeconds=3\r\n","Explicit save writes the new 3-second value");
             pref.GetMethod("Save",f).Invoke(null,new object[]{folder,0});
             data=(byte[])clock.GetMethod("BuildData",f).Invoke(null,new object[]{0x200000000L});
             Check(load()==0 && BitConverter.ToInt32(data,0x880)==0 && BitConverter.ToInt32(data,0x95c)==0,"Off persists and displays after reload");

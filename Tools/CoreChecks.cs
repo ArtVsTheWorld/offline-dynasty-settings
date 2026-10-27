@@ -37,7 +37,7 @@ class CoreChecks
         if(File.Exists(ini))File.Delete(ini);
         Check(ClockPreferences.Load(folder)==15,"New installations default to 15 seconds");
         Check(!File.Exists(ini),"Reading defaults must not write settings");
-        foreach(int value in new[]{5,15,20,30,45,60,0}){
+        foreach(int value in new[]{3,15,20,30,45,60,0}){
             ClockPreferences.Save(folder,value);
             Check(ClockPreferences.Load(folder)==value,"Clock preference did not survive reload");
         }

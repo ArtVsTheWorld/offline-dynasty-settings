@@ -46,7 +46,7 @@ original=pe.d[pe.off(0x35f7d31):pe.off(0x35f7d42)]
 write(B+0x35f7d31,original);reset();Init(manager)
 check('actual native initializer loads 15 into both clocks',fl(manager+0x34)==15 and fl(manager+0x38)==15)
 write(B+0x35f7d31,jump(M)+b'\x90'*3)
-for seconds in [5,15,20,30,45,60]:
+for seconds in [3,15,20,30,45,60]:
  reset();i(D+0x880,seconds);Init(manager)
  check(f'{seconds}s initializes active maximum and remaining',fl(manager+0x34)==seconds and fl(manager+0x38)==seconds and n(D+0x8a8)==seconds)
  for elapsed in range(1,seconds+3):
@@ -108,7 +108,7 @@ write(B+0x5cf5d60,jump(enumcode))
 for extended in [0,1]:
  i(D+0x828,extended)
  for off in [0,1,2]:
-  for seconds in [5,15,20,30,45,60]:
+  for seconds in [3,15,20,30,45,60]:
    selection(seconds,off);before=n(D+0x8c8);Gate(manager,0.5)
    check(f'off={off} extended={extended} defense={seconds}: native countdown and visible number',fl(manager+0x38)==seconds-0.5 and n(event)==seconds)
    Gate(manager,1)
@@ -149,14 +149,14 @@ write(wrapper,h('56415641574883ec20488bf1448bfa49be')+struct.pack('<Q',adapter)+
 write(B+0x79a48dd,h('4883c420415f415e5ec3'))
 Writer=C.WINFUNCTYPE(None,C.c_void_p,C.c_int,C.c_int)(wrapper)
 i(D+0x828,1)
-for seconds in [5,15,20,30,45,60,0]:
+for seconds in [3,15,20,30,45,60,0]:
  i(chosen,seconds);Writer(source,7,0x1002)
  check(f'{seconds}s writer accepts choice without changing old offensive preference',n(D+0x880)==seconds and n(D+0x95c)==seconds and n(D+0x828)==1)
 for bad in [-1,14,16,61,999]:
  i(chosen,bad);Writer(source,7,0x1002);check(f'writer rejects {bad}',n(D+0x880)==0)
 write(online,h('b801000000c3'));i(chosen,20);Writer(source,7,0x1002);check('online setting write rejected',n(D+0x880)==0)
-check('defensive setting has seven choices with Off last',[n(D+0xb00+j*0x80+0x28) for j in range(7)]==[5,15,20,30,45,60,0] and C.c_ulonglong.from_address(D+0x980).value==D+0xa38)
-check('all defensive labels are intact and Off follows 60 Seconds',[C.string_at(D+0x700+j*0x20).decode() for j in range(7)]==['5 Seconds','15 Seconds','20 Seconds','30 Seconds','45 Seconds','60 Seconds','Off'])
+check('defensive setting has seven choices with Off last',[n(D+0xb00+j*0x80+0x28) for j in range(7)]==[3,15,20,30,45,60,0] and C.c_ulonglong.from_address(D+0x980).value==D+0xa38)
+check('all defensive labels are intact and Off follows 60 Seconds',[C.string_at(D+0x700+j*0x20).decode() for j in range(7)]==['3 Seconds','15 Seconds','20 Seconds','30 Seconds','45 Seconds','60 Seconds','Off'])
 check('all seven choice and caption pointers resolve without overlapping the heading',all(C.c_ulonglong.from_address(D+0xa00+j*8).value==D+0xb00+j*0x80 and C.c_ulonglong.from_address(D+0xb00+j*0x80+0x30).value==D+0x700+j*0x20 for j in range(7)) and C.string_at(D+0xf00)==b'Defensive Play Clock' and C.string_at(D+0xf30).startswith(b'Time to choose a defensive play'))
 check('offensive option captions preserve old numeric values',[n(D+0x180+j*0x80+0x28) for j in range(4)]==[1,2,0,3] and [C.string_at(D+0x600+j*0x40).decode() for j in range(4)]==['On','Off At Playcall','Off','60 Seconds'])
 check('renamed offensive clock descriptor',C.string_at(D+0x400)==b'Offensive Play Clock')
