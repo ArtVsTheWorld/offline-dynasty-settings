@@ -52,7 +52,7 @@ Keep other enum reads tied to the offensive setting. Defensive Off is saved as 0
 it keeps a positive internal native duration and disables countdown at the gate.
 Setting the native remaining duration to zero would cause immediate expiry.
 
-Test all offensive clock choices against defensive 3/15/20/30/45/60/Off. Check visible
+Test all offensive clock choices against defensive 3/5/15/20/30/45/60/Off. Check visible
 countdown, expiry, pause, CPU timing, saved-value reload and separate Dynasty values.
 Keep `DynastyPlayClock.ini`, `OfflineDynastySettings.ini`, native menu keys and
 `OfflinePlaycallSettings/dynasties.json` compatible across upgrades.
@@ -79,7 +79,7 @@ Never replace a locked/unreadable old preference with default values. Only the
 explicit known filenames are migrated; other plugins' files are left alone.
 `OfflinePlaycallSettings/dynasties.json` keeps its previous location.
 
-The seven defensive clock options use choice objects at 0xb00..0xe7f and captions
-at 0x700..0x7df. Keep these clear of the offensive captions below 0x700, telemetry
+The eight defensive clock options use choice objects at 0xb00..0xeff and captions
+at 0x700..0x7ff. Keep these clear of the offensive captions below 0x700, telemetry
 from 0x800, and defensive heading/description from 0xf00. The choices end pointer
-is 0xa38. Stored values are seconds, so adding an option does not shift saves.
+is 0xa40. Stored values are seconds, so adding an option does not shift saves.

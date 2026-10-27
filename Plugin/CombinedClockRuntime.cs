@@ -31,10 +31,10 @@ namespace DynastyPlayClock
             Put(bytes,0x880,seconds);
             Array.Copy(bytes,0,bytes,0x900,0xb0);
             Put(bytes,0x910,d+0xf00);Put(bytes,0x928,d+0xf30);Put(bytes,0x95c,seconds);
-            Put(bytes,0x978,d+0xa00);Put(bytes,0x980,d+0xa38);
-            // Labels use the free 0x700..0x7df range; the seventh option
-            // object occupies 0xe00, where six-option builds kept their labels.
-            int[] choices={3,15,20,30,45,60,0};
+            Put(bytes,0x978,d+0xa00);Put(bytes,0x980,d+0xa40);
+            // Labels use the free 0x700..0x7ff range; the final two option
+            // objects occupy 0xe00..0xeff, before the heading at 0xf00.
+            int[] choices={3,5,15,20,30,45,60,0};
             for(int i=0;i<choices.Length;i++) {
                 int obj=0xb00+i*0x80,label=0x700+i*0x20;
                 Put(bytes,0xa00+i*8,d+obj);Put(bytes,obj+0x28,choices[i]);Put(bytes,obj+0x30,d+label);

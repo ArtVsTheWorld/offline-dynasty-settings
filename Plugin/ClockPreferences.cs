@@ -47,18 +47,16 @@ namespace OfflineDynastySettings
     internal static class ClockPreferences
     {
         internal const string FileName="OfflineDynastySettings.ini";
-        internal static bool Valid(int seconds) { return seconds==0 || seconds==3 || seconds==15 || seconds==20 || seconds==30 || seconds==45 || seconds==60; }
+        internal static bool Valid(int seconds) { return seconds==0 || seconds==3 || seconds==5 || seconds==15 || seconds==20 || seconds==30 || seconds==45 || seconds==60; }
         internal static int Load(string folder)
         {
             string path=SettingsFiles.PathFor(folder,FileName);
             if(!File.Exists(path))return 15;
             string text=File.ReadAllText(path).Trim();int seconds;
             const string prefix="DefensivePlayClockSeconds=";
-            if(!text.StartsWith(prefix,StringComparison.Ordinal) || !Int32.TryParse(text.Substring(prefix.Length),NumberStyles.None,CultureInfo.InvariantCulture,out seconds) || (seconds!=5 && !Valid(seconds)))
+            if(!text.StartsWith(prefix,StringComparison.Ordinal) || !Int32.TryParse(text.Substring(prefix.Length),NumberStyles.None,CultureInfo.InvariantCulture,out seconds) || !Valid(seconds))
                 throw new InvalidDataException("Unreadable Defensive Play Clock preference; saved file preserved.");
-            // v0.2.4 used 5 seconds for the shortest option. Preserve that
-            // selection as 3 seconds; the next explicit save writes 3.
-            return seconds==5 ? 3 : seconds;
+            return seconds;
         }
         internal static void Save(string folder,int seconds)
         {

@@ -46,7 +46,7 @@ original=pe.d[pe.off(0x35f7d31):pe.off(0x35f7d42)]
 write(B+0x35f7d31,original);reset();Init(manager)
 check('actual native initializer loads 15 into both clocks',fl(manager+0x34)==15 and fl(manager+0x38)==15)
 write(B+0x35f7d31,jump(M)+b'\x90'*3)
-for seconds in [3,15,20,30,45,60]:
+for seconds in [3,5,15,20,30,45,60]:
  reset();i(D+0x880,seconds);Init(manager)
  check(f'{seconds}s initializes active maximum and remaining',fl(manager+0x34)==seconds and fl(manager+0x38)==seconds and n(D+0x8a8)==seconds)
  for elapsed in range(1,seconds+3):
@@ -72,10 +72,10 @@ q(profile,pvt);q(pvt+0x10,M+0x9200);write(M+0x9200,h('b801000000c3'));write(B+0x
 write(M+0x3000,(EV/'BuildDurationUpdated.bin').read_bytes());write(B+0x5d0234f,h('c5fa114928c3'))
 Extend=C.WINFUNCTYPE(None,C.c_void_p,C.c_float)(M+0x3000)
 i(B+0xd9e3818,14);i(B+0xf3f5d48,3);i(D+0x828,1)
-expected=C.string_at(D+0x900,0x700);expected_labels=C.string_at(D+0x700,0xe0)
+expected=C.string_at(D+0x900,0x700);expected_labels=C.string_at(D+0x700,0x100)
 for _ in range(70):Extend(clock,25)
 check('offensive reset path exercised 70 times',n(D+0x838)==70 and n(D+0x830)==70 and fl(clock+0x28)==60)
-check('offensive reset telemetry cannot overwrite defensive UI',C.string_at(D+0x900,0x700)==expected and C.string_at(D+0x700,0xe0)==expected_labels)
+check('offensive reset telemetry cannot overwrite defensive UI',C.string_at(D+0x900,0x700)==expected and C.string_at(D+0x700,0x100)==expected_labels)
 # Reproduce the native defensive UI/tick gate. Its enum-1 read previously used
 # Offensive Play Clock, so Off sent the hidden (-100) UI value and skipped Tick.
 for r in [0x35fd7d3,0x5cf5d60,0xf8abc20,0x2ad8410,0x5d01c30,0x35add00]:commit(B+r,0x200)
@@ -108,7 +108,7 @@ write(B+0x5cf5d60,jump(enumcode))
 for extended in [0,1]:
  i(D+0x828,extended)
  for off in [0,1,2]:
-  for seconds in [3,15,20,30,45,60]:
+  for seconds in [3,5,15,20,30,45,60]:
    selection(seconds,off);before=n(D+0x8c8);Gate(manager,0.5)
    check(f'off={off} extended={extended} defense={seconds}: native countdown and visible number',fl(manager+0x38)==seconds-0.5 and n(event)==seconds)
    Gate(manager,1)
@@ -149,15 +149,15 @@ write(wrapper,h('56415641574883ec20488bf1448bfa49be')+struct.pack('<Q',adapter)+
 write(B+0x79a48dd,h('4883c420415f415e5ec3'))
 Writer=C.WINFUNCTYPE(None,C.c_void_p,C.c_int,C.c_int)(wrapper)
 i(D+0x828,1)
-for seconds in [3,15,20,30,45,60,0]:
+for seconds in [3,5,15,20,30,45,60,0]:
  i(chosen,seconds);Writer(source,7,0x1002)
  check(f'{seconds}s writer accepts choice without changing old offensive preference',n(D+0x880)==seconds and n(D+0x95c)==seconds and n(D+0x828)==1)
 for bad in [-1,14,16,61,999]:
  i(chosen,bad);Writer(source,7,0x1002);check(f'writer rejects {bad}',n(D+0x880)==0)
 write(online,h('b801000000c3'));i(chosen,20);Writer(source,7,0x1002);check('online setting write rejected',n(D+0x880)==0)
-check('defensive setting has seven choices with Off last',[n(D+0xb00+j*0x80+0x28) for j in range(7)]==[3,15,20,30,45,60,0] and C.c_ulonglong.from_address(D+0x980).value==D+0xa38)
-check('all defensive labels are intact and Off follows 60 Seconds',[C.string_at(D+0x700+j*0x20).decode() for j in range(7)]==['3 Seconds','15 Seconds','20 Seconds','30 Seconds','45 Seconds','60 Seconds','Off'])
-check('all seven choice and caption pointers resolve without overlapping the heading',all(C.c_ulonglong.from_address(D+0xa00+j*8).value==D+0xb00+j*0x80 and C.c_ulonglong.from_address(D+0xb00+j*0x80+0x30).value==D+0x700+j*0x20 for j in range(7)) and C.string_at(D+0xf00)==b'Defensive Play Clock' and C.string_at(D+0xf30).startswith(b'Time to choose a defensive play'))
+check('defensive setting has eight choices with Off last',[n(D+0xb00+j*0x80+0x28) for j in range(8)]==[3,5,15,20,30,45,60,0] and C.c_ulonglong.from_address(D+0x980).value==D+0xa40)
+check('all defensive labels are intact and Off follows 60 Seconds',[C.string_at(D+0x700+j*0x20).decode() for j in range(8)]==['3 Seconds','5 Seconds','15 Seconds','20 Seconds','30 Seconds','45 Seconds','60 Seconds','Off'])
+check('all eight choice and caption pointers resolve without overlapping the heading',all(C.c_ulonglong.from_address(D+0xa00+j*8).value==D+0xb00+j*0x80 and C.c_ulonglong.from_address(D+0xb00+j*0x80+0x30).value==D+0x700+j*0x20 for j in range(8)) and C.string_at(D+0xf00)==b'Defensive Play Clock' and C.string_at(D+0xf30).startswith(b'Time to choose a defensive play'))
 check('offensive option captions preserve old numeric values',[n(D+0x180+j*0x80+0x28) for j in range(4)]==[1,2,0,3] and [C.string_at(D+0x600+j*0x40).decode() for j in range(4)]==['On','Off At Playcall','Off','60 Seconds'])
 check('renamed offensive clock descriptor',C.string_at(D+0x400)==b'Offensive Play Clock')
 (EV/'defensive-clock-validation.json').write_text(json.dumps(dict(passed=len(checks),checks=checks,nativeSelectionInitializerAndCountdownExecuted=True,inGameVerified=False),indent=2))
