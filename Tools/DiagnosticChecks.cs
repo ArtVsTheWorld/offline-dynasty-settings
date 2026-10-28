@@ -72,6 +72,21 @@ class DiagnosticChecks
             using(MemoryStream copy=new MemoryStream()) { resource.CopyTo(copy);helperBytes=copy.ToArray(); }
             Assembly helper=Assembly.Load(helperBytes);
             Type helperType=helper.GetType("OfflineDynastySettings.PersistenceHelper",true),contextType=helper.GetType("OfflineDynastySettings.PersistenceContext",true);
+            // Exercise the actual helper entrypoint with the expanded controller
+            // manifest. It must pass context validation and then reject this
+            // ordinary test process (exit 3), rather than reject 37 checks (2).
+            string helperExe=Path.Combine(folder,"helper-validation.exe");File.WriteAllBytes(helperExe,helperBytes);
+            PersistenceContext validation=new PersistenceContext {
+                Format=1,Pid=Process.GetCurrentProcess().Id,Started=Process.GetCurrentProcess().StartTime.ToUniversalTime().Ticks,
+                ClockData=1,SplitData=1,PluginFolder=folder,ReadyEvent="unused-test-event",
+                Checks=new List<MemoryCheck>()
+            };
+            for(int i=0;i<37;i++)validation.Checks.Add(new MemoryCheck(0x12345+i,new byte[]{1}));
+            Check(RunHelperValidation(helperExe,folder,validation)==3,"Bundled helper accepts the full 37-check Controller Select manifest");
+            while(validation.Checks.Count<=PersistenceContext.MaximumChecks)validation.Checks.Add(new MemoryCheck(1,new byte[]{1}));
+            Check(RunHelperValidation(helperExe,folder,validation)==2,"Bundled helper retains its bounded manifest limit");
+            validation.Checks.Clear();
+            Check(RunHelperValidation(helperExe,folder,validation)==2,"Bundled helper rejects an empty verification manifest");
             object helperContext=Activator.CreateInstance(contextType);
             IntPtr localClock=Marshal.AllocHGlobal(0x1000);
             try {
@@ -94,5 +109,14 @@ class DiagnosticChecks
             } finally { Marshal.FreeHGlobal(localClock); }
             Console.WriteLine("PASS "+checks+" logging, timer snapshot, file-lock, exit-code and bug-report ZIP checks");return 0;
         } catch(Exception ex) { Console.Error.WriteLine(ex);return 1; }
+    }
+    static int RunHelperValidation(string exe,string folder,PersistenceContext context)
+    {
+        string path=Path.Combine(folder,"validation-"+Guid.NewGuid().ToString("N")+".json");
+        File.WriteAllText(path,new JavaScriptSerializer().Serialize(context));
+        using(Process process=Process.Start(new ProcessStartInfo(exe,"\""+path+"\""){UseShellExecute=false,CreateNoWindow=true})) {
+            if(!process.WaitForExit(10000))throw new Exception("Helper validation did not exit");
+            return process.ExitCode;
+        }
     }
 }

@@ -1,5 +1,7 @@
-OFFLINE DYNASTY SETTINGS v0.2.6
+OFFLINE DYNASTY SETTINGS v0.2.8
 By Ace
+
+0.2.8 fixes settings changes not saving after the Controller Select update.
 
 INSTALL / UPDATE
 1. Close the game and MMC Mod Manager.
@@ -35,6 +37,16 @@ Existing saved choices are kept when updating.
 
 Cooldowns and limits save separately for each Dynasty. Start a new game after
 changing them. Both clock preferences apply across your offline Dynasties.
+
+SWITCH TEAMS
+During an offline Dynasty game, open Pause > Options > Controller Select.
+Move your controller to either team and confirm. Finish the current play with
+your current team; you take over the other team at the next play-selection
+screen. The CPU controls the team you leave. You do not need to call a timeout.
+If you switch during play selection, choose and run your current team's play
+first. Hurry-up can delay the switch until the next play-selection screen.
+This feature supports one controller with full-team control, not player lock,
+multiple users, practice, or online games.
 
 BUG REPORTS
 Logs and both INI files are in Plugins/OfflineDynastySettings. Existing loose

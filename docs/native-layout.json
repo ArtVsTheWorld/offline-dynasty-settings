@@ -1,8 +1,43 @@
 {
-  "pluginVersion": "0.2.6",
+  "pluginVersion": "0.2.8",
   "layout": "October 13, 2026",
   "wholeExeHashGate": false,
   "regions": [
+    {
+      "name": "Controller eligibility",
+      "source": "Plugin/ControllerSelect.cs",
+      "rva": "0x7faaa90",
+      "length": 524,
+      "sha256": "b49703bf276f0e7eff535d8a79b2f1d5eefbad2381924e1f3e818ba772ef67f1"
+    },
+    {
+      "name": "Controller native commit",
+      "source": "Plugin/ControllerSelect.cs",
+      "rva": "0x7a97050",
+      "length": 384,
+      "sha256": "9bf79ecd17da5df1ee940b41990b4f398cd452b474cf0bd038e774ae67a5702d"
+    },
+    {
+      "name": "Controller input setter",
+      "source": "Plugin/ControllerSelect.cs",
+      "rva": "0x2eb3e40",
+      "length": 161,
+      "sha256": "10b310a8c332eb59077c3cfb10f293f7e5174db7b4080ed0a31f6670559ea8fc"
+    },
+    {
+      "name": "Controller Bool result",
+      "source": "Plugin/ControllerSelect.cs",
+      "rva": "0x9130550",
+      "length": 13,
+      "sha256": "07fa584adb72c5b00661c65a636c474ab356ea437a9ba959f898f2419318e09c"
+    },
+    {
+      "name": "Controller play phase",
+      "source": "Plugin/ControllerSelect.cs",
+      "rva": "0x5d0e950",
+      "length": 64,
+      "sha256": "d717623619014ffac45778406f7b16bda60c9325bf6151390fe014fa4baa99e1"
+    },
     {
       "name": "Clock list",
       "source": "Shared/Clock/GameLayouts.cs",
@@ -236,6 +271,9 @@
     }
   ],
   "references": {
+    "0x100001": [
+      "Plugin/ControllerSelect.cs:139"
+    ],
     "0x1000000": [
       "Plugin/PersistenceController.cs:86",
       "Plugin/PersistenceController.cs:90"
@@ -277,6 +315,9 @@
     ],
     "0x2e93f0b": [
       "Shared/Playcall/SplitSettingsAction.cs:144"
+    ],
+    "0x2eb3e40": [
+      "Plugin/ControllerSelect.cs:17"
     ],
     "0x3009b70": [
       "Shared/Clock/GameLayouts.cs:28",
@@ -392,6 +433,10 @@
       "Shared/Clock/DynastyPlayClockAction.cs:209",
       "Shared/Clock/ExtendedClock.cs:152",
       "Shared/Clock/GameLayouts.cs:41"
+    ],
+    "0x5d0e950": [
+      "Plugin/ControllerSelect.cs:10",
+      "Plugin/ControllerSelect.cs:19"
     ],
     "0x5d83e7a": [
       "Shared/Clock/GameLayouts.cs:25",
@@ -512,6 +557,10 @@
       "Shared/Clock/DynastyPlayClockAction.cs:297",
       "Shared/Clock/GameLayouts.cs:35"
     ],
+    "0x7a97050": [
+      "Plugin/ControllerSelect.cs:11",
+      "Plugin/ControllerSelect.cs:16"
+    ],
     "0x7ee1fb0": [
       "Shared/Clock/GameLayouts.cs:29",
       "Shared/Playcall/SplitSettingsAction.cs:115"
@@ -531,6 +580,10 @@
     "0x7f53b60": [
       "Shared/Clock/DynastyPlayClockAction.cs:29"
     ],
+    "0x7faaa90": [
+      "Plugin/ControllerSelect.cs:10",
+      "Plugin/ControllerSelect.cs:15"
+    ],
     "0x8000000": [
       "Plugin/PersistenceController.cs:85",
       "Plugin/PersistenceController.cs:92"
@@ -540,6 +593,9 @@
     ],
     "0x86b1e70": [
       "Shared/Playcall/SplitSettingsAction.cs:108"
+    ],
+    "0x9130550": [
+      "Plugin/ControllerSelect.cs:18"
     ],
     "0xac9aed0": [
       "Shared/Clock/DynastyPlayClockAction.cs:289",
@@ -558,6 +614,9 @@
     ],
     "0xb772b9c": [
       "Shared/Clock/GameLayouts.cs:53"
+    ],
+    "0xbac85d8": [
+      "Plugin/ControllerSelect.cs:11"
     ],
     "0xd8b4808": [
       "Shared/Clock/DynastyPlayClockAction.cs:323",

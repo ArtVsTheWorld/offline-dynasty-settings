@@ -2,6 +2,14 @@
 
 By Ace. Adds game settings to offline Dynasty in College Football 27.
 
+Also adds **Pause > Options > Controller Select** during offline Dynasty games.
+Move your controller to either team and confirm. You keep your current team for
+the rest of that play, then take over the other team at the next play-selection
+screen. The CPU takes over the team you leave. No timeout is needed.
+
+Team switching currently supports one controller with full-team control. It is
+not enabled for practice, online games, multiple users, or player-locked control.
+
 ## Install
 
 Download the ZIP from [Releases](https://github.com/ArtVsTheWorld/offline-dynasty-settings/releases).
@@ -38,6 +46,8 @@ and what happened.
 
 ## Source
 
-Current version: **0.2.6**.
+Current version: **0.2.8**.
+
+Fixes settings changes not saving after Controller Select was added in 0.2.7.
 
 [Build and test](docs/building.md) | [Updating after an EA patch](docs/updating.md)

@@ -12,6 +12,8 @@ namespace OfflineDynastySettings
     }
     internal sealed class PersistenceContext
     {
+        // Includes clock, playcall and controller entries, bodies and native tails.
+        internal const int MaximumChecks = 128;
         public PersistenceContext() { }
         public int Format { get; set; }
         public int Pid { get; set; }

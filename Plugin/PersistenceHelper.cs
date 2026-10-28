@@ -35,8 +35,13 @@ namespace OfflineDynastySettings
                 context = serializer.Deserialize<PersistenceContext>(File.ReadAllText(args[0]));
                 if (context == null || context.Format != 1 || context.Pid <= 0 || context.Started <= 0
                     || context.ClockData <= 0 || context.SplitData <= 0 || context.Checks == null
-                    || context.Checks.Count == 0 || context.Checks.Count > 32 || !Directory.Exists(context.PluginFolder)
-                    || String.IsNullOrEmpty(context.ReadyEvent)) return 2;
+                    || context.Checks.Count == 0 || context.Checks.Count > PersistenceContext.MaximumChecks || !Directory.Exists(context.PluginFolder)
+                    || String.IsNullOrEmpty(context.ReadyEvent)) {
+                    if(context!=null)Log("Rejected settings helper context: invalid fields or ownership check count "
+                        +(context.Checks==null?"missing":context.Checks.Count.ToString(CultureInfo.InvariantCulture))
+                        +" (allowed 1-"+PersistenceContext.MaximumChecks+"). No settings saved.");
+                    return 2;
+                }
                 using (Process game = Process.GetProcessById(context.Pid)) {
                     if (game.HasExited || game.ProcessName != "CollegeFB27" || game.StartTime.ToUniversalTime().Ticks != context.Started) return 3;
                     using (Mutex mutex = new Mutex(false, "Local\\OfflineDynastySettingsPersistence_" + context.Pid + "_" + context.Started)) {

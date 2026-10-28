@@ -107,6 +107,7 @@ namespace OfflineDynastySettings
             {
                 DynastyPlayClock.DynastyPlayClockAction.InstallCombinedDefensiveClock(game.Id);
                 if (playcall == null) playcall = OfflinePlaycall.SplitSettingsAction.TryInstallCombined(game, environment.Log);
+                if (playcall != null) DynastyPlayClock.DynastyPlayClockAction.InstallControllerSelect(game.Id);
                 return playcall != null;
             }
             public void Poll()
@@ -122,6 +123,7 @@ namespace OfflineDynastySettings
                 if (game.HasExited) return;
                 DynastyPlayClock.DynastyPlayClockAction.VerifyCombinedHooks(game, playcall != null);
                 if (playcall != null) playcall.VerifyCombined();
+                if (playcall != null) DynastyPlayClock.DynastyPlayClockAction.VerifyControllerSelect(game.Id);
                 if (playcall != null) DynastyPlayClock.DynastyPlayClockAction.VerifyCombinedDefensiveClock(game.Id);
                 if (playcall != null) {
                     if (persistence == null) {
@@ -132,6 +134,7 @@ namespace OfflineDynastySettings
                             PluginFolder=Path.GetDirectoryName(typeof(CombinedSettingsAction).Assembly.Location),
                             Checks=DynastyPlayClock.DynastyPlayClockAction.CombinedChecks(true)
                         };
+                        context.Checks.AddRange(DynastyPlayClock.DynastyPlayClockAction.ControllerChecks());
                         context.Checks.AddRange(playcall.CombinedChecks(DynastyPlayClock.DynastyPlayClockAction.CombinedWriter));
                         DiagnosticLog.Hooks(context);
                         persistence=new PersistenceController(context,environment.Log);

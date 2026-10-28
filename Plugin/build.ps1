@@ -21,6 +21,8 @@ $sources = @(
     (Join-Path $here 'CombinedClockRuntime.cs'),
     (Join-Path $here 'GameSettingsMenuRows.cs'),
     (Join-Path $here 'DefensivePlayClock.cs'),
+    (Join-Path $here 'ControllerSelect.cs'),
+    (Join-Path $here 'ControllerSelectCode.cs'),
     (Join-Path $here 'ClockPreferences.cs'),
     (Join-Path $here 'DiagnosticLog.cs'),
     (Join-Path $here 'PersistenceContracts.cs'),

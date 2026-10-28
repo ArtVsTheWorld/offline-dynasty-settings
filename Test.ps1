@@ -39,6 +39,12 @@ try {
         Copy-Item -LiteralPath $dll -Destination (Join-Path (Split-Path -Parent $diagnostics) 'OfflineDynastySettings.dll') -Force
         & $diagnostics (Join-Path $root 'Evidence/Checks/diagnostics/fixture')
         if($LASTEXITCODE -ne 0){throw 'Diagnostics and helper preference checks failed'}
+        & ./Tools/export_controller_select.ps1 -Version $version -MmcRoot $MmcRoot
+        if($LASTEXITCODE -ne 0){throw 'Controller bridge export failed'}
+        foreach($check in @('test_controller_deferred.py','test_controller_eligibility.py')) {
+            & $Python (Join-Path $root "Tools/$check") (Join-Path $root "Evidence/controller-checks-$version")
+            if($LASTEXITCODE -ne 0){throw "Controller checks failed: $check"}
+        }
         if($NativeChecks) {
             if(!$BaselineImage){throw 'Native settings checks require -BaselineImage with your local decrypted capture.'}
             $env:CFB_BASELINE_IMAGE=[IO.Path]::GetFullPath($BaselineImage)

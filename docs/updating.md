@@ -43,6 +43,9 @@ ignored by Git. Python inspection tools use `requirements-dev.txt` (Capstone).
 - `Shared/Clock/DynastyPlayClockAction.cs`, `ExtendedClock.cs`: clock hooks and enum reads.
 - `Shared/Playcall/SplitSettingsAction.cs`, `SplitHookCode.cs`: playcall hooks, ownership and saved maps.
 - `Plugin/DefensivePlayClock.cs`: defensive duration and the caller-specific enable check.
+- `Plugin/ControllerSelect.cs`, `ControllerSelectCode.cs`: native eligibility,
+  deferred controller confirmation and next-play assignment. Generate the code
+  with `python Tools/build_controller_select.py`.
 - `Plugin/GameSettingsMenuRows.cs`: generated GAME SETTINGS layout.
 - `Plugin/ClockPreferences.cs`, persistence files: saved choices and detached helper.
 
@@ -83,3 +86,37 @@ The eight defensive clock options use choice objects at 0xb00..0xeff and caption
 at 0x700..0x7ff. Keep these clear of the offensive captions below 0x700, telemetry
 from 0x800, and defensive heading/description from 0xf00. The choices end pointer
 is 0xa40. Stored values are seconds, so adding an option does not shift saves.
+
+## Controller Select
+
+The controller extension has three independent hook sites: eligibility entry
+`0x7faaa90` (17 bytes), GameSetup virtual commit slot `0xbac85d8` (8 bytes,
+native target `0x7a97050`), and phase setter `0x5d0e950` (15 bytes). Eligibility
+replays its original prolog through a trampoline outside regular offline Dynasty.
+The installer validates bounded hashes and the native slot before patching, holds
+threads outside changed instructions, rolls back a failed transaction, and keeps
+published allocations until game exit. Its owned entries and bodies are included
+in the existing read-only helper verification. A controller compatibility failure
+leaves the clock/settings features available and logs the failed contract.
+
+Queue only single controller 0/full-team role 35 changes. Restore the frontend's
+current side at confirmation so the current snap remains unchanged. Track the
+owning match and seeing phase 3, then consume a pending request before phase 5
+initializes the next picker. Move the whole 44-byte role between InputManager
+slots 0x148/0x174, changing only current-side +4, clear the old captain, and call
+the native input setter. Preserve the native original commit and cancel cache.
+Do not force a picker reset or spend a timeout: that auto-selected the user's play.
+Hurry-up retains a queued request until the next normal picker boundary.
+
+Do not change shared condition/string-writer hooks, DGA's Resume caption, or its
+replay predicates. The repeatable controller tests execute release-DLL machine
+code against fake objects in their own processes, never the running game. After
+an update, verify both switch directions from the line and picker, fresh matches,
+multiple-controller fallback, and clock Off/On behavior with the full plugin active.
+
+The persistence helper must accept the combined ownership manifest (currently
+37 checks). Its bounded limit is shared through PersistenceContext.MaximumChecks
+(128). Keep the entrypoint regression test: it launches the real embedded helper
+against an ordinary test-process identity to distinguish accepted context (exit 3,
+wrong process) from rejected context (exit 2). Do not only test save methods through
+reflection; that missed the 0.2.7 startup rejection and stale defensive clock INI.
