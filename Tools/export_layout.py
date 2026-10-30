@@ -20,7 +20,7 @@ def layout():
         if path.name == 'DynastyPlayClockAction.cs':
             scan = ''  # Current combined layout comes from GameLayouts.cs.
         if path.name == 'GameLayouts.cs':
-            scan = source[source.index('new Layout("October 13, 2026 update"'):]
+            scan = source[source.index('new Layout("October 29, 2026 update"'):]
         named = r'new Region\("([^"]+)",\s*(0x[\da-f]+),\s*(0x[\da-f]+|\d+),\s*"([\da-f]{64})"\)'
         plain = r'new Region\((0x[\da-f]+),\s*(0x[\da-f]+|\d+),\s*"([\da-f]{64})"\)'
         for label, rva, size, digest in re.findall(named, scan, re.I):
@@ -28,7 +28,7 @@ def layout():
         for rva, size, digest in re.findall(plain, scan, re.I):
             regions.append(dict(name=path.stem, source=relative, rva=rva.lower(), length=int(size, 0), sha256=digest.lower()))
         for line, text in enumerate(source.splitlines(), 1):
-            for match in re.finditer(r'\b0x([\da-f]+)\b', text, re.I):
+            for match in re.finditer(r'\b0x([\da-f]+)(?:[uUlL]*)\b', text, re.I):
                 value = int(match.group(1), 16)
                 if 0x100000 <= value < 0x13000000:
                     references.setdefault(hex(value), []).append(f'{relative}:{line}')
@@ -39,10 +39,10 @@ def layout():
             rva = re.search(field + r'=(0x[\da-f]+)', source, re.I).group(1)
             data = bytes.fromhex(re.search(array + r'=Hex\("([\da-f]+)"\)', source, re.I).group(1))
             regions.append(dict(name=field, source='Plugin/DefensivePlayClock.cs', rva=rva, length=len(data), sha256=hashlib.sha256(data).hexdigest()))
-        data = bytes.fromhex('c5fa10052435db04c3')
-        regions.append(dict(name='Defensive duration getter', source='Plugin/DefensivePlayClock.cs', rva='0x5ff26a0', length=len(data), sha256=hashlib.sha256(data).hexdigest()))
+        data = bytes.fromhex('c5fa1005e45cdb04c3')
+        regions.append(dict(name='Defensive duration getter', source='Plugin/DefensivePlayClock.cs', rva='0x5ff6100', length=len(data), sha256=hashlib.sha256(data).hexdigest()))
     version = re.search(r'PluginVersion\("([^"]+)"\)', (ROOT / 'Plugin/AssemblyInfo.cs').read_text()).group(1)
-    return dict(pluginVersion=version, layout='October 13, 2026', wholeExeHashGate=False,
+    return dict(pluginVersion=version, layout='October 29, 2026', wholeExeHashGate=False,
                 regions=regions, references=dict(sorted(references.items(), key=lambda item: int(item[0], 16))))
 
 

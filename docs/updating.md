@@ -1,6 +1,6 @@
 # After an EA update
 
-The current code targets the October 13, 2026 native layout. A game update can move
+The current code targets the October 29, 2026 native layout. A game update can move
 functions, globals, vtables and jump tables by different amounts. A single address
 offset is not enough.
 
@@ -50,7 +50,7 @@ ignored by Git. Python inspection tools use `requirements-dev.txt` (Capstone).
 - `Plugin/ClockPreferences.cs`, persistence files: saved choices and detached helper.
 
 The defensive gate currently reads the offensive clock enum from a call returning
-to `0x35fd7d8`. Only this caller receives the independent defensive enable choice.
+to `0x35fff18`. Only this caller receives the independent defensive enable choice.
 Keep other enum reads tied to the offensive setting. Defensive Off is saved as 0;
 it keeps a positive internal native duration and disables countdown at the gate.
 Setting the native remaining duration to zero would cause immediate expiry.
@@ -90,8 +90,8 @@ is 0xa40. Stored values are seconds, so adding an option does not shift saves.
 ## Controller Select
 
 The controller extension has three independent hook sites: eligibility entry
-`0x7faaa90` (17 bytes), GameSetup virtual commit slot `0xbac85d8` (8 bytes,
-native target `0x7a97050`), and phase setter `0x5d0e950` (15 bytes). Eligibility
+`0x7fae660` (17 bytes), GameSetup virtual commit slot `0xbaced38` (8 bytes,
+native target `0x7a9abf0`), and phase setter `0x5d12420` (15 bytes). Eligibility
 replays its original prolog through a trampoline outside regular offline Dynasty.
 The installer validates bounded hashes and the native slot before patching, holds
 threads outside changed instructions, rolls back a failed transaction, and keeps

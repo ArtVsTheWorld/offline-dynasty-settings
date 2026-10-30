@@ -46,7 +46,7 @@ namespace DynastyPlayClock
         internal static byte[] BuildCombinedDefensiveClockRow(long b,long d)
         {
             Code c=new Code();c.Hex("4883ec28");c.MovR10(d);c.Hex("418b82800800004189825c090000");
-            c.Hex("895c242041b80210000049b9");c.Long(d+0x900);c.Hex("488bd6488bcf");c.Call(b+0x799be70);c.Hex("ffc34883c428c3");
+            c.Hex("895c242041b80210000049b9");c.Long(d+0x900);c.Hex("488bd6488bcf");c.Call(b+0x799fa10);c.Hex("ffc34883c428c3");
             return c.Finish();
         }
         internal static List<OfflineDynastySettings.MemoryCheck> CombinedChecks(bool writerChained)
@@ -61,7 +61,7 @@ namespace DynastyPlayClock
                 if(defensiveCode!=0 && defensiveStart==installedStart) {
                     checks.Add(new OfflineDynastySettings.MemoryCheck(installedBase+DefensiveTimerRva,defensiveDetour));
                     checks.Add(new OfflineDynastySettings.MemoryCheck(defensiveCode,defensiveBody));
-                    checks.Add(new OfflineDynastySettings.MemoryCheck(installedBase+0x5ff26a0,Hex("c5fa10052435db04c3")));
+                    checks.Add(new OfflineDynastySettings.MemoryCheck(installedBase+0x5ff6100,Hex("c5fa1005e45cdb04c3")));
                     checks.Add(new OfflineDynastySettings.MemoryCheck(installedBase+DefensiveGateRva,DefensiveGateOriginal));
                 }
                 return checks;

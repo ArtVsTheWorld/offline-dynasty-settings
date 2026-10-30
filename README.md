@@ -2,6 +2,8 @@
 
 By Ace. Adds game settings to offline Dynasty in College Football 27.
 
+Updated for the October 29, 2026 game patch.
+
 Also adds **Pause > Options > Controller Select** during offline Dynasty games.
 Move your controller to either team and confirm. You keep your current team for
 the rest of that play, then take over the other team at the next play-selection
@@ -46,8 +48,10 @@ and what happened.
 
 ## Source
 
-Current version: **0.2.8**.
+Current version: **0.2.9**.
 
-Fixes settings changes not saving after Controller Select was added in 0.2.7.
+Includes the fix for settings changes not saving after the Controller Select update.
+
+Thanks to Sdmart3 for the Controller Select reference source for this patch.
 
 [Build and test](docs/building.md) | [Updating after an EA patch](docs/updating.md)

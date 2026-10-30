@@ -30,7 +30,7 @@ class IntegrationChecks
             Type split=assembly.GetType("OfflinePlaycall.SplitSettingsAction",true), clock=assembly.GetType("DynastyPlayClock.DynastyPlayClockAction",true);
             BindingFlags flags=BindingFlags.NonPublic|BindingFlags.Static;
             if(!(bool)split.GetMethod("ClockAssemblyLoaded",flags).Invoke(null,null))throw new Exception("Merged worker would install before Clock");
-            long image=0x140000000, code=0x50000000, data=0x200000000, list=image+0x7993e6c, writer=image+0x79a2123;
+            long image=0x140000000, code=0x50000000, data=0x200000000, list=image+0x7997a0c, writer=image+0x79a5cc3;
             Allocate(list&~0xffffL);Allocate(writer&~0xffffL);Allocate(code);
             byte[] originalList=Hex("488b8f18040000ffc3488b01ff9010050000"), originalWriter=Hex("83c0fe3ddb0000000f87ac270000");
             MethodInfo check=split.GetMethod("CheckClockHooks",flags);

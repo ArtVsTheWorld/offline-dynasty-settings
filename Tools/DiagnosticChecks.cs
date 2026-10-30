@@ -19,8 +19,8 @@ class DiagnosticChecks
             string report=Path.Combine(folder,"OfflineDynastySettings","Diagnostics");
             File.WriteAllText(Path.Combine(folder,"DynastyPlayClock.ini"),"ExtendedSeconds=60\r\n");
             SettingsFiles.Migrate(folder);
-            string collision=DiagnosticLog.Mismatch("Test hook",0x35f7d31,"expected",new byte[]{0xff,0x25,0,0,0,0});
-            Check(collision.Contains("0x35f7d31") && collision.Contains("FF-25") && collision.Contains("expected") && collision.Contains("actual="),"Conflict report identifies address and changed bytes");
+            string collision=DiagnosticLog.Mismatch("Test hook",0x35fa471,"expected",new byte[]{0xff,0x25,0,0,0,0});
+            Check(collision.Contains("0x35fa471") && collision.Contains("FF-25") && collision.Contains("expected") && collision.Contains("actual="),"Conflict report identifies address and changed bytes");
             Check(collision.Contains("not a whole-EXE hash requirement"),"Region check is identified correctly");
             DiagnosticLog.Write(folder,"test","exception example: "+new InvalidOperationException("diagnostic-test"));
             string log=File.ReadAllText(SettingsFiles.PathFor(folder,"OfflineDynastySettings.log"));
@@ -32,7 +32,7 @@ class DiagnosticChecks
                 Checks=new List<MemoryCheck>{new MemoryCheck(0x12345,new byte[]{1,2,3})} };
             DiagnosticLog.Hooks(context);
             string hook=File.ReadAllText(Path.Combine(report,"hooks.json"));
-            Check(hook.Contains("0x35f7d31") && hook.Contains("\"legacyDefensiveTimerHook\":false") && hook.Contains("\"length\":3"),"Hook inventory identifies active initializer and owned byte ranges");
+            Check(hook.Contains("0x35fa471") && hook.Contains("\"legacyDefensiveTimerHook\":false") && hook.Contains("\"length\":3"),"Hook inventory identifies active initializer and owned byte ranges");
             byte[] clock=new byte[0xa8];Put(clock,0,1);Put(clock,8,5);Put(clock,0x58,60);Put(clock,0x78,3);Put(clock,0x7c,3);Put(clock,0x80,60);
             Func<long,int,byte[]> read=(address,size)=>address==context.ClockData+0x828?clock:BitConverter.GetBytes(4);
             DiagnosticLog.Runtime(context,read);
@@ -44,8 +44,8 @@ class DiagnosticChecks
             read=(address,size)=> {
                 if(address==context.ClockData+0x828)return clock;
                 if(address==context.SplitData+0x1800)return BitConverter.GetBytes(4);
-                if(address==context.ImageBase+0xd9e3818)return BitConverter.GetBytes(14);
-                if(address==context.ImageBase+0xf3f5d48)return BitConverter.GetBytes(3);
+                if(address==context.ImageBase+0xd9eb808)return BitConverter.GetBytes(14);
+                if(address==context.ImageBase+0xf3fddbc)return BitConverter.GetBytes(3);
                 if(size==8)return BitConverter.GetBytes((long)0x30000);
                 byte[] timer=new byte[10];Array.Copy(BitConverter.GetBytes(60f),0,timer,0,4);Array.Copy(BitConverter.GetBytes(44.5f),0,timer,4,4);timer[9]=1;return timer;
             };

@@ -6,11 +6,11 @@ namespace OfflineDynastySettings {
   internal static byte[] Rewrite(byte[] code, long image, long remote) {
    Array.Clear(code,0,0x600);
    byte[] rows=Hex("84c00f8587020000488b068bd349b800000000000000004d8b0049b90000000000000000488bceff5030488b068bd349b800000000000000004d8b0041b901100000488bceff5020488b068bd349b800000000000000004d8b0049b900000000000000004d8b09488bceff5030ffc34881ec0003000048897c24304889742438488b8718040000488b80400100004805303a00004989c2488dbc2440000000498bf2b916000000f348a5488dbc24f0000000498bf2b916000000f348a54981c2b0000000488dbc24a0010000498bf2b916000000f348a5488dbc2450020000498bf2b916000000f348a5488b7c2430488b74243848b80000000000000000488944245048b80000000000000000488984240001000048b80000000000000000488984241801000048b8000000000000000048898424b001000048b80000000000000000488984246002000048b800000000000000004889842478020000c784244c01000000000000c78424ac0200000000000048b80000000000000000488984246800000048b8000000000000000048898424c801000049ba0000000000000000418b12e8570a00004885c00f84260000008b500483faff0f84070000008994244c0100008b500883faff0f8407000000899424ac0200004c8d8c244000000041b80a000000895c2420488bd6488bcf48b80000000000000000ffd0ffc34c8d8c24a001000041b80b000000895c2420488bd6488bcf48b80000000000000000ffd0ffc3e8d70d00004c8d8c24f000000041b8f0000000895c2420488bd6488bcf48b80000000000000000ffd0ffc34c8d8c245002000041b8f1000000895c2420488bd6488bcf48b80000000000000000ffd0ffc3e8860e00004881c400030000ff25000000000000000000000000488b871804000041b80a000000488bd6ff25000000000000000000000000");
-   Array.Copy(BitConverter.GetBytes(image+0xda9e658L),0,rows,0xf,8);
+   Array.Copy(BitConverter.GetBytes(image+0xdaa6758L),0,rows,0xf,8);
    Array.Copy(BitConverter.GetBytes(remote+0x1b00L),0,rows,0x1c,8);
-   Array.Copy(BitConverter.GetBytes(image+0xdafec40L),0,rows,0x31,8);
-   Array.Copy(BitConverter.GetBytes(image+0xda9e668L),0,rows,0x4f,8);
-   Array.Copy(BitConverter.GetBytes(image+0xda9e698L),0,rows,0x5c,8);
+   Array.Copy(BitConverter.GetBytes(image+0xdb06d40L),0,rows,0x31,8);
+   Array.Copy(BitConverter.GetBytes(image+0xdaa6768L),0,rows,0x4f,8);
+   Array.Copy(BitConverter.GetBytes(image+0xdaa6798L),0,rows,0x5c,8);
    Array.Copy(BitConverter.GetBytes(remote+0x1900L),0,rows,0xf6,8);
    Array.Copy(BitConverter.GetBytes(remote+0x1940L),0,rows,0x105,8);
    Array.Copy(BitConverter.GetBytes(remote+0x1980L),0,rows,0x117,8);
@@ -19,13 +19,13 @@ namespace OfflineDynastySettings {
    Array.Copy(BitConverter.GetBytes(remote+0x1a80L),0,rows,0x14d,8);
    Array.Copy(BitConverter.GetBytes(remote+0x1b40L),0,rows,0x175,8);
    Array.Copy(BitConverter.GetBytes(remote+0x1bc0L),0,rows,0x187,8);
-   Array.Copy(BitConverter.GetBytes(image+0xf554998L),0,rows,0x199,8);
-   Array.Copy(BitConverter.GetBytes(image+0x799be70L),0,rows,0x1f2,8);
-   Array.Copy(BitConverter.GetBytes(image+0x799be70L),0,rows,0x218,8);
-   Array.Copy(BitConverter.GetBytes(image+0x799be70L),0,rows,0x243,8);
-   Array.Copy(BitConverter.GetBytes(image+0x799be70L),0,rows,0x269,8);
-   Array.Copy(BitConverter.GetBytes(image+0x7993df8L),0,rows,0x287,8);
-   Array.Copy(BitConverter.GetBytes(image+0x7993db0L),0,rows,0x2a5,8);
+   Array.Copy(BitConverter.GetBytes(image+0xf55c998L),0,rows,0x199,8);
+   Array.Copy(BitConverter.GetBytes(image+0x799fa10L),0,rows,0x1f2,8);
+   Array.Copy(BitConverter.GetBytes(image+0x799fa10L),0,rows,0x218,8);
+   Array.Copy(BitConverter.GetBytes(image+0x799fa10L),0,rows,0x243,8);
+   Array.Copy(BitConverter.GetBytes(image+0x799fa10L),0,rows,0x269,8);
+   Array.Copy(BitConverter.GetBytes(image+0x7997998L),0,rows,0x287,8);
+   Array.Copy(BitConverter.GetBytes(image+0x7997950L),0,rows,0x2a5,8);
    Array.Copy(rows,code,rows.Length);
    byte[] clock=DynastyPlayClock.DynastyPlayClockAction.BuildCombinedSectionClockRow(image,DynastyPlayClock.DynastyPlayClockAction.CombinedData);
    if(clock.Length>0x100)throw new InvalidOperationException("Clock menu code exceeds reserved space");
@@ -37,11 +37,11 @@ namespace OfflineDynastySettings {
    // Independent native Off defaults for unsaved defensive settings.
    Array.Clear(code,0x900,0x300);
    byte[] defaultsGetter=Hex("49ba000000000000000041833a0e0f857b00000049ba000000000000000041833a030f856700000049ba0000000000000000418b1285d20f84520000004883ec28e8ba0200004883c42841baffffffff41bbffffffff4885c00f841c000000837804000f8e04000000448b5004837808000f8e04000000448b5808458910418bc3ff250000000000000000000000008b81100d00004189008b81140d0000ff25000000000000000000000000");
-   Array.Copy(BitConverter.GetBytes(image+0xd9e3818L),0,defaultsGetter,0x2,8);
-   Array.Copy(BitConverter.GetBytes(image+0xf3f5d48L),0,defaultsGetter,0x16,8);
-   Array.Copy(BitConverter.GetBytes(image+0xf554998L),0,defaultsGetter,0x2a,8);
-   Array.Copy(BitConverter.GetBytes(image+0x2e93f1aL),0,defaultsGetter,0x87,8);
-   Array.Copy(BitConverter.GetBytes(image+0x2e93f1aL),0,defaultsGetter,0xa4,8);
+   Array.Copy(BitConverter.GetBytes(image+0xd9eb808L),0,defaultsGetter,0x2,8);
+   Array.Copy(BitConverter.GetBytes(image+0xf3fddbcL),0,defaultsGetter,0x16,8);
+   Array.Copy(BitConverter.GetBytes(image+0xf55c998L),0,defaultsGetter,0x2a,8);
+   Array.Copy(BitConverter.GetBytes(image+0x2e94d0aL),0,defaultsGetter,0x87,8);
+   Array.Copy(BitConverter.GetBytes(image+0x2e94d0aL),0,defaultsGetter,0xa4,8);
    Array.Copy(defaultsGetter,0,code,0x900,defaultsGetter.Length);
    Array.Copy(System.Text.Encoding.ASCII.GetBytes("Offensive Playcall Cooldown\0"),0,code,0x1900,28);
    Array.Copy(System.Text.Encoding.ASCII.GetBytes("Defensive Playcall Cooldown\0"),0,code,0x1940,28);

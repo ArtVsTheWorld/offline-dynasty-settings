@@ -1,0 +1,394 @@
+{
+  "patch": "October 29, 2026",
+  "previousLayout": "October 13, 2026",
+  "method": "Unique masked instruction matches, paired native RIP/call operands, containing-object member offsets and vtable cross-checks; native region hashes verified against read-only running-game capture.",
+  "sourceReference": "Sdmart3 controller-select-source-0.1.0 (reviewed, not executed or redistributed)",
+  "wholeExeHashGate": false,
+  "addresses": [
+    {
+      "previous": "0x27a7910",
+      "current": "0x27a8710",
+      "evidence": "unique masked 64"
+    },
+    {
+      "previous": "0x27a9b10",
+      "current": "0x27aa910",
+      "evidence": "unique masked 64"
+    },
+    {
+      "previous": "0x27ac630",
+      "current": "0x27ad430",
+      "evidence": "unique masked 64"
+    },
+    {
+      "previous": "0x27ae830",
+      "current": "0x27af630",
+      "evidence": "unique masked 64"
+    },
+    {
+      "previous": "0x27b26f0",
+      "current": "0x27b34f0",
+      "evidence": "unique masked 128"
+    },
+    {
+      "previous": "0x27b7410",
+      "current": "0x27b8210",
+      "evidence": "unique masked 128"
+    },
+    {
+      "previous": "0x2e8c240",
+      "current": "0x2e8d030",
+      "evidence": "unique masked 64"
+    },
+    {
+      "previous": "0x2e93ee0",
+      "current": "0x2e94cd0",
+      "evidence": "paired operand 0x4f967d2"
+    },
+    {
+      "previous": "0x2e93f0b",
+      "current": "0x2e94cfb",
+      "evidence": "unique masked 64"
+    },
+    {
+      "previous": "0x2eb3e40",
+      "current": "0x2eb4c30",
+      "evidence": "unique masked 64"
+    },
+    {
+      "previous": "0x3009b70",
+      "current": "0x3002a10",
+      "evidence": "unique masked 64"
+    },
+    {
+      "previous": "0x300e880",
+      "current": "0x30b6a10",
+      "evidence": "unique masked 64"
+    },
+    {
+      "previous": "0x35e336e",
+      "current": "0x35e5aae",
+      "evidence": "unique masked 64"
+    },
+    {
+      "previous": "0x35e33b2",
+      "current": "0x35e5af2",
+      "evidence": "unique masked 64"
+    },
+    {
+      "previous": "0x35e754e",
+      "current": "0x35e9c8e",
+      "evidence": "unique masked 64"
+    },
+    {
+      "previous": "0x35e7592",
+      "current": "0x35e9cd2",
+      "evidence": "unique masked 64"
+    },
+    {
+      "previous": "0x35f7d31",
+      "current": "0x35fa471",
+      "evidence": "unique masked 64"
+    },
+    {
+      "previous": "0x35fd7d3",
+      "current": "0x35fff13",
+      "evidence": "unique masked 64"
+    },
+    {
+      "previous": "0x35fd7d8",
+      "current": "0x35fff18",
+      "evidence": "unique masked 64"
+    },
+    {
+      "previous": "0x3608ea0",
+      "current": "0x360b5e0",
+      "evidence": "unique masked 64"
+    },
+    {
+      "previous": "0x3608ee0",
+      "current": "0x360b620",
+      "evidence": "unique masked 64"
+    },
+    {
+      "previous": "0x360d070",
+      "current": "0x360f7e0",
+      "evidence": "unique masked 64"
+    },
+    {
+      "previous": "0x360d0b0",
+      "current": "0x360f820",
+      "evidence": "unique instruction signature"
+    },
+    {
+      "previous": "0x4f96740",
+      "current": "0x4f99e30",
+      "evidence": "unique masked 64"
+    },
+    {
+      "previous": "0x5cf5910",
+      "current": "0x5cf93e0",
+      "evidence": "paired operand 0x27b2707"
+    },
+    {
+      "previous": "0x5cf5d60",
+      "current": "0x5cf9830",
+      "evidence": "paired operand 0x4ff426c"
+    },
+    {
+      "previous": "0x5d01900",
+      "current": "0x5d053d0",
+      "evidence": "unique instruction signature"
+    },
+    {
+      "previous": "0x5d01b70",
+      "current": "0x5d05640",
+      "evidence": "paired operand 0x35fda21"
+    },
+    {
+      "previous": "0x5d01d50",
+      "current": "0x5d05820",
+      "evidence": "unique masked 64"
+    },
+    {
+      "previous": "0x5d02340",
+      "current": "0x5d05e10",
+      "evidence": "unique masked 64"
+    },
+    {
+      "previous": "0x5d02690",
+      "current": "0x5d06160",
+      "evidence": "unique masked 64"
+    },
+    {
+      "previous": "0x5d0db10",
+      "current": "0x5d115e0",
+      "evidence": "unique masked 64"
+    },
+    {
+      "previous": "0x5d0e2e0",
+      "current": "0x5d11db0",
+      "evidence": "unique masked 64"
+    },
+    {
+      "previous": "0x5d0e630",
+      "current": "0x5d12100",
+      "evidence": "unique masked 64"
+    },
+    {
+      "previous": "0x5d0e950",
+      "current": "0x5d12420",
+      "evidence": "paired operand 0x5d4a01b"
+    },
+    {
+      "previous": "0x5d83e7a",
+      "current": "0x5d8794a",
+      "evidence": "unique masked 64"
+    },
+    {
+      "previous": "0x5d8fc30",
+      "current": "0x5d93700",
+      "evidence": "unique masked 128"
+    },
+    {
+      "previous": "0x5ff26a0",
+      "current": "0x5ff6100",
+      "evidence": "paired operand 0x35f7d31"
+    },
+    {
+      "previous": "0x6455cb0",
+      "current": "0x6459840",
+      "evidence": "unique masked 64"
+    },
+    {
+      "previous": "0x6455cd0",
+      "current": "0x6459860",
+      "evidence": "unique masked 64"
+    },
+    {
+      "previous": "0x6461420",
+      "current": "0x6464fb0",
+      "evidence": "unique masked 64"
+    },
+    {
+      "previous": "0x6461440",
+      "current": "0x6464fd0",
+      "evidence": "unique masked 64"
+    },
+    {
+      "previous": "0x6469a50",
+      "current": "0x646d5e0",
+      "evidence": "paired operand 0x6455ccb"
+    },
+    {
+      "previous": "0x64751c0",
+      "current": "0x6478d50",
+      "evidence": "unique masked 64"
+    },
+    {
+      "previous": "0x7993a90",
+      "current": "0x7997630",
+      "evidence": "unique masked 64"
+    },
+    {
+      "previous": "0x7993aa0",
+      "current": "0x7997640",
+      "evidence": "unique masked 64"
+    },
+    {
+      "previous": "0x7993d9e",
+      "current": "0x799793e",
+      "evidence": "unique masked 64"
+    },
+    {
+      "previous": "0x7993da0",
+      "current": "0x7997940",
+      "evidence": "unique masked 64"
+    },
+    {
+      "previous": "0x7993e6c",
+      "current": "0x7997a0c",
+      "evidence": "unique masked 64"
+    },
+    {
+      "previous": "0x799be70",
+      "current": "0x799fa10",
+      "evidence": "paired operand 0x7994fd9"
+    },
+    {
+      "previous": "0x79a2090",
+      "current": "0x79a5c30",
+      "evidence": "unique masked 64"
+    },
+    {
+      "previous": "0x79a2123",
+      "current": "0x79a5cc3",
+      "evidence": "unique instruction signature"
+    },
+    {
+      "previous": "0x79a48dd",
+      "current": "0x79a847d",
+      "evidence": "unique masked 64"
+    },
+    {
+      "previous": "0x79b850d",
+      "current": "0x79bc0ad",
+      "evidence": "unique masked 64"
+    },
+    {
+      "previous": "0x7a97050",
+      "current": "0x7a9abf0",
+      "evidence": "unique masked 64"
+    },
+    {
+      "previous": "0x7ee1fb0",
+      "current": "0x7ee5b50",
+      "evidence": "unique masked 128"
+    },
+    {
+      "previous": "0x7ef6110",
+      "current": "0x7ef9cb0",
+      "evidence": "unique masked 128"
+    },
+    {
+      "previous": "0x7f2fca0",
+      "current": "0x7f33870",
+      "evidence": "unique masked 64"
+    },
+    {
+      "previous": "0x7f40470",
+      "current": "0x7f44040",
+      "evidence": "unique masked 64"
+    },
+    {
+      "previous": "0x7f433a0",
+      "current": "0x7f46f70",
+      "evidence": "unique masked 64"
+    },
+    {
+      "previous": "0x7f53b60",
+      "current": "0x7f57730",
+      "evidence": "unique masked 64"
+    },
+    {
+      "previous": "0x7faaa90",
+      "current": "0x7fae660",
+      "evidence": "unique masked 64"
+    },
+    {
+      "previous": "0x8000000",
+      "current": "0x8003d10",
+      "evidence": "unique masked 64"
+    },
+    {
+      "previous": "0x8456250",
+      "current": "0x8459ff0",
+      "evidence": "unique masked 64"
+    },
+    {
+      "previous": "0x86b1e70",
+      "current": "0x86b5c70",
+      "evidence": "unique masked 64"
+    },
+    {
+      "previous": "0x9130550",
+      "current": "0x91364c0",
+      "evidence": "paired operand 0x7faac88"
+    },
+    {
+      "previous": "0xad8fec0",
+      "current": "0xad960e0",
+      "evidence": "unique RIP xref or mapped vtable method"
+    },
+    {
+      "previous": "0xada5bcc",
+      "current": "0xadabdec",
+      "evidence": "paired operand 0x5ff26a0"
+    },
+    {
+      "previous": "0xb772b9c",
+      "current": "0xb7792fc",
+      "evidence": "containing object + verified member offset"
+    },
+    {
+      "previous": "0xbac85d8",
+      "current": "0xbaced38",
+      "evidence": "unique RIP xref or mapped vtable method"
+    },
+    {
+      "previous": "0xd9e3818",
+      "current": "0xd9eb808",
+      "evidence": "paired operand 0x7ee1fc3"
+    },
+    {
+      "previous": "0xe2c73e0",
+      "current": "0xe2cf3e0",
+      "evidence": "paired operand 0x7994d3c"
+    },
+    {
+      "previous": "0xe2c73e8",
+      "current": "0xe2cf3e8",
+      "evidence": "paired operand 0x7f4048c"
+    },
+    {
+      "previous": "0xe2c73f0",
+      "current": "0xe2cf3f0",
+      "evidence": "paired operand 0x4ff4260"
+    },
+    {
+      "previous": "0xf3f5d48",
+      "current": "0xf3fddbc",
+      "evidence": "paired operand 0x3009b70"
+    },
+    {
+      "previous": "0xf8572b8",
+      "current": "0xf85f308",
+      "evidence": "paired operand 0x5d6ced9"
+    },
+    {
+      "previous": "0xf8abb50",
+      "current": "0xf8b3ba0",
+      "evidence": "unique RIP xref or mapped vtable method"
+    }
+  ]
+}

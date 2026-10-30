@@ -26,26 +26,26 @@ def fl(a):return C.c_float.from_address(a).value
 def h(s):return bytes.fromhex(s)
 def movrax(a):return h('48b8')+struct.pack('<Q',a)
 def jump(a):return h('ff2500000000')+struct.pack('<Q',a)
-for r in [0x35f7d31,0x5ff26a0,0xada5bcc,0xf8abb50,0xd9e3818,0xf3f5d48,0x5f1afa0,0x79a48dd,0xf8572b8,0xe2c73e0,0x27a7910,0x5d02340]:commit(B+r,0x200)
-for start,end in [(0x5ff26a0,0x5ff26a9),(0x5f1afa0,0x5f1afbd)]:write(B+start,pe.d[pe.off(start):pe.off(end)])
-f(B+0xada5bcc,15)
+for r in [0x35fa471,0x5ff6100,0xadabdec,0xf8b3ba0,0xd9eb808,0xf3fddbc,0x5f1ebe0,0x79a847d,0xf85f308,0xe2cf3e0,0x27a8710,0x5d05e10]:commit(B+r,0x200)
+for start,end in [(0x5ff6100,0x5ff6109),(0x5f1ebe0,0x5f1ebfd)]:write(B+start,pe.d[pe.off(start):pe.off(end)])
+f(B+0xadabdec,15)
 write(M,(EV/'BuildCombinedDefensiveTimer.bin').read_bytes());write(D,(EV/'BuildData.bin').read_bytes())
-manager=M+0x10000;q(B+0xf8abb50,manager)
+manager=M+0x10000;q(B+0xf8b3ba0,manager)
 # This call site is entered with the live selection-clock component in R13.
 wrapper=M+0x2000
 # mov r13,rcx; tail-jump to the native initialization call. Continuation restores wrapper frame.
-write(wrapper,h('41554883ec204c8be9')+jump(B+0x35f7d31))
-write(B+0x35f7d42,h('4883c420415dc3'))
+write(wrapper,h('41554883ec204c8be9')+jump(B+0x35fa471))
+write(B+0x35fa482,h('4883c420415dc3'))
 Init=C.WINFUNCTYPE(None,C.c_void_p)(wrapper)
-Tick=C.WINFUNCTYPE(None,C.c_void_p,C.c_float)(B+0x5f1afa0)
+Tick=C.WINFUNCTYPE(None,C.c_void_p,C.c_float)(B+0x5f1ebe0)
 checks=[]
 def check(label,ok):assert ok,label;checks.append(label)
 def reset():
- C.memset(manager,0,0x80);i(B+0xd9e3818,14);i(B+0xf3f5d48,3);q(B+0xf8abb50,manager)
-original=pe.d[pe.off(0x35f7d31):pe.off(0x35f7d42)]
-write(B+0x35f7d31,original);reset();Init(manager)
+ C.memset(manager,0,0x80);i(B+0xd9eb808,14);i(B+0xf3fddbc,3);q(B+0xf8b3ba0,manager)
+original=pe.d[pe.off(0x35fa471):pe.off(0x35fa482)]
+write(B+0x35fa471,original);reset();Init(manager)
 check('actual native initializer loads 15 into both clocks',fl(manager+0x34)==15 and fl(manager+0x38)==15)
-write(B+0x35f7d31,jump(M)+b'\x90'*3)
+write(B+0x35fa471,jump(M)+b'\x90'*3)
 for seconds in [3,5,15,20,30,45,60]:
  reset();i(D+0x880,seconds);Init(manager)
  check(f'{seconds}s initializes active maximum and remaining',fl(manager+0x34)==seconds and fl(manager+0x38)==seconds and n(D+0x8a8)==seconds)
@@ -58,53 +58,53 @@ for seconds in [3,5,15,20,30,45,60]:
  check(f'{seconds}s native fractional countdown resumes',fl(manager+0x38)==seconds-0.5)
  Init(manager);check(f'{seconds}s fresh snap resets once',fl(manager+0x38)==seconds)
 for mode,match in [(13,3),(14,4),(-1,3),(14,0)]:
- reset();i(B+0xd9e3818,mode);i(B+0xf3f5d48,match);i(D+0x880,60);Init(manager)
+ reset();i(B+0xd9eb808,mode);i(B+0xf3fddbc,match);i(D+0x880,60);Init(manager)
  check(f'other mode/match {mode}/{match} stays native',fl(manager+0x38)==15)
 for bad in [-1,14,16,19,21,44,59,61,999]:
  reset();i(D+0x880,bad);Init(manager);check(f'invalid runtime value {bad} stays native',fl(manager+0x38)==15)
-reset();q(B+0xf8abb50,manager+0x100);i(D+0x880,60);Init(manager)
+reset();q(B+0xf8b3ba0,manager+0x100);i(D+0x880,60);Init(manager)
 check('foreign clock object untouched',fl(manager+0x38)==15)
 # Exercise the real offensive extension hook repeatedly: its obsolete ring previously
 # overlapped 0x900..0xcff, corrupting the new defensive-clock descriptor and choices.
 clock=M+0x12000;cm=M+0x11000;profile=M+0x9000;pvt=M+0x9100
-q(B+0xf8572b8,cm);q(cm+0x20,clock);q(B+0xe2c73e0,profile);q(B+0xe2c73e8,profile)
-q(profile,pvt);q(pvt+0x10,M+0x9200);write(M+0x9200,h('b801000000c3'));write(B+0x27a7910,movrax(profile)+h('c3'))
-write(M+0x3000,(EV/'BuildDurationUpdated.bin').read_bytes());write(B+0x5d0234f,h('c5fa114928c3'))
+q(B+0xf85f308,cm);q(cm+0x20,clock);q(B+0xe2cf3e0,profile);q(B+0xe2cf3e8,profile)
+q(profile,pvt);q(pvt+0x10,M+0x9200);write(M+0x9200,h('b801000000c3'));write(B+0x27a8710,movrax(profile)+h('c3'))
+write(M+0x3000,(EV/'BuildDurationUpdated.bin').read_bytes());write(B+0x5d05e1f,h('c5fa114928c3'))
 Extend=C.WINFUNCTYPE(None,C.c_void_p,C.c_float)(M+0x3000)
-i(B+0xd9e3818,14);i(B+0xf3f5d48,3);i(D+0x828,1)
+i(B+0xd9eb808,14);i(B+0xf3fddbc,3);i(D+0x828,1)
 expected=C.string_at(D+0x900,0x700);expected_labels=C.string_at(D+0x700,0x100)
 for _ in range(70):Extend(clock,25)
 check('offensive reset path exercised 70 times',n(D+0x838)==70 and n(D+0x830)==70 and fl(clock+0x28)==60)
 check('offensive reset telemetry cannot overwrite defensive UI',C.string_at(D+0x900,0x700)==expected and C.string_at(D+0x700,0x100)==expected_labels)
 # Reproduce the native defensive UI/tick gate. Its enum-1 read previously used
 # Offensive Play Clock, so Off sent the hidden (-100) UI value and skipped Tick.
-for r in [0x35fd7d3,0x5cf5d60,0xf8abc20,0x2ad8410,0x5d01c30,0x35add00]:commit(B+r,0x200)
+for r in [0x35fff13,0x5cf9830,0xf8b3c70,0x2ad9200,0x5d05700,0x35b0440]:commit(B+r,0x200)
 oldenum=M+0x1000;enumcode=M+0xa000;gatewrapper=M+0xb000;cache=M+0xc000;pc=M+0xd000;rootmatch=M+0xe000
 profilerowner=M+0xe700;profiler=M+0xe800;profvt=M+0xe900;event=M+0xec00;voidfn=M+0xed00;choice=M+0xee00
-write(oldenum,pe.d[pe.off(0x5cf5d60):pe.off(0x5cf5d70)])
+write(oldenum,pe.d[pe.off(0x5cf9830):pe.off(0x5cf9840)])
 write(enumcode,(EV/'BuildEnumUpdated.bin').read_bytes())
-q(B+0xe2c73f0,cache);q(B+0xf8abc20,profilerowner);q(profilerowner+0xb0,profiler);q(profiler,profvt);q(profvt+0x38,voidfn)
-write(voidfn,h('c3'));write(B+0x2ad8410,h('33c0c3'));write(B+0x5d01c30,h('c3'))
-write(B+0x35add00,h('418b0049ba')+struct.pack('<Q',event)+h('41890241ff4204c3'))
+q(B+0xe2cf3f0,cache);q(B+0xf8b3c70,profilerowner);q(profilerowner+0xb0,profiler);q(profiler,profvt);q(profvt+0x38,voidfn)
+write(voidfn,h('c3'));write(B+0x2ad9200,h('33c0c3'));write(B+0x5d05700,h('c3'))
+write(B+0x35b0440,h('418b0049ba')+struct.pack('<Q',event)+h('41890241ff4204c3'))
 write(M+0x9200,movrax(choice)+h('8b00c3'))
-start,end=0x35fd7d3,0x35fd8b5;write(B+start,pe.d[pe.off(start):pe.off(end)])
+start,end=0x35fff13,0x35ffff5;write(B+start,pe.d[pe.off(start):pe.off(end)])
 # Preserve native nonvolatile registers and use its original RBP/RSP layout.
 body=h('5553565741544155415641574881ec18010000488d6c2439c5f829742450c5fa114d6f4c8bf149bf')+struct.pack('<Q',pc)
 body+=h('49bd')+struct.pack('<Q',rootmatch)+h('33f648b9')+struct.pack('<Q',cache)+h('ba01000000')+jump(B+start)
 write(gatewrapper,body);write(B+end,h('4881c418010000415f415e415d415c5f5e5b5dc3'))
 Gate=C.WINFUNCTYPE(None,C.c_void_p,C.c_float)(gatewrapper)
-Enum=C.WINFUNCTYPE(C.c_ushort,C.c_void_p,C.c_int)(B+0x5cf5d60)
+Enum=C.WINFUNCTYPE(C.c_ushort,C.c_void_p,C.c_int)(B+0x5cf9830)
 C.c_ubyte.from_address(pc+0x19).value=1;i(rootmatch+0x1d0,1)
 def selection(seconds,off,mode=14,match=3):
  reset();i(D+0x880,seconds);Init(manager);i(choice,off);C.c_ushort.from_address(cache+0x62).value=off
- i(B+0xd9e3818,mode);i(B+0xf3f5d48,match);i(event,-999)
-write(B+0x5cf5d60,jump(oldenum));selection(60,0);Gate(manager,1)
+ i(B+0xd9eb808,mode);i(B+0xf3fddbc,match);i(event,-999)
+write(B+0x5cf9830,jump(oldenum));selection(60,0);Gate(manager,1)
 check('reproduces old Off bug: native UI hidden and timer never ticks',n(event)==-100 and fl(manager+0x38)==60)
 selection(60,2);Gate(manager,1)
 check('reproduces old Off At Playcall bug: native UI hidden and timer never ticks',n(event)==-100 and fl(manager+0x38)==60)
 selection(60,1);Gate(manager,1)
 check('baseline On enters actual native countdown/UI path',n(event)==60 and fl(manager+0x38)==59)
-write(B+0x5cf5d60,jump(enumcode))
+write(B+0x5cf9830,jump(enumcode))
 for extended in [0,1]:
  i(D+0x828,extended)
  for off in [0,1,2]:
@@ -135,7 +135,7 @@ selection(60,0);C.c_ubyte.from_address(manager+0x3d).value=1;Gate(manager,1)
 check('independent defensive timer respects native paused/hidden state',n(event)==-100 and fl(manager+0x38)==60)
 C.c_ubyte.from_address(manager+0x3d).value=0;Gate(manager,1)
 check('independent defensive timer resumes and displays after pause',n(event)==60 and fl(manager+0x38)==59)
-selection(60,0);q(B+0xf8abb50,manager+0x100);before=n(D+0x8c8);Gate(manager,1)
+selection(60,0);q(B+0xf8b3ba0,manager+0x100);before=n(D+0x8c8);Gate(manager,1)
 check('foreign selection-clock object is not forced on',n(event)==-100 and fl(manager+0x38)==60 and n(D+0x8c8)==before)
 selection(60,0);i(choice,99);before=n(D+0x8c8);Gate(manager,1)
 check('invalid offensive profile does not force defensive gate',n(event)==-100 and fl(manager+0x38)==60 and n(D+0x8c8)==before)
@@ -146,7 +146,7 @@ writer=M+0x4000;wrapper=M+0x5000;adapter=M+0x6000;response=M+0x6500;vt=M+0x7000;
 write(writer,(EV/'BuildWriterUpdated.bin').read_bytes());q(adapter+0x418,response);q(response,vt);q(vt+0xa10,online)
 write(online,h('33c0c3'));q(source,svt);q(svt+0x18,chosen+16);write(chosen+16,movrax(chosen)+h('8b00c3'))
 write(wrapper,h('56415641574883ec20488bf1448bfa49be')+struct.pack('<Q',adapter)+h('4489c0')+jump(writer))
-write(B+0x79a48dd,h('4883c420415f415e5ec3'))
+write(B+0x79a847d,h('4883c420415f415e5ec3'))
 Writer=C.WINFUNCTYPE(None,C.c_void_p,C.c_int,C.c_int)(wrapper)
 i(D+0x828,1)
 for seconds in [3,5,15,20,30,45,60,0]:

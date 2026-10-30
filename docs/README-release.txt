@@ -1,7 +1,9 @@
-OFFLINE DYNASTY SETTINGS v0.2.8
+OFFLINE DYNASTY SETTINGS v0.2.9
 By Ace
 
-0.2.8 fixes settings changes not saving after the Controller Select update.
+Updated for the October 29, 2026 game patch.
+
+0.2.9 fixes settings changes not saving after the Controller Select update.
 
 INSTALL / UPDATE
 1. Close the game and MMC Mod Manager.

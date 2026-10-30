@@ -41,37 +41,37 @@ class GameSettingsMenuChecks
             remote = VirtualAlloc(IntPtr.Zero, new UIntPtr(0x5000), 0x3000, 0x40).ToInt64();
             capture = Marshal.AllocHGlobal(8).ToInt64();
             if (image == 0 || remote == 0) throw new Exception("allocation failed");
-            foreach (long rva in new long[] { 0xf554998, 0xf905618, 0x2e93f1a, 0x799be70, 0x7993df8, 0x7993db0, 0xad8fec0, 0x79a48dd, 0x79a2131, 0xd9e3818, 0xf3f5d48, 0xda9e658, 0xdafec40, 0x27a7910 })
+            foreach (long rva in new long[] { 0xf55c998, 0xf905618, 0x2e94d0a, 0x799fa10, 0x7997998, 0x7997950, 0xad960e0, 0x79a847d, 0x79a5cd1, 0xd9eb808, 0xf3fddbc, 0xdaa6758, 0xdb06d40, 0x27a8710 })
                 if (VirtualAlloc(new IntPtr(image + (rva & ~4095L)), new UIntPtr(4096), 0x1000, 0x40) == IntPtr.Zero) throw new Exception("page commit failed");
-            Code(image + 0x2e93f1a, Hex("418901c3"));
-            Code(image + 0xad8fec0, System.Text.Encoding.ASCII.GetBytes("value\0"));
-            Code(image + 0x799be70, Jump(Marshal.GetFunctionPointerForDelegate(serialize).ToInt64()));
-            Code(image + 0x7993df8, Concat(MovR10(capture), Hex("41891a4883c4205b5f5ec3")));
-            Code(image + 0x7993db0, Concat(MovR10(capture), Hex("41c702630000004883c4205b5f5ec3")));
-            Code(image + 0x79a48dd, Hex("4883c428415f5ec3"));
-            Code(image + 0x79a2131, Concat(MovR10(capture), Hex("418902"), Jump(image + 0x79a48dd)));
-            Code(remote + 0x1400, Concat(MovR10(capture), Hex("418902"), Jump(image + 0x79a48dd)));
+            Code(image + 0x2e94d0a, Hex("418901c3"));
+            Code(image + 0xad960e0, System.Text.Encoding.ASCII.GetBytes("value\0"));
+            Code(image + 0x799fa10, Jump(Marshal.GetFunctionPointerForDelegate(serialize).ToInt64()));
+            Code(image + 0x7997998, Concat(MovR10(capture), Hex("41891a4883c4205b5f5ec3")));
+            Code(image + 0x7997950, Concat(MovR10(capture), Hex("41c702630000004883c4205b5f5ec3")));
+            Code(image + 0x79a847d, Hex("4883c428415f5ec3"));
+            Code(image + 0x79a5cd1, Concat(MovR10(capture), Hex("418902"), Jump(image + 0x79a847d)));
+            Code(remote + 0x1400, Concat(MovR10(capture), Hex("418902"), Jump(image + 0x79a847d)));
             clockData=Allocate(0x1000);Marshal.WriteInt64(clockData,0x10,Marshal.StringToHGlobalAnsi("Offensive Play Clock").ToInt64());
             dll.GetType("DynastyPlayClock.DynastyPlayClockAction").GetField("dataAddress",BindingFlags.NonPublic|BindingFlags.Static).SetValue(null,clockData.ToInt64());
             IntPtr profile=Allocate(8),profileVt=Allocate(0x18);Marshal.WriteInt64(profile,profileVt.ToInt64());
             Code(remote+0x1700,Hex("b801000000c3"));Marshal.WriteInt64(profileVt,0x10,remote+0x1700);
-            Code(image+0x27a7910,Concat(Hex("48b8"),BitConverter.GetBytes(profile.ToInt64()),Hex("c3")));
+            Code(image+0x27a8710,Concat(Hex("48b8"),BitConverter.GetBytes(profile.ToInt64()),Hex("c3")));
             menuWriter=Allocate(8);IntPtr writerVt=Allocate(0x38);Marshal.WriteInt64(menuWriter,writerVt.ToInt64());
             Marshal.WriteInt64(writerVt,0x20,Marshal.GetFunctionPointerForDelegate(headerInt).ToInt64());Marshal.WriteInt64(writerVt,0x30,Marshal.GetFunctionPointerForDelegate(headerString).ToInt64());
-            Marshal.WriteInt64(new IntPtr(image+0xda9e658),Marshal.StringToHGlobalAnsi("label").ToInt64());
-            Marshal.WriteInt64(new IntPtr(image+0xdafec40),Marshal.StringToHGlobalAnsi("key").ToInt64());
-            Marshal.WriteInt64(new IntPtr(image+0xda9e668),Marshal.StringToHGlobalAnsi("type").ToInt64());
-            Marshal.WriteInt64(new IntPtr(image+0xda9e698),Marshal.StringToHGlobalAnsi("header").ToInt64());
+            Marshal.WriteInt64(new IntPtr(image+0xdaa6758),Marshal.StringToHGlobalAnsi("label").ToInt64());
+            Marshal.WriteInt64(new IntPtr(image+0xdb06d40),Marshal.StringToHGlobalAnsi("key").ToInt64());
+            Marshal.WriteInt64(new IntPtr(image+0xdaa6768),Marshal.StringToHGlobalAnsi("type").ToInt64());
+            Marshal.WriteInt64(new IntPtr(image+0xdaa6798),Marshal.StringToHGlobalAnsi("header").ToInt64());
             Marshal.WriteInt32(clockData,0x880,15);Marshal.WriteInt64(clockData,0x910,Marshal.StringToHGlobalAnsi("Defensive Play Clock").ToInt64());
             InstallCode(0);
             SetId(101); SetEntry(0, 101, 2, 3); SetEntry(1, 202, 10, 20);
-            Marshal.WriteInt32(new IntPtr(image + 0xd9e3818), 14);
-            Marshal.WriteInt32(new IntPtr(image + 0xf3f5d48), 3);
+            Marshal.WriteInt32(new IntPtr(image + 0xd9eb808), 14);
+            Marshal.WriteInt32(new IntPtr(image + 0xf3fddbc), 3);
             IntPtr info = Allocate(0xd20), outCd = Allocate(4), outLimit = Allocate(4);
             Marshal.WriteInt32(info, 0xd10, 8); Marshal.WriteInt32(info, 0xd14, 7);
             IntPtr adapter = Allocate(0x430), response = Allocate(0x150), vt = Allocate(0xa18);
             Marshal.WriteInt64(adapter, 0x418, response.ToInt64()); Marshal.WriteInt64(response, vt.ToInt64());
-            Marshal.WriteInt64(vt, 0xa10, image + 0x8456250);
+            Marshal.WriteInt64(vt, 0xa10, image + 0x8459ff0);
             Marshal.WriteInt64(new IntPtr(image + 0xf905618), adapter.ToInt64());
             Getter getter = (Getter)Marshal.GetDelegateForFunctionPointer(new IntPtr(remote + 0x900), typeof(Getter));
             getter(info, 1, outCd, outLimit); Check(Marshal.ReadInt32(outCd) == 2 && Marshal.ReadInt32(outLimit) == 3, "defense cooldown and limit override together");
@@ -84,10 +84,10 @@ class GameSettingsMenuChecks
             SetId(303); getter(info, 1, outCd, outLimit); Check(Marshal.ReadInt32(outCd) == -1 && Marshal.ReadInt32(outLimit) == -1, "unconfigured dynasty defaults both defensive restrictions Off");
             SetId(0); getter(info, 1, outCd, outLimit); Check(Marshal.ReadInt32(outCd) == 8 && Marshal.ReadInt32(outLimit) == 7, "missing league ID retains native behavior");
             SetId(101); SetEntry(0, 101, 2, 3);
-            Marshal.WriteInt32(new IntPtr(image + 0xf3f5d48), 4); getter(info, 1, outCd, outLimit); Check(Marshal.ReadInt32(outCd) == 8 && Marshal.ReadInt32(outLimit) == 7, "online match retains native behavior");
-            Marshal.WriteInt32(new IntPtr(image + 0xf3f5d48), 3);
-            Marshal.WriteInt32(new IntPtr(image + 0xd9e3818), -1); getter(info, 1, outCd, outLimit); Check(Marshal.ReadInt32(outCd) == 8 && Marshal.ReadInt32(outLimit) == 7, "other local modes retain native behavior");
-            Marshal.WriteInt32(new IntPtr(image + 0xd9e3818), 14);
+            Marshal.WriteInt32(new IntPtr(image + 0xf3fddbc), 4); getter(info, 1, outCd, outLimit); Check(Marshal.ReadInt32(outCd) == 8 && Marshal.ReadInt32(outLimit) == 7, "online match retains native behavior");
+            Marshal.WriteInt32(new IntPtr(image + 0xf3fddbc), 3);
+            Marshal.WriteInt32(new IntPtr(image + 0xd9eb808), -1); getter(info, 1, outCd, outLimit); Check(Marshal.ReadInt32(outCd) == 8 && Marshal.ReadInt32(outLimit) == 7, "other local modes retain native behavior");
+            Marshal.WriteInt32(new IntPtr(image + 0xd9eb808), 14);
             Marshal.WriteInt64(new IntPtr(image + 0xf905618), 0); getter(info, 1, outCd, outLimit); Check(Marshal.ReadInt32(outCd) == 2 && Marshal.ReadInt32(outLimit) == 3, "offline Dynasty override works after menu response is released");
             Marshal.WriteInt64(new IntPtr(image + 0xf905618), adapter.ToInt64());
 
@@ -200,10 +200,10 @@ class GameSettingsMenuChecks
         byte[] code = (byte[])dll.GetType("OfflinePlaycall.SplitHookCode").GetMethod("Create", BindingFlags.Static | BindingFlags.NonPublic).Invoke(null, new object[] { image, remote, prior });
         Code(remote, code);
         Code(remote+0x1700,Hex("b801000000c3"));
-        Code(remote + 0x1400, Concat(MovR10(capture), Hex("418902"), Jump(image + 0x79a48dd)));
+        Code(remote + 0x1400, Concat(MovR10(capture), Hex("418902"), Jump(image + 0x79a847d)));
         Code(remote + 0x1600, Concat(Hex("5641574883ec284889ce4189d74489c0"), Jump(remote + 0x600)));
     }
-    static void SetId(int id) { Marshal.WriteInt32(new IntPtr(image + 0xf554998), id); }
+    static void SetId(int id) { Marshal.WriteInt32(new IntPtr(image + 0xf55c998), id); }
     static void SetEntry(int index, int id, int cd, int limit) {
         Marshal.WriteInt32(new IntPtr(remote + 0x2000 + index * 12), id);
         Marshal.WriteInt32(new IntPtr(remote + 0x2004 + index * 12), cd);

@@ -14,7 +14,7 @@ namespace OfflineDynastySettings
     // Diagnostics are best effort. A locked report must never disable gameplay or saving.
     internal static class DiagnosticLog
     {
-        internal const string Version = "0.2.8";
+        internal const string Version = "0.2.9";
         private static readonly object sync = new object();
         internal static string PluginFolder { get { return Path.GetDirectoryName(typeof(DiagnosticLog).Assembly.Location); } }
         private static string Reports(string folder) { return Path.Combine(folder,"OfflineDynastySettings","Diagnostics"); }
@@ -87,7 +87,7 @@ namespace OfflineDynastySettings
                 checks.Add(new { address="0x"+check.Address.ToString("x"),length=bytes.Length,sha256=Digest(bytes) });
             }
             Report(context.PluginFolder,"hooks.json",new { plugin=Version,pid=context.Pid,utc=DateTime.UtcNow.ToString("O"),checks=checks,
-                defensiveInitializerRva="0x35f7d31",legacyDefensiveTimerHook=false,wholeExeHashGate=false });
+                defensiveInitializerRva="0x35fa471",legacyDefensiveTimerHook=false,wholeExeHashGate=false });
         }
         internal static void Runtime(PersistenceContext context,Func<long,int,byte[]> read)
         {
@@ -97,9 +97,9 @@ namespace OfflineDynastySettings
                 int? mode=null,matchType=null;
                 if(context.ImageBase!=0) {
                     try {
-                        mode=BitConverter.ToInt32(read(context.ImageBase+0xd9e3818,4),0);
-                        matchType=BitConverter.ToInt32(read(context.ImageBase+0xf3f5d48,4),0);
-                        long pointer=BitConverter.ToInt64(read(context.ImageBase+0xf8abb50,8),0);
+                        mode=BitConverter.ToInt32(read(context.ImageBase+0xd9eb808,4),0);
+                        matchType=BitConverter.ToInt32(read(context.ImageBase+0xf3fddbc,4),0);
+                        long pointer=BitConverter.ToInt64(read(context.ImageBase+0xf8b3ba0,8),0);
                         if(pointer>0) { byte[] timer=read(pointer+0x34,10);
                             live=new { maximum=BitConverter.ToSingle(timer,0),remaining=BitConverter.ToSingle(timer,4),hidden=timer[8],paused=timer[9] };
                         }
