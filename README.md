@@ -4,7 +4,7 @@
 
 **[Download 0.2.10 ZIP](https://github.com/ArtVsTheWorld/offline-dynasty-settings/releases/download/v0.2.10/ExtraSettings-0.2.10.zip)** · [Full feature list](FEATURES.md) · [What's new](RELEASES.md)
 
-**Standalone preview:** the new wrapper still needs clean-launch live acceptance.
+**Stable release.** Ace confirmed all four standalone releases verified working on November 9, 2026.
 
 ## Install or update
 
@@ -14,7 +14,7 @@
 
 Read README.txt in the ZIP for this module's menu, old filenames, logs and removal steps. Use one provider of each feature. If keeping COT for other modules, disable this feature in COT before using the standalone. You can install any combination of matching current standalone modules.
 
-**Want one feature? Download its standalone ZIP. Want the collection? [Download Dynasty COT](https://github.com/ArtVsTheWorld/DynastyCOT/releases).** See the [compatibility and saved-data guide](https://github.com/ArtVsTheWorld/DynastyCOT/blob/e9322de06b3309b113d1e98b169a76a68ad22b25/docs/standalones.md).
+**Want one feature? Download its standalone ZIP. Want the collection? [Download Dynasty COT](https://github.com/ArtVsTheWorld/DynastyCOT/releases).** See the [compatibility and saved-data guide](https://github.com/ArtVsTheWorld/DynastyCOT/blob/55f977425d09f5777161a9d815b8df209fa0f8d3/docs/standalones.md).
 
 ## Source and verification
 

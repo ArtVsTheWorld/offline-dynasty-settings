@@ -1,4 +1,4 @@
-# Extra Settings 0.2.10 - standalone preview
+# Extra Settings 0.2.10 - standalone release
 
 Compared with the last published standalone release, **v0.2.1**.
 
@@ -13,6 +13,8 @@ Offensive/defensive playcall cooldowns and limits are retained features, not new
 
 Remove old `OfflineDynastySettings.dll`, `DynastyPlayClock.dll` and `OfflinePlaycall.dll` copies from Plugins, keeping all data folders. If keeping COT, disable its Extra Settings module before using the standalone. Current Beyond the Field and Expanded Practice retain the corresponding shared-menu/controller contracts; older or modified hooks can be rejected.
 
-Validation: all-four packaging/coexistence and COT install/uninstall fixtures passed; 86 per-Dynasty profile checks cover all 32 clock pairs, isolation/reload/invalid data/backups, and 54 preference/launch-coordinator checks passed. The helper matches COT 1.0.2 byte-for-byte. **This new wrapper is a preview: clean-launch live acceptance remains pending.** No live installation was performed for this build.
+Validation: all-four packaging/coexistence and COT install/uninstall fixtures passed; 86 per-Dynasty profile checks cover all 32 clock pairs, isolation/reload/invalid data/backups, and 54 preference/launch-coordinator checks passed. The helper matches COT 1.0.2 byte-for-byte. **Ace reported all four standalone releases verified working on November 9, 2026.** No live installation was performed for this build.
 
 Source comparison: old tag `v0.2.1`, commit `51f48a5dac0ed23fb542597aa96d7b4ac2d8a31c`; current maintained source is pinned in `source-release.json`. Checked changes include `DynastyClockProfiles.cs`, `ClockPreferences.cs`, `GameSettingsMenuRows.cs`, `ControllerSelect.cs`, `PersistenceController.cs` and `RuntimeFiles.cs`.
+
+Stable promotion: the ZIP and DLL are unchanged from the tested preview. Enclosed preview labels describe the build-time status. Acceptance is user-reported for the tested setup; other game/overhaul combinations are not automatically certified.

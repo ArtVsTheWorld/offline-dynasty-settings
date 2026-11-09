@@ -13,4 +13,4 @@ A standalone set of controls for **offline Dynasty**. It does not require the ot
 - Settings, legacy preference backups and diagnostic reports remain in the existing `Plugins/OfflineDynastySettings` data folder. Installing the standalone does not replace saved choices with a template.
 - Native fingerprints, exact hook ownership, controller eligibility and the helper's compiled-in SHA256 checks stay enabled. Unsupported or foreign hooks are rejected rather than overwritten.
 - Current Beyond the Field and Expanded Practice retain the existing shared-menu/controller compatibility contracts. Older or modified clock/playcall plugins can conflict; do not keep their DLLs alongside this plugin.
-- This is offline Dynasty functionality, not a Play Now or online clock-settings mod. The new one-DLL packaging is a preview pending clean-launch live acceptance.
+- This is offline Dynasty functionality, not a Play Now or online clock-settings mod. Ace reported the one-DLL standalone release working on November 9, 2026.
