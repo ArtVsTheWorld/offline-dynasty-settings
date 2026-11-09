@@ -1,0 +1,17 @@
+{
+  "format": 1,
+  "title": "Extra Settings",
+  "version": "0.2.10",
+  "repository": "https://github.com/ArtVsTheWorld/DynastyCOT",
+  "revision": "e9322de06b3309b113d1e98b169a76a68ad22b25",
+  "modulePath": "Modules/ExtraDynastySettings",
+  "baselineTag": "v0.2.1",
+  "baselineCommit": "51f48a5dac0ed23fb542597aa96d7b4ac2d8a31c",
+  "firstPublishedStandalone": false,
+  "archive": "ExtraSettings-0.2.10.zip",
+  "archiveSha256": "e0e36cb34265db8172ba32a7bca024f85234ce49a00ddd091f775493b3225255",
+  "dllSha256": "4824cf6e17ed00400f3ab0c2a806e6b44453bbcd0a3a355e1351129de7b4dd65",
+  "threeFileZip": true,
+  "preview": true,
+  "sourceTreeHere": "historical; use pinned integration workspace"
+}
