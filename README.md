@@ -1,23 +1,25 @@
-# Extra Settings
+# ExtraSettings by Ace
 
-**By Ace.** Separate offensive/defensive playcall controls and clocks saved for each Dynasty.
+An independent part of [Dynasty COT](https://github.com/ArtVsTheWorld/DynastyCOT). You do not need the other modules.
 
-**[Download 0.2.10 ZIP](https://github.com/ArtVsTheWorld/offline-dynasty-settings/releases/download/v0.2.10/ExtraSettings-0.2.10.zip)** · [Full feature list](FEATURES.md) · [What's new](RELEASES.md)
+[Download published versions](https://github.com/ArtVsTheWorld/offline-dynasty-settings/releases) · [Full feature list](FEATURES.md) · [Release history](RELEASES.md)
 
-**Stable release.** Ace confirmed all four standalone releases verified working on November 9, 2026.
+**This branch prepares private candidate 0.2.11. Its release assets are not published yet.** The last public version used for comparison is 0.2.10.
 
 ## Install or update
 
-1. Close the game and MMC Mod Manager.
-2. Put **ExtraSettings.dll** directly in the versioned Mod Manager's **Plugins** folder. The ZIP contains that DLL, README.txt and FEATURES.md. Matching support files are embedded and prepared automatically.
-3. Move older duplicate plugin DLLs outside Plugins, keeping settings/history folders. Restart MMC and launch normally. Use a writable MMC folder outside Program Files.
+1. Close MMC and the game and back up your previous DLL
+2. Download the chosen public ZIP and copy ExtraSettings.dll into the versioned Mod Manager's Plugins folder
+3. Replace the old copy and launch MMC normally; matching support files prepare automatically
 
-Read README.txt in the ZIP for this module's menu, old filenames, logs and removal steps. Use one provider of each feature. If keeping COT for other modules, disable this feature in COT before using the standalone. You can install any combination of matching current standalone modules.
+Use one provider per module. The COT installer can retire recognized older copies with backups. Keep all settings/history folders. To roll back, close MMC/game and restore your older DLL.
 
-**Want one feature? Download its standalone ZIP. Want the collection? [Download Dynasty COT](https://github.com/ArtVsTheWorld/DynastyCOT/releases).** See the [compatibility and saved-data guide](https://github.com/ArtVsTheWorld/DynastyCOT/blob/55f977425d09f5777161a9d815b8df209fa0f8d3/docs/standalones.md).
+Current candidates store settings/history/logs in `%LOCALAPPDATA%\Ace\DynastyCOT`, shared across MMC copies. Installation into protected folders still requires permission to replace DLLs.
 
-## Source and verification
+Want one feature? Download its standalone ZIP. Want several? Use the [optional COT installer](https://github.com/ArtVsTheWorld/DynastyCOT/releases).
 
-This repository is the standalone download/help front door. Current releases are built from the [single maintained COT workspace](https://github.com/ArtVsTheWorld/DynastyCOT/tree/e9322de06b3309b113d1e98b169a76a68ad22b25), including [this module's source](https://github.com/ArtVsTheWorld/DynastyCOT/tree/e9322de06b3309b113d1e98b169a76a68ad22b25/Modules/ExtraDynastySettings) and shared build/packaging code. `source-release.json` pins the exact source revision, baseline and artifact hashes.
+## Source and support
 
-The older source tree retained in this repository is historical; it is **not** the build input for this standalone release. Fixes are maintained in COT rather than separately editing four forks. Release assets include integrity metadata; successful offline checks do not certify every game/overhaul combination.
+Maintained source and compatibility checks are together in [Dynasty COT at 226a6b6c](https://github.com/ArtVsTheWorld/DynastyCOT/tree/226a6b6c6292d202498e7d7fe1c7399335d40f43/Modules/ExtraDynastySettings). This repository's older source tree is historical; use that pinned integration source for current development.
+
+See RELEASE_NOTES.md for the candidate's changes and limits. Automated checks do not establish universal live-game compatibility. Keep your previous working DLL and report your game/mod versions with logs when requesting support.

@@ -1,16 +1,18 @@
 # Extra Settings by Ace
 
-A standalone set of controls for **offline Dynasty**. It does not require the other COT modules.
+Optional controls for offline Dynasty. Other COT modules are not required.
 
-- Set **offensive and defensive playcall cooldowns independently**: decide how many plays must pass before repeating a play. Zero turns the restriction off.
-- Set **offensive and defensive playcall limits independently**: limit how many times the same play can be used in a game. Zero turns the restriction off.
-- Choose the offensive play-clock mode independently from the defensive clock. Choose **On, Off At Playcall, Off, or 60 Seconds**.
-- Choose a defensive clock of **3, 5, 15, 20, 30, 45 or 60 seconds**, or Off.
-- Clocks are saved **per Dynasty**, using its verified LeagueID. A different save starts with its own choices. New Dynasties start with offensive On and defensive 15 seconds; playcall restrictions start off.
-- Find the controls in **Dynasty > League Settings > Game Settings**. Start a fresh game after changing gameplay settings.
-- A verified settings-saving helper can keep persistence working after MMC closes. It exits with its matching game session; it does not write settings into another running Dynasty by filename guessing.
-- The existing deferred Controller Select bridge remains included for supported offline Dynasty contexts. This does not grant control of unsupported modes or bypass native restrictions.
-- Settings, legacy preference backups and diagnostic reports remain in the existing `Plugins/OfflineDynastySettings` data folder. Installing the standalone does not replace saved choices with a template.
-- Native fingerprints, exact hook ownership, controller eligibility and the helper's compiled-in SHA256 checks stay enabled. Unsupported or foreign hooks are rejected rather than overwritten.
-- Current Beyond the Field and Expanded Practice retain the existing shared-menu/controller compatibility contracts. Older or modified clock/playcall plugins can conflict; do not keep their DLLs alongside this plugin.
-- This is offline Dynasty functionality, not a Play Now or online clock-settings mod. Ace reported the one-DLL standalone release working on November 9, 2026.
+- Set offensive and defensive playcall cooldowns independently, controlling how soon a play can repeat
+- Set offensive and defensive playcall limits independently, controlling the number of uses; zero disables the restriction
+- Choose offensive play clock On, Off At Playcall, Off or 60 Seconds
+- Choose defensive clock 3, 5, 15, 20, 30, 45 or 60 seconds, or Off
+- Clock choices belong to each verified Dynasty; new Dynasties start with offense On and defense 15 seconds
+- Find the controls in Dynasty League Settings > Game Settings; start a fresh game to check changed gameplay settings
+- A verified persistence helper saves supported choices after MMC closes and exits with its matching game session
+- Settings, diagnostics and verified runtime files use %LOCALAPPDATA%\Ace\DynastyCOT\ExtraSettings across MMC copies
+- Legacy data is copied without deleting originals; explicit AppData preferences take precedence and conflicts are archived
+- Copy ExtraSettings.dll into Plugins, or let COT install that same DLL; runtime support prepares automatically
+- Supported controller-selection/menu bridges coexist with the current companion modules without granting control of unsupported modes
+- Offline scope, exact fingerprints, hook ownership and helper hash verification remain enforced
+- Do not also load old clock/playcall/settings providers; COT handles recognized legacy copies with backups
+- This does not add clock settings to online play or Play Now
