@@ -1,24 +1,13 @@
 {
-  "format": 1,
-  "title": "Extra Settings",
-  "version": "0.2.10",
-  "repository": "https://github.com/ArtVsTheWorld/DynastyCOT",
-  "revision": "e9322de06b3309b113d1e98b169a76a68ad22b25",
+  "format": 2,
+  "version": "0.2.12",
+  "repository": "ArtVsTheWorld/DynastyCOT",
+  "revision": "a79a45e63b661d2da378dc2c079f5e99374d3d8c",
   "modulePath": "Modules/ExtraDynastySettings",
-  "baselineTag": "v0.2.1",
-  "baselineCommit": "51f48a5dac0ed23fb542597aa96d7b4ac2d8a31c",
-  "firstPublishedStandalone": false,
-  "archive": "ExtraSettings-0.2.10.zip",
-  "archiveSha256": "e0e36cb34265db8172ba32a7bca024f85234ce49a00ddd091f775493b3225255",
-  "dllSha256": "4824cf6e17ed00400f3ab0c2a806e6b44453bbcd0a3a355e1351129de7b4dd65",
-  "threeFileZip": true,
-  "preview": false,
-  "sourceTreeHere": "historical; use pinned integration workspace",
-  "releaseStatusRevision": "55f977425d09f5777161a9d815b8df209fa0f8d3",
-  "acceptance": {
-    "kind": "user-reported",
-    "date": "2026-11-09",
-    "scope": "All four standalone releases confirmed verified working in this chat",
-    "testedArchiveUnchanged": true
-  }
+  "archive": "ExtraSettings-0.2.12.zip",
+  "archiveSha256": "10ca8d0da5a5611d4be7fa36fd0b097ae810db3cc117b5f4dfd89d26096c591b",
+  "dllSha256": "62b3804a218f3b0c9b83fb0ea0726a2a8e7f9a9f4a4d1ae57a707642d133a23d",
+  "playerGuideSha256": "a95595f6a7bcfc2ac072621b598d68dfc39c179b3dce61b627249ceca0816369",
+  "fourFileZip": true,
+  "publicBaseline": "0.2.10"
 }
