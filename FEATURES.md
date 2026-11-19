@@ -2,7 +2,7 @@
 
 ## Set your kickoff and return units
 
-This option starts off. Before launching the game, create a plain text file called **FormationSubs.ini** in %LOCALAPPDATA%\Ace\DynastyCOT\ExtraSettings with the line KickoffAndKickReturn=On. In offline Dynasty, look under **Special Teams** in Formation Subs. **Kickoff** is on the offense tab and **Kickoff Return** is on defense.
+In a supported offline Dynasty, look under **Special Teams** in Formation Subs. **Kickoff** is on the offense tab and **Kickoff Return** is on defense. Both entries appear automatically.
 
 ## Pick the rules for your Dynasty
 
