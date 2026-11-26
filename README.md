@@ -1,6 +1,6 @@
 # Ace’s Extra Settings
 
-**[Download 0.2.21 ZIP](https://github.com/ArtVsTheWorld/offline-dynasty-settings/releases/download/v0.2.21/ExtraSettings-0.2.21.zip)** · [Illustrated player guide](https://github.com/ArtVsTheWorld/offline-dynasty-settings/releases/download/v0.2.21/ExtraSettings-Player-Guide.pdf) · [All features](FEATURES.md) · [What changed](RELEASES.md)
+**[Download 0.2.22 ZIP](https://github.com/ArtVsTheWorld/offline-dynasty-settings/releases/download/v0.2.22/ExtraSettings-0.2.22.zip)** · [Illustrated player guide](https://github.com/ArtVsTheWorld/offline-dynasty-settings/releases/download/v0.2.22/ExtraSettings-Player-Guide.pdf) · [All features](FEATURES.md) · [What changed](RELEASES.md)
 
 Close MMC/game. Copy **ExtraSettings.dll** from the ZIP into the **Plugins** folder beside the MMCModManager.exe you actually use, replacing the prior copy. Keep the included README, feature list and illustrated guide. The ZIP has exactly those four files; required notices are in the README appendix where needed. Matching support prepares automatically outside Plugins.
 
@@ -12,4 +12,4 @@ Read the release notes for supported contexts and remaining live acceptance. Off
 
 ## Source and verification
 
-Development stays in the [shared COT workspace](https://github.com/ArtVsTheWorld/DynastyCOT/tree/2986b409c5063aaa4bbc24fd73b68ca0dab75b66); [current module source](https://github.com/ArtVsTheWorld/DynastyCOT/tree/2986b409c5063aaa4bbc24fd73b68ca0dab75b66/Modules/ExtraDynastySettings). The older tree in this download/support repository is historical and is not the current build input. `source-release.json` pins the source revision and artifact hashes. Verification JSON and SHA-256 files are separate release assets; the editable guide is also available.
+Development stays in the [shared COT workspace](https://github.com/ArtVsTheWorld/DynastyCOT/tree/bef29fe9f6da128ee019237d3bdfe2f3e2fbcfc2); [current module source](https://github.com/ArtVsTheWorld/DynastyCOT/tree/bef29fe9f6da128ee019237d3bdfe2f3e2fbcfc2/Modules/ExtraDynastySettings). The older tree in this download/support repository is historical and is not the current build input. `source-release.json` pins the source revision and artifact hashes. Verification JSON and SHA-256 files are separate release assets; the editable guide is also available.

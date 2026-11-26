@@ -1,13 +1,13 @@
 {
   "format": 2,
-  "version": "0.2.21",
+  "version": "0.2.22",
   "repository": "ArtVsTheWorld/DynastyCOT",
-  "revision": "2986b409c5063aaa4bbc24fd73b68ca0dab75b66",
+  "revision": "bef29fe9f6da128ee019237d3bdfe2f3e2fbcfc2",
   "modulePath": "Modules/ExtraDynastySettings",
-  "archive": "ExtraSettings-0.2.21.zip",
-  "archiveSha256": "311546a9e5810dd2534b22ea3e87daa338df6b1c996db6b6ffde64fa41c78e79",
-  "dllSha256": "e4d08fc86603729bb9bd27c23859f7bd06cc28843117a9c88c5842ae42611efe",
+  "archive": "ExtraSettings-0.2.22.zip",
+  "archiveSha256": "6c76950442d990216480cfc3fd9387a63c2d0555586e1eb04be228913a33a794",
+  "dllSha256": "9ca1cc96e1047548a4113053dd5394dd42ec4429d72430c558dea14039f964cb",
   "playerGuideSha256": "a95595f6a7bcfc2ac072621b598d68dfc39c179b3dce61b627249ceca0816369",
   "fourFileZip": true,
-  "publicBaseline": "0.2.12"
+  "publicBaseline": "0.2.21"
 }

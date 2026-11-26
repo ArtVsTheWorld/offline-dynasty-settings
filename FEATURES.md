@@ -1,4 +1,4 @@
-# Ace’s Extra Settings 0.2.21
+# Ace’s Extra Settings 0.2.22
 
 ## Set your kickoff and return units
 
@@ -6,7 +6,7 @@ In a supported offline Dynasty, look under **Special Teams** in Formation Subs. 
 
 ## Pick the rules for your Dynasty
 
-Open **League Settings > Game Settings** in an offline Dynasty. Look just above Clock Management for six choices. A new league starts with the normal offensive clock, a 15-second defensive clock and all four playcall rules off. Start a fresh game to try your changes.
+Open **League Settings > Game Settings** in an offline Dynasty. Look just above Clock Management for seven choices. A new league starts with the normal offensive clock, a 15-second defensive clock, all four playcall rules off and default practice injuries. Start a fresh game to try clock/playcall changes.
 
 | Setting | Choices | What it changes |
 | --- | --- | --- |
@@ -16,8 +16,11 @@ Open **League Settings > Game Settings** in an offline Dynasty. Look just above 
 | Defensive Playcall Cooldown | 0–10 plays | How many other calls the defense must make before repeating a call. |
 | Offensive Playcall Limit | 0–20 uses | How many times the offense can call the same play in one game. |
 | Defensive Playcall Limit | 0–20 uses | How many times the defense can call the same play in one game. |
+| Practice Injuries | Default, Off for QBs, Off | Keep normal weekly-practice injuries, protect quarterbacks on every team, or protect everyone. |
 
 Set any cooldown or limit to **0** to turn just that rule off. For example, give your offense a cooldown of **2** and a limit of **3**. You can call a screen, call two other plays, then call the screen again. After the third screen, you have used it up for that game.
+
+Practice Injuries applies to simulated weekly practice in that Dynasty. The practice-plan risk preview follows your choice. It does not heal existing injuries or change injuries during a played game or on-field practice. Practice plans, reps, XP and fatigue stay normal. The new option has passed automated checks; an actual weekly advance still needs live acceptance.
 
 ## Switch teams during a game
 
